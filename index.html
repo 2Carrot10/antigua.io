@@ -425,7 +425,7 @@ function downloadAndDisplayCSV(url) {
             // Display each row in the console
             rows.forEach(row => {
                 //console.log(row);
-                csvData.add(new oppertunity(Split(row)));
+                csvData.add(new oppertunity(row.split(",")));
             });
         })
         .catch(error => {
