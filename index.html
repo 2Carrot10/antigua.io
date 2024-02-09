@@ -325,15 +325,13 @@ body {
 var serviceData= new Array();
 
 class oppertunity{
-  constructor(title,description,minAge,address,zipcode,category1,category2,category3){
-    this.titel=title;
-    this.description=description;
-    this.minAge=minAge;
-    this.address=address;
-    this.zipcode=zipcode;
-    this.category1=category1;
-    this.category2=category2;
-    this.category3=category3;
+  constructor(data){
+    this.titel=data[0];
+    this.description=data[1];
+    this.minAge=data[2];
+    this.address=data[3];
+    this.zipcode=data[4];
+    this.category1=new Array(data[5], data[6], data[7]);
   }
 
 
