@@ -435,11 +435,11 @@ function downloadAndDisplayCSV(url) {
                 //console.log(row);
                 let a= /(?!\B"[^"]*),(?![^"]*"\B)/g
                 let b = /"/g
-                console.log("3 \n"+row)
+                console.log("a \n"+row)
                 row=row.replace(a, "|")
-                console.log("3 \n"+row)
+                //console.log("3 \n"+row)
                 row=row.replace(b, "")
-                console.log("3 \n"+row)
+                //console.log("3 \n"+row)
                 serviceData.push(new oppertunity(row.split("|")));
             });
         })
