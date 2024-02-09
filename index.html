@@ -322,7 +322,7 @@ body {
 
 
 <script type="text/javascript">
-var csvData=[10];
+var serviceData= new Array();
 
 class oppertunity{
   constructor(title,description,minAge,address,zipcode,category1,category2,category3){
@@ -429,7 +429,7 @@ function downloadAndDisplayCSV(url) {
                 const regexPatternTwo = /"/g;
                 row = row.replace(regexPattern, '|');
                 row = row.replace(regexPattern, '');
-                csvData.push(new oppertunity(row.split(",")));
+                serviceData.push(new oppertunity(row.split(",")));
             });
         })
         .catch(error => {
