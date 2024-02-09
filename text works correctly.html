@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+        <style>
+.myDiv {
+  border: 5px outset red;
+  background-color: lightblue;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h2>Text Box Example</h2>
+
+<!-- Text box input and button -->
+<input type="text" id="inputBox" placeholder="Type something...">
+<button onclick="displayText()">Display Text</button>
+<input type="checkbox" name="subscribe" value="yes"> Subscribe to newsletter
+
+<input type="file" id="fileInput" name="fileUpload">
+<!-- Display area for the entered text -->
+<p id="displayText"></p>
+
+<script type="text/javascript">
+    function displayText() {
+      var inputText = document.getElementById('fileInput').value;
+      document.getElementById('displayText').innerText = "You entered: " + inputText;
+    }
+    //https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv
+
+function handleFiles(files) {
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+
+    const textNode = document.createElement("p"); // Create a paragraph element for displaying text
+    textNode.classList.add("text");
+    const element = document.getElementById("div1");
+    element.appendChild(textNode); // Assuming that "div1" is the div output where the content will be displayed.
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      textNode.innerText = e.target.result; // Set the text content with the file content
+    };
+    reader.readAsText(file);
+  }
+}
+
+</script>
+
+<div class="myDiv" id="div1">
+    <h2>This is a heading in a div element</h2>
+    <p>This is some text in a div element.</p>
+</div>
+</body>
+</html>
