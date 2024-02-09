@@ -360,7 +360,8 @@ var progress = 0;
 
         }else{
           //delete row
-          i--;//horrible code but limited time.
+          delete searchData[i];
+          //i--;//horrible code but limited time.
         }
       }
     }
@@ -434,8 +435,11 @@ function downloadAndDisplayCSV(url) {
                 //console.log(row);
                 let a= /(?!\B"[^"]*),(?![^"]*"\B)/g
                 let b = /"/g
+                console.log("3 \n"+row)
                 row=row.replace(a, "|")
+                console.log("3 \n"+row)
                 row=row.replace(b, "")
+                console.log("3 \n"+row)
                 serviceData.push(new oppertunity(row.split("|")));
             });
         })
