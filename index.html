@@ -353,7 +353,16 @@ var progress = 0;
     loadingBar.style.width = progress + '%';
   }
 
-  var loadingInterval = setInterval(simulateLoading, 500);
+  function loadValue(percent){
+    progress =percent;
+    if (progress > 100) {
+      //clearInterval(loadingInterval);
+    }
+    loadingBar.style.width = progress + '%';
+
+  }
+
+  //var loadingInterval = setInterval(simulateLoading, 500);
 
 
     function searchFunction() {
@@ -369,9 +378,12 @@ var progress = 0;
           //i--;//horrible code but limited time.
         }
       }*/
+      
+      searchData=serviceData;
       for (let i = 0; i < searchData.length; i++) {
+        loadValue((i/searchData.length)*100);
         console.log("I value" + i);
-        renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].zipcode,searchData[i].tags, false);
+        if((searchData[i].title!=null) && (searchData[i].title != ""))renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].zipcode,searchData[i].tags, false);
       
       }
 
