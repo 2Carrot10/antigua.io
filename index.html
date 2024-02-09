@@ -425,6 +425,10 @@ function downloadAndDisplayCSV(url) {
             // Display each row in the console
             rows.forEach(row => {
                 //console.log(row);
+                const regexPattern = /(?!\B"[^"]*),(?![^"]*"\B)/g;
+                const regexPatternTwo = /"/g;
+                row = row.replace(regexPattern, '|');
+                row = row.replace(regexPattern, '');
                 csvData.add(new oppertunity(row.split(",")));
             });
         })
