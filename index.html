@@ -447,6 +447,10 @@ function parseCSV(str) {
     return arr;
 }
 function downloadAndDisplayCSV(url) {
+  //let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
+  //let b = /"/g
+  //let c = /("[^"\n]*)\r?\n(?!(([^"]*"){2})*[^"]*$)/; //finds new lines inside ""
+
     fetch(url)
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
