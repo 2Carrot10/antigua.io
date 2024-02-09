@@ -386,9 +386,6 @@ var progress = 0;
         if((searchData[i].title!=null) && (searchData[i].title != ""))renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
       
       }
-
-
-
     }
     //https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv
 function createPannel(){
@@ -477,7 +474,7 @@ function downloadAndDisplayCSV(url) {
         .then(csvData => {
 
             rows = parseCSV(csvData);            
-            for (let i = 0; i < cars.length; i++) {
+            for (let i = 0; i < rows.length; i++) {
               serviceData.push(new oppertunity(rows[i]));
               
             
