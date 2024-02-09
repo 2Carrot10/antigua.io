@@ -372,9 +372,9 @@ var progress = 0;
         loadValue((i/(searchData.length-1))*100);
         searchData[i];
         if(searchData[i].description.includes(document.getElementById("phraseBox").value)){
-
+          console.log("if is true");
         }else{
-          //delete row
+          //delete
           delete searchData[i];
           //i--;//horrible code but limited time.
         }
@@ -382,7 +382,7 @@ var progress = 0;
       
       for (let i = 0; i < searchData.length; i++) {
         console.log("I value" + i);
-        if((searchData[i].title!=null) && (searchData[i].title != ""))renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
+        if((searchData!=null)&&(searchData[i].title!=null) && (searchData[i].title != ""))renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
       
       }
     }
