@@ -261,6 +261,8 @@ body {
 </div>
 </div>
 
+
+<template>
 <div class= "groupDiv">
   <div class="opportunity-card">
     <div class="opportunity-details">
@@ -285,6 +287,7 @@ body {
 </div>
 </div>
 </div>
+</template>
 
 <div class= "groupDiv sideMenu"><h2 style="text-align:center;">bookmarks</h2>
 
@@ -424,22 +427,22 @@ var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0
     a.remove();
 }
 function downloadAndDisplayCSV(url) {
+  let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
+  let b = /"/g
+  let c = /(?!\B"[^"\n]*),(?![^"\n]*"\B)/g; //finds new lines outside ""
+
     fetch(url)
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
             // Split the CSV data into rows
-            const rows = csvData.split('\n');
-            
+            rows= csvData.replace(c, "|")
+            rows = rows.split("|");
             // Display each row in the console
             rows.forEach(row => {
                 //console.log(row);
-                let a= /(?!\B"[^"]*),(?![^"]*"\B)/g
-                let b = /"/g
-                console.log("a \n"+row)
+
                 row=row.replace(a, "|")
-                //console.log("3 \n"+row)
                 row=row.replace(b, "")
-                //console.log("3 \n"+row)
                 serviceData.push(new oppertunity(row.split("|")));
             });
         })
