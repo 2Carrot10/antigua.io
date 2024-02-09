@@ -427,18 +427,36 @@ var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0
     window.URL.revokeObjectURL(url);
     a.remove();
 }
+
+
+function parseCSV(str) {
+    var arr = [];
+    var quote = false;
+    for (var row = col = c = 0; c < str.length; c++) {
+        var cc = str[c], nc = str[c+1];
+        arr[row] = arr[row] || [];
+        arr[row][col] = arr[row][col] || '';
+        
+        if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+        if (cc == '"') { quote = !quote; continue; }
+        if (cc == ',' && !quote) { ++col; continue; }
+        if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+        
+        arr[row][col] += cc;
+    }
+    return arr;
+}
 function downloadAndDisplayCSV(url) {
-  let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
-  let b = /"/g
-  let c = /(?!\B"[^"\n]*),(?![^"\n]*"\B)/g; //finds new lines outside ""
+  //let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
+  //let b = /"/g
+  //let c = /("[^"\n]*)\r?\n(?!(([^"]*"){2})*[^"]*$)/; //finds new lines inside ""
 
     fetch(url)
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
-            // Split the CSV data into rows
-            rows= csvData.replace(c, "|")
-            rows = rows.split("|");
-            // Display each row in the console
+
+            //rows= CSVToArray(csvData);
+            rows = parseCSV(csvData);
             rows.forEach(row => {
                 //console.log(row);
 
