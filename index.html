@@ -287,7 +287,7 @@ body {
 </div>
 </div>
 </template>
-
+<template>
 <div class= "groupDiv sideMenu"><h2 style="text-align:center;">bookmarks</h2>
 
   <div class="opportunity-card">
@@ -308,8 +308,8 @@ body {
 
   
 </div>  
-
-<div class="groupDiv" id="groupDiv" style="width: 60%;">
+</template>
+<div class="groupDiv" id="groupDiv">
 
   <div class="opportunity-card">
 
@@ -371,7 +371,7 @@ var progress = 0;
       for (let i = 0; i < searchData.length; i++) {
         loadValue((i/(searchData.length-1))*100);
         searchData[i];
-        if(searchData[i].description.includes(document.getElementById("phraseBox").value)){
+        if(searchData[i]!=null && searchData[i].description.includes(document.getElementById("phraseBox").value)){
           console.log("if is true");
         }else{
           //delete
