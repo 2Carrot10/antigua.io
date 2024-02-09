@@ -382,7 +382,7 @@ var progress = 0;
       
       for (let i = 0; i < searchData.length; i++) {
         console.log("I value" + i);
-        if(searchData!=null)if((searchData[i].title!=null) && (searchData[i].title != ""))renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
+        if(searchData[i]!=null)if((searchData[i].title!=null) && (searchData[i].title != ""))renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
       
       }
     }
