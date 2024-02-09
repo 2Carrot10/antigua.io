@@ -357,6 +357,7 @@ var progress = 0;
 
 
     function searchFunction() {
+      console.log("search initiated");
       /*
       for (let i = 0; i < searchData.length; i++) {
         searchData[i];
@@ -369,6 +370,7 @@ var progress = 0;
         }
       }*/
       for (let i = 0; i < searchData.length; i++) {
+        console.log("I value" + i);
         renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].zipcode,searchData[i].tags, false);
       
       }
@@ -462,9 +464,7 @@ function downloadAndDisplayCSV(url) {
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
 
-            rows = parseCSV(csvData);
-            console.log(rows)
-            
+            rows = parseCSV(csvData);            
             for (let i = 0; i < cars.length; i++) {
               serviceData.push(new oppertunity(rows[i]));
               
