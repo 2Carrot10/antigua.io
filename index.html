@@ -447,23 +447,17 @@ function parseCSV(str) {
     return arr;
 }
 function downloadAndDisplayCSV(url) {
-  //let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
-  //let b = /"/g
-  //let c = /("[^"\n]*)\r?\n(?!(([^"]*"){2})*[^"]*$)/; //finds new lines inside ""
-
     fetch(url)
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
 
-            //rows= CSVToArray(csvData);
             rows = parseCSV(csvData);
-            rows.forEach(row => {
-                //console.log(row);
-
-                row=row.replace(a, "|")
-                row=row.replace(b, "")
-                serviceData.push(new oppertunity(row.split("|")));
-            });
+            console.log(rows)
+            
+            for (let i = 0; i < cars.length; i++) {
+              serviceData.push(new oppertunity(rows[i]));
+            
+            }
         })
         .catch(error => {
             console.error('Error:', error);
