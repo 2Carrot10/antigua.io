@@ -428,8 +428,11 @@ function downloadAndDisplayCSV(url) {
                 const regexPattern = /(?!\B"[^"]*),(?![^"]*"\B)/g;
                 const regexPatternTwo = /"/g;
                 row = row.replace(regexPattern, '|');
+                console.log("1 "+row)
                 row = row.replace(regexPattern, '');
+                console.log("2 "+row)
                 serviceData.push(new oppertunity(row.split(",")));
+                console.log("3 "+row)
             });
         })
         .catch(error => {
