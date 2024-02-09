@@ -255,7 +255,7 @@ body {
 <p id="displayText"></p></br>
 <button onclick="">Advanced Search (not yet working)</button>
 <div style="text-align:center">
-<button onclick="displayText()">Search!</button>
+<button onclick="searchFunction()">Search!</button>
 </div>
 </div>
 </div>
@@ -323,16 +323,17 @@ body {
 
 <script type="text/javascript">
 var serviceData= new Array();
+var searchData= new Array();
 
 class oppertunity{
   constructor(data){
     this.titel=data[0];
-    this.minAge=data[1];
-    this.description=data[2];
-    this.website=data[4]
+    this.minAge=data[2];
+    this.description=data[1];
+    this.website=data[5]
     this.address=data[3];
-    this.zipcode=data[5];
-    this.category1=new Array(data[6], data[7], data[8]);
+    this.zipcode=data[4];
+    this.category1=new Array(data[7], data[8], data[9]);
   }
 
 
@@ -352,9 +353,16 @@ var progress = 0;
   var loadingInterval = setInterval(simulateLoading, 500);
 
 
-    function displayText() {
-      var inputText = document.getElementById('fileInput').value;
-      document.getElementById('displayText').innerText = "You entered: " + inputText;
+    function searchFunction() {
+      for (let i = 0; i < searchData.length; i++) {
+        searchData[i];
+        if(true){
+
+        }else{
+          //delete row
+          i--;//horrible code but limited time.
+        }
+      }
     }
     //https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv
 function createPannel(){
