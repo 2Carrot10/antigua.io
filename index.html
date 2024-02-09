@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Service Learning Search</title>
 
         <style>
 
@@ -229,11 +229,10 @@ body {
   <div class="opportunity-card">
     <div class="opportunity-details">
     <h2>Search Categories</h2>
-<p><strong>exact phrase: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. research"></p>
-<p><strong>title includes: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. put example here"></p>
-<p><strong>minimum age: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. 16"></p>
+<p><strong>exact phrase: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research'"></p>
+<p><strong>title includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
+<p><strong>minimum age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
 <select name="cars" id="cars">
-    <option value="volvo">Abilities</option>
     <option value="saab">Differently Abled</option>
     <option value="opel">Youth</option>
     <option value="audi">K-12 Education</option>
@@ -367,21 +366,21 @@ var progress = 0;
 
     function searchFunction() {
       console.log("search initiated");
-      /*
+      searchData=serviceData;
+    
       for (let i = 0; i < searchData.length; i++) {
+        loadValue((i/(searchData.length-1))*100);
         searchData[i];
-        if(true){
+        if(searchData[i].description.includes(document.getElementById("phraseBox").value)){
 
         }else{
           //delete row
           delete searchData[i];
           //i--;//horrible code but limited time.
         }
-      }*/
+      }
       
-      searchData=serviceData;
       for (let i = 0; i < searchData.length; i++) {
-        loadValue((i/(searchData.length-1))*100);
         console.log("I value" + i);
         if((searchData[i].title!=null) && (searchData[i].title != ""))renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
       
@@ -514,9 +513,9 @@ function handleFiles(files) {
 
 </script>
 
-<!--
+
 <p>Didn't find the orginisation you were looking for? Suggest an organisation:</p>
 <embed src="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform" style="width: 60%; height: 500px;">
--->
+<!---->
 </body>
 </html>
