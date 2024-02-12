@@ -5,8 +5,24 @@
 
         <style>
 
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+  }
+
+
 .textbox {
-            width: 25%;
+            width: 100%;
             padding: 5px;
             font-size: 14px;
             border: 1px solid #ccc;
@@ -194,7 +210,7 @@ body {
             <p><strong>Address:</strong><span id="address">123 Main St</span></p>
             <p><strong>Website:</strong> <a href="#" id="website">example.com</a></p>
             <p><strong>Zip Code:</strong> <span id="zipcode">12345</span></p>
-            <div class="categories">
+            <div class="categories" id="tags">
                 <span class="category">Community</span>
                 <span class="category">Environment</span>
             </div>
@@ -243,9 +259,6 @@ body {
   <option value="list view">minimalised view</option>
 </select>
 
-<input type="checkbox" name="subscribe" value="yes">
-
-<input type="file" id="fileInput" name="fileUpload">
 <div class="categories">
   <span class="clickable-category">Community</span>
   <span class="clickable-category">Environment</span>
@@ -254,7 +267,7 @@ body {
 <p id="displayText"></p></br>
 <button onclick="">Advanced Search (not yet working)</button>
 <div style="text-align:center">
-<button onclick="searchFunction()">Search!</button>
+<button onclick="searchFunction()" class="btn">Search!</button>
 </div>
 </div>
 </div>
@@ -268,7 +281,6 @@ body {
     <h2>Search Categories (Advanced Mode)</h2>
 <p><strong>query: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. research"></p>
 
-<input type="file" id="fileInput" name="fileUpload">
 <p>Examples:</p>
 <p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
 <br>
@@ -365,6 +377,7 @@ var progress = 0;
 
 
     function searchFunction() {
+      deleteTiles()
       console.log("search initiated");
       searchData=serviceData;
     
@@ -422,6 +435,10 @@ function renderOneTile(title,description,minAge,address,website,zipcode,tags,min
   clone.getElementById("website").innerHTML=website;
   clone.getElementById("address").innerHTML=address;
   clone.getElementById("zipcode").innerHTML=zipcode;
+  var tagA = document.createElement("span");
+  tagA.classList.add("categories");
+  tagA.textContent=tags;
+  clone.getElementById("tags").appendChild(document.createElement("span"));
   //clone.getElementById("tags").innerHTML=address;//get this working
   var myNode = document.getElementById("groupDiv");
   myNode.appendChild(clone);
