@@ -43,23 +43,6 @@
 }
 
 
-.loading-bar {
-  margin: auto;
-    width: 80%;
-    height: 30px;
-    border-radius: 15px;
-    background-color: #b0abab;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .loading-bar .bar {
-    height: 100%;
-    width: 0%;
-    background-color: #4CAF50;
-    transition: width 1s ease-in-out;
-  }
 
 .sideMenu{
   width: 35%;
@@ -357,24 +340,6 @@ class oppertunity{
 
 var progress = 0;
 var hasRun = false;
-  var loadingBar = document.querySelector('.bar');
-
-  function simulateLoading() {
-    progress += 10;
-    if (progress > 100) {
-      clearInterval(loadingInterval);
-    }
-    loadingBar.style.width = progress + '%';
-  }
-
-  function loadValue(percent){
-    progress =percent;
-    if (progress > 100) {
-      //clearInterval(loadingInterval);
-    }
-    loadingBar.style.width = progress + '%';
-
-  }
 
     function searchFunction() {
       deleteTiles()
@@ -382,8 +347,7 @@ var hasRun = false;
 
       loadValue(0);
       for (let i = 1; i < serviceData.length; i++) {
-        loadValue((i/(serviceData.length-1))*100);
-
+        
         if(serviceData[i]!=null && 
         serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
