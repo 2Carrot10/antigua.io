@@ -342,12 +342,11 @@ var progress = 0;
 var hasRun = false;
 
     function searchFunction() {
+      
       deleteTiles()
       console.log("search initiated");
-
-      loadValue(0);
       for (let i = 1; i < serviceData.length; i++) {
-        
+
         if(serviceData[i]!=null && 
         serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
