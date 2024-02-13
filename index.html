@@ -378,7 +378,7 @@ var hasRun = false;
       console.log("search initiated");
 
       loadValue(0);
-      for (let i = 0; i < serviceData.length; i++) {
+      for (let i = 1; i < serviceData.length; i++) {
         loadValue((i/(serviceData.length-1))*100);
 
         if(serviceData[i]!=null && 
@@ -435,10 +435,10 @@ function renderOneTile(title,description,minAge,address,website,zipcode,tags,min
   clone.getElementById("zipcode").innerHTML=zipcode;
   for (let i = 0; i < tags.length; i++) {
 
-    var tagA = document.createElement("span");
+    let tagA = document.createElement("span");
     tagA.classList.add("category");
-    tagA.textContent=tags[i];
-    clone.getElementById("tags").appendChild(document.createElement("span"));
+    tagA.innerHTML=tags[i];
+    clone.getElementById("tags").appendChild(tagA);
   }
 
   //get this working
