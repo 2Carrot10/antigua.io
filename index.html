@@ -367,13 +367,15 @@ var hasRun = false;
       deleteTiles()
       console.log("search initiated");
 
-      var searchForTags= document.getElementById("tagsBox").value.replace(/\s/g, '').split(",");
+      var searchForTags= document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
       console.log(searchForTags)
-      var existsInTags=true;
 
       for (let i = 1; i < serviceData.length; i++) {
+
+        var existsInTags=true;
+
         for(let j=0; j<searchForTags.length;j++){
-          if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
+          if(!serviceData[i].tags.toLowerCase().includes(searchForTags[j]))existsInTags=false;
         }
 
         if(serviceData[i]!=null && existsInTags &&
