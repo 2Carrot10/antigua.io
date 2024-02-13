@@ -247,8 +247,8 @@ body {
 <p><strong>Exact phrase: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research'"></p>
 <p><strong>Title includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
 <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
-
-<p><strong>Tags: </strong></p>
+<p><strong>Tags: </strong><input type="text" id="tagsBox" class="textbox" placeholder="ex. Arts, Youth"></p>
+<p><strong>Sorting: </strong></p>
 </select>
 <input type="checkbox" name="subscribe" value="yes">
 
@@ -366,9 +366,16 @@ var hasRun = false;
 
       deleteTiles()
       console.log("search initiated");
-      for (let i = 1; i < serviceData.length; i++) {
 
-        if(serviceData[i]!=null && 
+      var searchForTags= document.getElementById("tagsBox").replace(/\s/g, '').split(",");
+      console.log(searchForTags)
+      for (let i = 1; i < serviceData.length; i++) {
+        var existsInTags=true;
+        for(let j=0; j<searchForTags;j++){
+          if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
+        }
+
+        if(serviceData[i]!=null && existsInTags!=false &&
         serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
         (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
