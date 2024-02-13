@@ -367,7 +367,7 @@ var hasRun = false;
       deleteTiles()
       console.log("search initiated");
 
-      var searchForTags= document.getElementById("tagsBox").replace(/\s/g, '').split(",");
+      var searchForTags= document.getElementById("tagsBox").value.replace(/\s/g, '').split(",");
       console.log(searchForTags)
       for (let i = 1; i < serviceData.length; i++) {
         var existsInTags=true;
