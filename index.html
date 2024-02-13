@@ -321,13 +321,14 @@ body {
   
 </div>  
 </template>
+<div class="loading-bar">
+  <div class="bar"></div>
+</div>
 <div class="groupDiv" id="groupDiv">
 
   <div class="opportunity-card">
 
-    <div class="loading-bar">
-      <div class="bar"></div>
-    </div>
+  
   <p>24/300 orginisations found</p>
   
 </div>
@@ -355,6 +356,7 @@ class oppertunity{
 }
 
 var progress = 0;
+var hasRun = false;
   var loadingBar = document.querySelector('.bar');
 
   function simulateLoading() {
@@ -374,9 +376,6 @@ var progress = 0;
 
   }
 
-  //var loadingInterval = setInterval(simulateLoading, 500);
-
-
     function searchFunction() {
       deleteTiles()
       console.log("search initiated");
@@ -393,7 +392,7 @@ var progress = 0;
         if(searchData[i]!=null && 
         searchData[i].description.includes(document.getElementById("phraseBox").value) &&
         searchData[i].title.includes(document.getElementById("titleBox").value) &&
-        (searchData[i].minAge==null || (searchData[i].minAge>= document.getElementById("minAgeBox").value))
+        (searchData[i].minAge==null || (searchData[i].minAge >= document.getElementById("minAgeBox").value))
         
         ){
           console.log("if is true");
