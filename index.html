@@ -213,8 +213,10 @@ body {
             <div class="categories" id="tags">
             </div>
         </div>
+        <!--
         <button onclick="displayText()" style="float:right; display:inline-block;">Open</button>
         <button onclick="displayText()" style="float:right;">list view</button>
+        -->
     </div>
   </template>
   <template id="tileTemplateSmall">
@@ -244,6 +246,8 @@ body {
 <p><strong>Exact phrase: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research'"></p>
 <p><strong>Title includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
 <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
+
+<p><strong>Tags: </strong></p>
 </select>
 <input type="checkbox" name="subscribe" value="yes">
 
@@ -258,7 +262,7 @@ body {
 </div>
 <!-- Display area for the entered text -->
 <p id="displayText"></p></br>
-<button onclick="">Advanced Search (not yet working)</button>
+<!--<button onclick="">Advanced Search (not yet working)</button> -->
 <div style="text-align:center">
 <button onclick="searchFunction()" class="btn">Search!</button>
 </div>
@@ -315,9 +319,12 @@ body {
   
 </div>  
 </template>
+<!--
 <div class="loading-bar">
   <div class="bar"></div>
 </div>
+-->
+<br>
 <div class="groupDiv" id="groupDiv">
 
   <div class="opportunity-card">
@@ -378,8 +385,8 @@ var hasRun = false;
         loadValue((i/(serviceData.length-1))*100);
 
         if(serviceData[i]!=null && 
-        serviceData[i].description.includes(document.getElementById("phraseBox").value) &&
-        serviceData[i].title.includes(document.getElementById("titleBox").value) &&
+        serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
+        serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
         (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
         
         ){
