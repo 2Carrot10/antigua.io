@@ -382,7 +382,7 @@ var progress = 0;
       console.log("search initiated");
       delete searchData;
       for(var i=0; i<serviceData.length; i++){
-        searchData[i].data=serviceData[i].data;
+        if(serviceData[i]!=null) searchData[i].data=serviceData[i].data;
       }
     
       for (let i = 0; i < searchData.length; i++) {
