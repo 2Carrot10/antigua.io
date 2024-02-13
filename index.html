@@ -430,13 +430,14 @@ function renderOneTile(title,description,minAge,address,website,zipcode,tags,min
   clone.getElementById("description").innerHTML=description;
   clone.getElementById("title").innerHTML=title;
   clone.getElementById("website").innerHTML=website;
+  clone.getElementById("website").setAttribute('href', website);
   clone.getElementById("address").innerHTML=address;
   clone.getElementById("zipcode").innerHTML=zipcode;
   var tagA = document.createElement("span");
   tagA.classList.add("categories");
   tagA.textContent=tags;
   clone.getElementById("tags").appendChild(document.createElement("span"));
-  //clone.getElementById("tags").innerHTML=address;//get this working
+  //get this working
   var myNode = document.getElementById("groupDiv");
   myNode.appendChild(clone);
 }
