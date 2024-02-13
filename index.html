@@ -245,13 +245,9 @@ body {
   <div class="opportunity-card">
     <div class="opportunity-details">
     <h2>Search Categories</h2>
-<p><strong>exact phrase: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research'"></p>
-<p><strong>title includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
-<p><strong>minimum age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
-<select name="cars" id="cars">
-    <option value="saab">Differently Abled</option>
-    <option value="opel">Youth</option>
-    <option value="audi">K-12 Education</option>
+<p><strong>Exact phrase: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research'"></p>
+<p><strong>Title includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
+<p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
 </select>
 <input type="checkbox" name="subscribe" value="yes">
 
@@ -392,7 +388,7 @@ var hasRun = false;
         if(searchData[i]!=null && 
         searchData[i].description.includes(document.getElementById("phraseBox").value) &&
         searchData[i].title.includes(document.getElementById("titleBox").value) &&
-        (searchData[i].minAge==null || (searchData[i].minAge <= document.getElementById("minAgeBox").value))
+        (document.getElementById("minAgeBox").value==null || (searchData[i].minAge <= document.getElementById("minAgeBox").value))
         
         ){
 
@@ -433,6 +429,7 @@ function scrollFunction() {
 }
 
 function renderOneTile(title,description,minAge,address,website,zipcode,tags,minView){
+  console.log(tags)
   let template = document.getElementById("tileTemplate");
   let clone = template.content.cloneNode(true);
   clone.getElementById("minAge").innerHTML=minAge;
