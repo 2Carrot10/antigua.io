@@ -384,7 +384,7 @@ var hasRun = false;
         if(serviceData[i]!=null && 
         serviceData[i].description.includes(document.getElementById("phraseBox").value) &&
         serviceData[i].title.includes(document.getElementById("titleBox").value) &&
-        (document.getElementById("minAgeBox").value==null || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
+        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
         
         ){
           renderOneTile(serviceData[i].title,serviceData[i].description,serviceData[i].minAge,serviceData[i].address,serviceData[i].website,serviceData[i].zipcode,serviceData[i].tags, false);
@@ -434,9 +434,9 @@ function renderOneTile(title,description,minAge,address,website,zipcode,tags,min
   clone.getElementById("address").innerHTML=address;
   clone.getElementById("zipcode").innerHTML=zipcode;
   for (let i = 0; i < tags.length; i++) {
-    
+
     var tagA = document.createElement("span");
-    tagA.classList.add("categories");
+    tagA.classList.add("category");
     tagA.textContent=tags[i];
     clone.getElementById("tags").appendChild(document.createElement("span"));
   }
