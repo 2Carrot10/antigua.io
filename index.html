@@ -341,6 +341,7 @@ var searchData= new Array();
 
 class oppertunity{
   constructor(data){
+    this.data=data;
     this.title=data[0];
     this.minAge=data[1];
     this.description=data[2];
@@ -379,24 +380,29 @@ var progress = 0;
     function searchFunction() {
       deleteTiles()
       console.log("search initiated");
-      searchData=serviceData;
+      delete searchData;
+      for(var i=0; i<serviceData.length; i++){
+        searchData[i].data=serviceData[i].data;
+      }
     
       for (let i = 0; i < searchData.length; i++) {
         loadValue((i/(searchData.length-1))*100);
         searchData[i];
-        if(searchData[i]!=null && searchData[i].description.includes(document.getElementById("phraseBox").value)){
+        if(searchData[i]!=null && 
+        searchData[i].description.includes(document.getElementById("phraseBox").value) &&
+        searchData[i].title.includes(document.getElementById("titleBox").value) &&
+        (searchData[i].minAge==null || (searchData[i].minAge>= document.getElementById("minAge").value))
+        
+        ){
           console.log("if is true");
         }else{
-          //delete
           delete searchData[i];
-          //i--;//horrible code but limited time.
         }
       }
       
       for (let i = 0; i < searchData.length; i++) {
         console.log("I value" + i);
         if(searchData[i]!=null)if((searchData[i].title!=null) && (searchData[i].title != ""))renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
-      
       }
     }
     //https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv
