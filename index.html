@@ -370,8 +370,9 @@ var hasRun = false;
       var searchForTags= document.getElementById("tagsBox").value.replace(/\s/g, '').split(",");
       console.log(searchForTags)
       var existsInTags=true;
+
       for (let i = 1; i < serviceData.length; i++) {
-        for(let j=0; j<searchForTags;j++){
+        for(let j=0; j<searchForTags.length;j++){
           if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
         }
 
