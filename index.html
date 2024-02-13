@@ -375,7 +375,7 @@ var hasRun = false;
         var existsInTags=true;
 
         for(let j=0; j<searchForTags.length;j++){
-          if(!serviceData[i].tags.toLowerCase().includes(searchForTags[j]))existsInTags=false;
+          if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
         }
 
         if(serviceData[i]!=null && existsInTags &&
@@ -432,6 +432,7 @@ function renderOneTile(title,description,minAge,address,website,zipcode,tags,min
   clone.getElementById("zipcode").innerHTML=zipcode;
   for (let i = 0; i < tags.length; i++) {//test
     if(tags[i]=="" || tags[i]=="\r")continue;
+    tags[i]=tags[i].toLowerCase();
     let tagA = document.createElement("span");
     tagA.classList.add("category");
     tagA.innerHTML=tags[i];
