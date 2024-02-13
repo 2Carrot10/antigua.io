@@ -21,6 +21,22 @@
   }
 
 
+  .btn2 {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn2:hover {
+    background-color: #2980b9;
+  }
+
+
 .textbox {
             width: 100%;
             padding: 5px;
@@ -226,6 +242,8 @@ body {
   <div class="opportunity-card">
     <div class="opportunity-details">
     <h2>Search Categories</h2>
+    
+  <button onclick="searchFunction()" class="btn2">generate example</button>
 <p><strong>Exact phrase: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research'"></p>
 <p><strong>Title includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
 <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
@@ -234,9 +252,12 @@ body {
 </select>
 <input type="checkbox" name="subscribe" value="yes">
 
-<select name="search mode" id="search mode">
-  <option value="card view">card view</option>
-  <option value="list view">minimalised view</option>
+<select name="sort mode" id="search mode">
+  <option value="alphabetical (a-z)">alphabetical (a-z)</option>
+  <option value="list view">alphabetical (z-a)</option>
+  <option value="list view">description length (long-short)</option>
+  <option value="list view">description length (long-short)</option>
+  <option value="list view">randomized</option>
 </select>
 
 <div class="categories">
@@ -342,7 +363,7 @@ var progress = 0;
 var hasRun = false;
 
     function searchFunction() {
-      
+
       deleteTiles()
       console.log("search initiated");
       for (let i = 1; i < serviceData.length; i++) {
@@ -498,8 +519,6 @@ function handleFiles(files) {
 </script>
 
 
-<p>Didn't find the orginisation you were looking for? Suggest an organisation:</p>
-<embed src="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform" style="width: 60%; height: 500px;">
-<!---->
+<p>Didn't find the orginisation you were looking for? Suggest an organisation <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
 </body>
 </html>
