@@ -432,10 +432,10 @@ function renderOneTile(title,description,minAge,address,website,zipcode,tags,min
   clone.getElementById("zipcode").innerHTML=zipcode;
   for (let i = 0; i < tags.length; i++) {//test
     if(tags[i]=="" || tags[i]=="\r")continue;
-    tags[i]=tags[i].toLowerCase();
+    var t =tags[i].toLowerCase();
     let tagA = document.createElement("span");
     tagA.classList.add("category");
-    tagA.innerHTML=tags[i];
+    tagA.innerHTML=t;
     clone.getElementById("tags").appendChild(tagA);
   }
 
