@@ -211,8 +211,6 @@ body {
             <p><strong>Website: </strong> <a href="#" id="website">example.com</a></p>
             <p><strong>Zip Code: </strong> <span id="zipcode">12345</span></p>
             <div class="categories" id="tags">
-                <span class="category">Community</span>
-                <span class="category">Environment</span>
             </div>
         </div>
         <button onclick="displayText()" style="float:right; display:inline-block;">Open</button>
@@ -228,8 +226,6 @@ body {
         <p class="informationGroup"><strong>Address: </strong> 124 Main St</p>
         <p class="informationGroup"><strong>Zip Code:</strong> 12345</p>
         <div class="categories" style="display:inline">
-            <span class="category">Community</span>
-            <span class="category">Environment</span>
         </div>
     </div>
     <button onclick="displayText()" style="float:right;">Open</button>
@@ -434,7 +430,7 @@ function renderOneTile(title,description,minAge,address,website,zipcode,tags,min
   clone.getElementById("address").innerHTML=address;
   clone.getElementById("zipcode").innerHTML=zipcode;
   for (let i = 0; i < tags.length; i++) {
-
+    if(tags[0]=="" || tags[0]=="\r")continue;
     let tagA = document.createElement("span");
     tagA.classList.add("category");
     tagA.innerHTML=tags[i];
