@@ -429,15 +429,14 @@ function renderOneTile(title,description,minAge,address,website,zipcode,tags,min
   clone.getElementById("website").setAttribute('href', website);
   clone.getElementById("address").innerHTML=address;
   clone.getElementById("zipcode").innerHTML=zipcode;
-  for (let i = 0; i < tags.length; i++) {
-    if(tags[0]=="" || tags[0]=="\r")continue;
+  for (let i = 0; i < tags.length; i++) {//test
+    if(tags[i]=="" || tags[i]=="\r")continue;
     let tagA = document.createElement("span");
     tagA.classList.add("category");
     tagA.innerHTML=tags[i];
     clone.getElementById("tags").appendChild(tagA);
   }
 
-  //get this working
   var myNode = document.getElementById("groupDiv");
   myNode.appendChild(clone);
 }
