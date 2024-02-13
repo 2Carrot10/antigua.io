@@ -369,13 +369,13 @@ var hasRun = false;
 
       var searchForTags= document.getElementById("tagsBox").value.replace(/\s/g, '').split(",");
       console.log(searchForTags)
+      var existsInTags=true;
       for (let i = 1; i < serviceData.length; i++) {
-        var existsInTags=true;
         for(let j=0; j<searchForTags;j++){
           if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
         }
 
-        if(serviceData[i]!=null && existsInTags!=false &&
+        if(serviceData[i]!=null && existsInTags &&
         serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
         (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
@@ -417,7 +417,7 @@ function scrollFunction() {
 }
 
 function renderOneTile(title,description,minAge,address,website,zipcode,tags,minView){
-  console.log(tags)
+
   let template = document.getElementById("tileTemplate");
   let clone = template.content.cloneNode(true);
   clone.getElementById("minAge").innerHTML=minAge;
