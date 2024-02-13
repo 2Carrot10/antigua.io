@@ -380,7 +380,7 @@ var progress = 0;
     function searchFunction() {
       deleteTiles()
       console.log("search initiated");
-      delete searchData;
+      searchData= [];
       for(var i=0; i<serviceData.length; i++){
         if(serviceData[i]!=null) searchData[i].data=serviceData[i].data;
       }
