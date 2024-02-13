@@ -391,15 +391,15 @@ var hasRun = false;
         (document.getElementById("minAgeBox").value==null || (searchData[i].minAge <= document.getElementById("minAgeBox").value))
         
         ){
-
+          renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
         }else{
-          delete searchData[i];
+          //delete searchData[i];
         }
       }
-      
+      /*
       for (let i = 0; i < searchData.length; i++) {
-        if(searchData[i]!=null)if((searchData[i].title!=null) && (searchData[i].title != ""))renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
-      }
+        if(searchData[i]!=null)if((searchData[i].title!=null) && (searchData[i].title != ""))
+      }*/
     }
     //https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv
 function createPannel(){
