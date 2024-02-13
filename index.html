@@ -336,7 +336,6 @@ body {
 
 <script type="text/javascript">
 var serviceData= new Array();
-var searchData= new Array();
 
 class oppertunity{
   constructor(data){
@@ -377,23 +376,18 @@ var hasRun = false;
     function searchFunction() {
       deleteTiles()
       console.log("search initiated");
-      searchData= [];
-      for(var i=0; i<=serviceData.length; i++){
-        if(serviceData[i+1]!=null) searchData[i+1]=new oppertunity(serviceData[i+1].data);
-      }      
-      loadValue(0);
-      for (let i = 0; i < searchData.length; i++) {
-        loadValue((i/(searchData.length-1))*100);
 
-        if(searchData[i]!=null && 
-        searchData[i].description.includes(document.getElementById("phraseBox").value) &&
-        searchData[i].title.includes(document.getElementById("titleBox").value) &&
-        (document.getElementById("minAgeBox").value==null || (searchData[i].minAge <= document.getElementById("minAgeBox").value))
+      loadValue(0);
+      for (let i = 0; i < serviceData.length; i++) {
+        loadValue((i/(serviceData.length-1))*100);
+
+        if(serviceData[i]!=null && 
+        serviceData[i].description.includes(document.getElementById("phraseBox").value) &&
+        serviceData[i].title.includes(document.getElementById("titleBox").value) &&
+        (document.getElementById("minAgeBox").value==null || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
         
         ){
-          renderOneTile(searchData[i].title,searchData[i].description,searchData[i].minAge,searchData[i].address,searchData[i].website,searchData[i].zipcode,searchData[i].tags, false);
-        }else{
-          //delete searchData[i];
+          renderOneTile(serviceData[i].title,serviceData[i].description,serviceData[i].minAge,serviceData[i].address,serviceData[i].website,serviceData[i].zipcode,serviceData[i].tags, false);
         }
       }
       /*
