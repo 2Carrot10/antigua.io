@@ -381,15 +381,14 @@ var hasRun = false;
           for(let k=0; k<serviceData[i].tags.length;k++){
             if(serviceData[i].tags[k]!=null)q[k]=serviceData[i].tags[k].replace(/\s/g, '').toLowerCase()
           }
-        /*
           console.log("")
           console.log(q)
           console.log(searchForTags[j])
-          console.log(q.includes(searchForTags[j]))*/
+          console.log(q.includes(searchForTags[j]))
           if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
         
         }
-        //existsInTags=true;
+        existsInTags=true;
 
         if(serviceData[i]!=null && existsInTags &&
         serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
