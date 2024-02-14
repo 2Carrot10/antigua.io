@@ -383,6 +383,7 @@ var hasRun = false;
           if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
         
         }
+        existsInTags=true;
 
         if(serviceData[i]!=null && existsInTags &&
         serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
