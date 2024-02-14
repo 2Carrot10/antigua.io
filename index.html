@@ -388,7 +388,6 @@ var hasRun = false;
 
 
         var existsInPhrases=true;
-
         for(let j=0; j<searchForPhrases.length;j++){
 
           if(!serviceData[i].description.toLowerCase().includes(searchForPhrases[j]))existsInPhrases=false;
@@ -396,6 +395,8 @@ var hasRun = false;
         }
         if(existsInPhrases=="")existsInPhrases=true;
 
+        console.log(existsInPhrases)
+        
         if(serviceData[i]!=null && existsInTags &&
         existsInPhrases &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
