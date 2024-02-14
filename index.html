@@ -362,14 +362,10 @@ var hasRun = false;
       console.log("search initiated");
       if(document.getElementById("search mode").selectedIndex==0){
       serviceData.sort(function(a, b) {
-    var textA = a.title;
-    var textB = b.DepartmentName.toUpperCase();
     return(a.title.localeCompare(b).title==1);
     });
       }else if(document.getElementById("search mode").selectedIndex==1){
       serviceData.sort(function(a, b) {
-    var textA = a.title;
-    var textB = b.DepartmentName.toUpperCase();
     return(a.title.localeCompare(b).title==-1);
     });
   }
