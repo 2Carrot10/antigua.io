@@ -48,6 +48,16 @@
             margin-bottom: 2px;
         }
 
+        .dropdown {
+            width: 100%;
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            box-sizing: border-box;
+            margin-bottom: 2px;
+        }
+
         
 .groupDiv {
   border: 5px outset grey;
@@ -250,11 +260,9 @@ body {
 <p><strong>Sorting: </strong></p>
 </select>
 
-<select name="sort mode" id="search mode">
+<select name="sort mode" id="search mode" class="dropdown">
   <option value="az">alphabetical (a-z)</option>
   <option value="za">alphabetical (z-a)</option>
-  <option value="ls">description length (long-short)</option>
-  <option value="sl">description length (long-short)</option>
   <option value="r">randomized</option>
 </select>
 <!-- Display area for the entered text -->
@@ -294,6 +302,13 @@ body {
 </div>
 </div>
 </template>
+<template id="no tiles">
+  <div class="opportunity-card">
+    <div class="opportunity-details">
+<p>There are no service learning oppertunities that fit your search criteria. Try widening your query or suggest an organisation <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
+    </div></div>
+<template>
+
 <template>
 <div class= "groupDiv sideMenu"><h2 style="text-align:center;">bookmarks</h2>
 
@@ -323,12 +338,6 @@ body {
 <br>
 <div class="groupDiv" id="groupDiv">
 
-  <div class="opportunity-card">
-
-  
-  <p>There are no service learning oppertunities that fit your search criteria. Try widening your query or suggest an organisation <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
-  
-</div>
 </div>
 
 
@@ -374,6 +383,7 @@ function shuffleArray(array) {
 
 
     function searchFunction() {
+      var numberOfTiles=0;
 
       deleteTiles()
       console.log("search initiated");
@@ -388,16 +398,6 @@ function shuffleArray(array) {
     var textA = a.title.toUpperCase();
     var textB = b.title.toUpperCase();
     return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
-});
-  }
-    else if(document.getElementById("search mode").selectedIndex==2){
-      serviceData.sort(function(a, b) {
-        return a.description.length - b.description.length;
-});
-  }
-  else if(document.getElementById("search mode").selectedIndex==2){
-      serviceData.sort(function(a, b) {
-        return b.description.length-a.description.length;
 });
   }
   else{
@@ -454,7 +454,17 @@ serviceData=shuffleArray(serviceData)
         
         )*/{
           renderOneTile(serviceData[i].title,serviceData[i].description,serviceData[i].minAge,serviceData[i].address,serviceData[i].website,serviceData[i].zipcode,serviceData[i].tags, false);
+        numberOfTiles++;
         }
+      }
+      if(numberOfTiles==0){
+
+        let template = document.getElementById("no tiles");
+  let clone = template.content.cloneNode(true);
+  var myNode = document.getElementById("groupDiv");
+  myNode.appendChild(clone);
+
+
       }
       /*
       for (let i = 0; i < searchData.length; i++) {
