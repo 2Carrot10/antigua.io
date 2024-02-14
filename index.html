@@ -353,7 +353,8 @@ class oppertunity{
     this.website=data[4]
     this.address=data[3];
     this.zipcode=data[5];
-    this.tags=new Array(data[6], data[7], data[8]);
+    if(data[8]=="\r")
+    this.tags=new Array(data[6].replace(/(\r\n|\n|\r)/gm, ""), data[7].replace(/(\r\n|\n|\r)/gm, ""), data[8].replace(/(\r\n|\n|\r)/gm, ""));
   }
 
 
@@ -380,10 +381,9 @@ var hasRun = false;
             if(serviceData[i].tags[k]!=null)q[k]=serviceData[i].tags[k].replace(/\s/g, '').toLowerCase()
           }
           console.log("")
-          console.log("")
-          console.log("")
           //console.log(searchForTags[j])
           console.log(serviceData[i].tags)
+          console.log(searchForTags[j])
           console.log(serviceData[i].tags.includes(searchForTags[j]))
           if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
         
