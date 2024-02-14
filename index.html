@@ -356,31 +356,57 @@ class oppertunity{
 var progress = 0;
 var hasRun = false;
 
+
+
+function shuffleArray(array) {
+   for (var i = array.length - 1; i > 0; i--) { 
+  
+       // Generate random number 
+       var j = Math.floor(Math.random() * (i + 1));
+                  
+       var temp = array[i];
+       array[i] = array[j];
+       array[j] = temp;
+   }
+      
+   return array;
+}
+
+
     function searchFunction() {
 
       deleteTiles()
       console.log("search initiated");
       if(document.getElementById("search mode").selectedIndex==0){
-      serviceData.sort(function(a, b) {
-    return(a.title.localeCompare(b).title==1);
-    });
+        serviceData.sort(function(a, b) {
+    var textA = a.title.toUpperCase();
+    var textB = b.title.toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+});
       }else if(document.getElementById("search mode").selectedIndex==1){
-      serviceData.sort(function(a, b) {
-    return(a.title.localeCompare(b).title==-1);
-    });
+        serviceData.sort(function(a, b) {
+    var textA = a.title.toUpperCase();
+    var textB = b.title.toUpperCase();
+    return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+});
   }
     else if(document.getElementById("search mode").selectedIndex==2){
       serviceData.sort(function(a, b) {
-    return(a.description.length<b.description.length);
-    });
+    var textA = a.description.length;
+    var textB = b.description.length;
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+});
   }
   else if(document.getElementById("search mode").selectedIndex==2){
       serviceData.sort(function(a, b) {
-    return(a.description.length>b.description.length);
-    });
+    var textA = a.description.length;
+    var textB = b.description.length;
+    return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+});
   }
   else{
 console.log("else")
+serviceData=shuffleArray(serviceData)
 
   }
 
@@ -394,7 +420,7 @@ console.log("else")
       }
       console.log(searchForTags)
 
-      for (let i = 1; i < serviceData.length; i++) {
+      for (let i = 0; i < serviceData.length; i++) {
 
         var existsInTags=true;
 
@@ -535,7 +561,7 @@ function downloadAndDisplayCSV(url) {
         .then(csvData => {
 
             rows = parseCSV(csvData);            
-            for (let i = 0; i < rows.length; i++) {
+            for (let i = 1; i < rows.length; i++) {//skip heading row
               serviceData.push(new oppertunity(rows[i]));
               
             
