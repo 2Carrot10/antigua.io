@@ -22,11 +22,12 @@
 
 
   .btn2 {
-    padding: 10px 20px;
-    border: none;
+    padding: 2px 2px;
+    border:none;
+    border-color: #000000;
     border-radius: 5px;
-    background-color: #3498db;
-    color: #fff;
+    background-color: #b3b3b3;
+    color: #000000;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -200,7 +201,6 @@ body {
   <template id="tileTemplate">
     <div class="opportunity-card">
       <p style="float:right"> save to sidebar:
-      <input type="checkbox" name="subscribe" value="yes">
     </p>
       <div class="opportunity-details">
             <h2 id="title">Community Cleanup</h2>
@@ -240,17 +240,17 @@ body {
 <h1 style="text-align:center">Service Learning Search</h1>
 <div class= "groupDiv">
   <div class="opportunity-card">
+
     <div class="opportunity-details">
-    <h2>Search Categories</h2>
+    <h1>Search Categories</h1> 
+    <button onclick="searchFunction()" class="btn2">help</button>
     
-  <button onclick="searchFunction()" class="btn2">generate example</button>
 <p><strong>Exact phrase: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research'"></p>
 <p><strong>Title includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
 <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
-<p><strong>Tags: </strong><input type="text" id="tagsBox" class="textbox" placeholder="ex. Arts, Youth"></p>
+<p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox" placeholder="ex. Arts, Youth"></p>
 <p><strong>Sorting: </strong></p>
 </select>
-<input type="checkbox" name="subscribe" value="yes">
 
 <select name="sort mode" id="search mode">
   <option value="alphabetical (a-z)">alphabetical (a-z)</option>
@@ -259,11 +259,6 @@ body {
   <option value="list view">description length (long-short)</option>
   <option value="list view">randomized</option>
 </select>
-
-<div class="categories">
-  <span class="clickable-category">Community</span>
-  <span class="clickable-category">Environment</span>
-</div>
 <!-- Display area for the entered text -->
 <p id="displayText"></p></br>
 <!--<button onclick="">Advanced Search (not yet working)</button> -->
@@ -334,7 +329,7 @@ body {
   <div class="opportunity-card">
 
   
-  <p>24/300 orginisations found</p>
+  <p>There are no service learning oppertunities that fit your search criteria. Try widening your query or suggest an organisation <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
   
 </div>
 </div>
@@ -370,6 +365,7 @@ var hasRun = false;
       console.log("search initiated");
 
       var searchForTags= document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
+      var searchForPhrases= document.getElementById("phraseBox").value.toLowerCase().split(" , ").split(" ,").split(", ").split(",");
       console.log(searchForTags)
 
       for (let i = 1; i < serviceData.length; i++) {
@@ -381,21 +377,34 @@ var hasRun = false;
           for(let k=0; k<serviceData[i].tags.length;k++){
             if(serviceData[i].tags[k]!=null)q[k]=serviceData[i].tags[k].replace(/\s/g, '').toLowerCase()
           }
-          console.log("")
-          console.log(q)
-          console.log(searchForTags[j])
-          console.log(q.includes(searchForTags[j]))
           if(!q.includes(searchForTags[j]))existsInTags=false;
         
         }
-        //existsInTags=true;
+        if(searchForTags=="")existsInTags=true;
+
+
+
+        var existsInPhrases=true;
+
+        for(let j=0; j<searchForPhrases.length;j++){
+
+          if(!serviceData[i].description.toLowerCase().includes(searchForPhrases[j]))existsInPhrases=false;
+        
+        }
+        if(existsInPhrases=="")existsInPhrases=true;
 
         if(serviceData[i]!=null && existsInTags &&
+        existsInPhrases &&
+        serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
+        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
+        
+        )
+        /*if(serviceData[i]!=null && existsInTags &&
         serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
         (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
         
-        ){
+        )*/{
           renderOneTile(serviceData[i].title,serviceData[i].description,serviceData[i].minAge,serviceData[i].address,serviceData[i].website,serviceData[i].zipcode,serviceData[i].tags, false);
         }
       }
@@ -540,7 +549,5 @@ function handleFiles(files) {
 
 </script>
 
-
-<p>Didn't find the orginisation you were looking for? Suggest an organisation <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
 </body>
 </html>
