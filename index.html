@@ -354,6 +354,7 @@ class oppertunity{
     this.address=data[3];
     this.zipcode=data[5];
     if(data[8]=="\r")
+    this.tags=new Array(3)
     this.tags=[data[6].replace(/(\r\n|\n|\r)/gm, ""), data[7].replace(/(\r\n|\n|\r)/gm, ""), data[8].replace(/(\r\n|\n|\r)/gm, "")];
   }
 
