@@ -1,12 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Service Learning Search</title>
 
         <style>
 
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+  }
+
+
+  .btn2 {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn2:hover {
+    background-color: #2980b9;
+  }
+
+
 .textbox {
-            width: 25%;
+            width: 100%;
             padding: 5px;
             font-size: 14px;
             border: 1px solid #ccc;
@@ -27,23 +59,6 @@
 }
 
 
-.loading-bar {
-  margin: auto;
-    width: 80%;
-    height: 30px;
-    border-radius: 15px;
-    background-color: #b0abab;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .loading-bar .bar {
-    height: 100%;
-    width: 0%;
-    background-color: #4CAF50;
-    transition: width 1s ease-in-out;
-  }
 
 .sideMenu{
   width: 35%;
@@ -189,18 +204,18 @@ body {
     </p>
       <div class="opportunity-details">
             <h2 id="title">Community Cleanup</h2>
-            <p><strong>Project/Program Description:</strong><span id="description"> OVF's mission is to facilitate and increase participation of American overseas voters and military voters and their dependents in federal elections by providing public access to innovative voter registration tools and services. Integral to achieving our mission is making it easier for all Americans residing around the world, and all military and dependents residing outside their home jurisdiction, to be able to stay active in their home state's electoral process.</span></p>
-            <p ><strong>Age restrictions:</strong> <span id="minAge">13</span></p>
-            <p><strong>Address:</strong><span id="address">123 Main St</span></p>
-            <p id="website"><strong>Website:</strong> <a href="#" id="website">example.com/cleanup</a></p>
-            <p><strong>Zip Code:</strong> <span id="zipcode">12345</span></p>
-            <div class="categories">
-                <span class="category">Community</span>
-                <span class="category">Environment</span>
+            <p><strong>Project/Program Description: </strong><span id="description"> OVF's mission is to facilitate and increase participation of American overseas voters and military voters and their dependents in federal elections by providing public access to innovative voter registration tools and services. Integral to achieving our mission is making it easier for all Americans residing around the world, and all military and dependents residing outside their home jurisdiction, to be able to stay active in their home state's electoral process.</span></p>
+            <p ><strong>Minimum Age: </strong> <span id="minAge">13</span></p>
+            <p><strong>Address: </strong><span id="address">123 Main St</span></p>
+            <p><strong>Website: </strong> <a href="#" id="website">example.com</a></p>
+            <p><strong>Zip Code: </strong> <span id="zipcode">12345</span></p>
+            <div class="categories" id="tags">
             </div>
         </div>
+        <!--
         <button onclick="displayText()" style="float:right; display:inline-block;">Open</button>
         <button onclick="displayText()" style="float:right;">list view</button>
+        -->
     </div>
   </template>
   <template id="tileTemplateSmall">
@@ -209,11 +224,9 @@ body {
       <div class="opportunity-details-small">
         <h2 style="display:inline">Community Cleanup</h2>
         <p style="display:inline" class="informationGroup"><strong>Age restrictions:</strong> 13</p>
-        <p class="informationGroup"><strong>Address:</strong> 124 Main St</p>
+        <p class="informationGroup"><strong>Address: </strong> 124 Main St</p>
         <p class="informationGroup"><strong>Zip Code:</strong> 12345</p>
         <div class="categories" style="display:inline">
-            <span class="category">Community</span>
-            <span class="category">Environment</span>
         </div>
     </div>
     <button onclick="displayText()" style="float:right;">Open</button>
@@ -229,45 +242,47 @@ body {
   <div class="opportunity-card">
     <div class="opportunity-details">
     <h2>Search Categories</h2>
-<p><strong>exact phrase: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. research"></p>
-<p><strong>title includes: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. put example here"></p>
-<p><strong>minimum age: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. 16"></p>
-<select name="cars" id="cars">
-    <option value="volvo">Abilities</option>
-    <option value="saab">Differently Abled</option>
-    <option value="opel">Youth</option>
-    <option value="audi">K-12 Education</option>
+    
+  <button onclick="searchFunction()" class="btn2">generate example</button>
+<p><strong>Exact phrase: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research'"></p>
+<p><strong>Title includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
+<p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
+<p><strong>Tags: </strong><input type="text" id="tagsBox" class="textbox" placeholder="ex. Arts, Youth"></p>
+<p><strong>Sorting: </strong></p>
 </select>
-
-<select name="search mode" id="search mode">
-  <option value="card view">card view</option>
-  <option value="list view">minimalised view</option>
-</select>
-
 <input type="checkbox" name="subscribe" value="yes">
 
-<input type="file" id="fileInput" name="fileUpload">
+<select name="sort mode" id="search mode">
+  <option value="alphabetical (a-z)">alphabetical (a-z)</option>
+  <option value="list view">alphabetical (z-a)</option>
+  <option value="list view">description length (long-short)</option>
+  <option value="list view">description length (long-short)</option>
+  <option value="list view">randomized</option>
+</select>
+
 <div class="categories">
   <span class="clickable-category">Community</span>
   <span class="clickable-category">Environment</span>
 </div>
 <!-- Display area for the entered text -->
 <p id="displayText"></p></br>
-<button onclick="">Advanced Search (not yet working)</button>
+<!--<button onclick="">Advanced Search (not yet working)</button> -->
 <div style="text-align:center">
-<button onclick="displayText()">Search!</button>
+<button onclick="searchFunction()" class="btn">Search!</button>
 </div>
 </div>
 </div>
 </div>
 
+
+<template>
 <div class= "groupDiv">
   <div class="opportunity-card">
     <div class="opportunity-details">
     <h2>Search Categories (Advanced Mode)</h2>
 <p><strong>query: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. research"></p>
 
-<input type="file" id="fileInput" name="fileUpload">
+
 <p>Examples:</p>
 <p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
 <br>
@@ -285,7 +300,8 @@ body {
 </div>
 </div>
 </div>
-
+</template>
+<template>
 <div class= "groupDiv sideMenu"><h2 style="text-align:center;">bookmarks</h2>
 
   <div class="opportunity-card">
@@ -306,14 +322,18 @@ body {
 
   
 </div>  
-
-<div class="groupDiv" id="groupDiv" style="width: 60%;">
+</template>
+<!--
+<div class="loading-bar">
+  <div class="bar"></div>
+</div>
+-->
+<br>
+<div class="groupDiv" id="groupDiv">
 
   <div class="opportunity-card">
 
-    <div class="loading-bar">
-      <div class="bar"></div>
-    </div>
+  
   <p>24/300 orginisations found</p>
   
 </div>
@@ -322,40 +342,67 @@ body {
 
 
 <script type="text/javascript">
-var csvData=[10];
+var serviceData= new Array();
 
 class oppertunity{
-  constructor(title,description,minAge,address,zipcode,category1,category2,category3){
-    this.titel=title;
-    this.description=description;
-    this.minAge=minAge;
-    this.address=address;
-    this.zipcode=zipcode;
-    this.category1=category1;
-    this.category2=category2;
-    this.category3=category3;
+  constructor(data){
+    this.data=data;
+    this.title=data[0];
+    this.minAge=data[1];
+    this.description=data[2];
+    this.website=data[4]
+    this.address=data[3];
+    this.zipcode=data[5];
+    if(data[8]=="\r")
+    this.tags=new Array(3)
+    this.tags=[data[6].replace(/(\r\n|\n|\r)/gm, ""), data[7].replace(/(\r\n|\n|\r)/gm, ""), data[8].replace(/(\r\n|\n|\r)/gm, "")];
   }
 
 
 }
 
 var progress = 0;
-  var loadingBar = document.querySelector('.bar');
+var hasRun = false;
 
-  function simulateLoading() {
-    progress += 10;
-    if (progress > 100) {
-      clearInterval(loadingInterval);
-    }
-    loadingBar.style.width = progress + '%';
-  }
+    function searchFunction() {
 
-  var loadingInterval = setInterval(simulateLoading, 500);
+      deleteTiles()
+      console.log("search initiated");
 
+      var searchForTags= document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
+      console.log(searchForTags)
 
-    function displayText() {
-      var inputText = document.getElementById('fileInput').value;
-      document.getElementById('displayText').innerText = "You entered: " + inputText;
+      for (let i = 1; i < serviceData.length; i++) {
+
+        var existsInTags=true;
+
+        for(let j=0; j<searchForTags.length;j++){
+          let q=[];
+          for(let k=0; k<serviceData[i].tags.length;k++){
+            if(serviceData[i].tags[k]!=null)q[k]=serviceData[i].tags[k].replace(/\s/g, '').toLowerCase()
+          }
+          console.log("")
+          console.log(q)
+          console.log(searchForTags[j])
+          console.log(q.includes(searchForTags[j]))
+          if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
+        
+        }
+        existsInTags=true;
+
+        if(serviceData[i]!=null && existsInTags &&
+        serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
+        serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
+        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
+        
+        ){
+          renderOneTile(serviceData[i].title,serviceData[i].description,serviceData[i].minAge,serviceData[i].address,serviceData[i].website,serviceData[i].zipcode,serviceData[i].tags, false);
+        }
+      }
+      /*
+      for (let i = 0; i < searchData.length; i++) {
+        if(searchData[i]!=null)if((searchData[i].title!=null) && (searchData[i].title != ""))
+      }*/
     }
     //https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv
 function createPannel(){
@@ -385,15 +432,24 @@ function scrollFunction() {
 }
 
 function renderOneTile(title,description,minAge,address,website,zipcode,tags,minView){
+
   let template = document.getElementById("tileTemplate");
   let clone = template.content.cloneNode(true);
   clone.getElementById("minAge").innerHTML=minAge;
   clone.getElementById("description").innerHTML=description;
   clone.getElementById("title").innerHTML=title;
   clone.getElementById("website").innerHTML=website;
+  clone.getElementById("website").setAttribute('href', website);
   clone.getElementById("address").innerHTML=address;
   clone.getElementById("zipcode").innerHTML=zipcode;
-  //clone.getElementById("tags").innerHTML=address;//get this working
+  for (let i = 0; i < tags.length; i++) {//test
+    if(tags[i]=="" || tags[i]=="\r")continue;
+    let tagA = document.createElement("span");
+    tagA.classList.add("category");
+    tagA.innerHTML=tags[i];
+    clone.getElementById("tags").appendChild(tagA);
+  }
+
   var myNode = document.getElementById("groupDiv");
   myNode.appendChild(clone);
 }
@@ -415,18 +471,40 @@ var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0
     window.URL.revokeObjectURL(url);
     a.remove();
 }
+
+
+function parseCSV(str) {
+    var arr = [];
+    var quote = false;
+    for (var row = col = c = 0; c < str.length; c++) {
+        var cc = str[c], nc = str[c+1];
+        arr[row] = arr[row] || [];
+        arr[row][col] = arr[row][col] || '';
+        
+        if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+        if (cc == '"') { quote = !quote; continue; }
+        if (cc == ',' && !quote) { ++col; continue; }
+        if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+        
+        arr[row][col] += cc;
+    }
+    return arr;
+}
 function downloadAndDisplayCSV(url) {
+  //let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
+  //let b = /"/g
+  //let c = /("[^"\n]*)\r?\n(?!(([^"]*"){2})*[^"]*$)/; //finds new lines inside ""
+
     fetch(url)
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
-            // Split the CSV data into rows
-            const rows = csvData.split('\n');
+
+            rows = parseCSV(csvData);            
+            for (let i = 0; i < rows.length; i++) {
+              serviceData.push(new oppertunity(rows[i]));
+              
             
-            // Display each row in the console
-            rows.forEach(row => {
-                //console.log(row);
-                csvData.add(new oppertunity(Split(row)));
-            });
+            }
         })
         .catch(error => {
             console.error('Error:', error);
@@ -462,9 +540,7 @@ function handleFiles(files) {
 
 </script>
 
-<!--
-<p>Didn't find the orginisation you were looking for? Suggest an organisation:</p>
-<embed src="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform" style="width: 60%; height: 500px;">
--->
+
+<p>Didn't find the orginisation you were looking for? Suggest an organisation <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
 </body>
 </html>
