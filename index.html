@@ -365,7 +365,10 @@ var hasRun = false;
       console.log("search initiated");
 
       var searchForTags= document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
-      var searchForPhrases= document.getElementById("phraseBox").value.toLowerCase().split(" , ").split(" ,").split(", ").split(",");
+      var searchForPhrases= document.getElementById("phraseBox").value.toLowerCase().split(",");
+      for(var i = 0; i<searchForPhrases; i++){
+        searchForPhrases[i]= searchForPhrases[i].trim();
+      }
       console.log(searchForTags)
 
       for (let i = 1; i < serviceData.length; i++) {
