@@ -392,16 +392,12 @@ function shuffleArray(array) {
   }
     else if(document.getElementById("search mode").selectedIndex==2){
       serviceData.sort(function(a, b) {
-    var textA = a.description.length;
-    var textB = b.description.length;
-    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        return a.description.length - b.description.length;
 });
   }
   else if(document.getElementById("search mode").selectedIndex==2){
       serviceData.sort(function(a, b) {
-    var textA = a.description.length;
-    var textB = b.description.length;
-    return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+        return b.description.length-a.description.length;
 });
   }
   else{
