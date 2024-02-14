@@ -377,7 +377,7 @@ var hasRun = false;
         for(let j=0; j<searchForTags.length;j++){
           let q=[];
           for(let k=0; k<serviceData[i].tags.length;k++){
-            if(serviceData[i].tags[k]!=null)q[k]=serviceData[i].tags[k].value.replace(/\s/g, '').toLowerCase()
+            if(serviceData[i].tags[k]!=null)q[k]=serviceData[i].tags[k].replace(/\s/g, '').toLowerCase()
           }
 
           if(!serviceData[i].tags.includes(searchForTags[j]))existsInTags=false;
