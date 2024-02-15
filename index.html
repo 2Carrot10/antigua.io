@@ -393,10 +393,10 @@ function shuffleArray(array) {
         serviceData.sort(function(a, b) {
     var textA = a.title.toUpperCase();
     var textB = b.title.toUpperCase();
-    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    return (textA > textB) ? 1 : (textA < textB) ? -1 : 0;
 });
       }
-      if(document.getElementById("search mode").selectedIndex==1){
+      else if(document.getElementById("search mode").selectedIndex==1){
         serviceData.sort(function(a, b) {
     var textA = a.title.toUpperCase();
     var textB = b.title.toUpperCase();
