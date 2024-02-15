@@ -202,6 +202,7 @@ body {
 
 
   </style>
+  <link rel="icon" href="icon.png">
 </head>
 <body>
 
@@ -253,16 +254,18 @@ body {
     <div class="opportunity-details">
     <h1>Search Categories</h1>
     
-<p><strong>Keyword: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research, cancer, seattle'"></p>
-<p><strong>Title includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
+<p><strong>Keyword Search: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research, cancer, seattle'"></p>
+<p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
 <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
-<p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox" placeholder="ex. Civic, Differently Abled, Health"></p>
+<p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox" placeholder="ex. 'Civic, Differently Abled, Health'"></p>
 <p><strong>Sorting: </strong></p>
 </select>
 
 <select name="sort mode" id="search mode" class="dropdown">
   <option value="az">alphabetical (a-z)</option>
   <option value="za">alphabetical (z-a)</option>
+  <option value="az">description length (long-short)</option>
+  <option value="za">description length (short-long)</option>
   <option value="r">randomized</option>
 </select>
 <!-- Display area for the entered text -->
@@ -305,7 +308,7 @@ body {
 <template id="no tiles">
   <div class="opportunity-card">
     <div class="opportunity-details">
-<p>There are no service learning oppertunities that fit your search criteria. Try widening your query or suggest an organisation <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
+<p>There are no service learning oppertunities that fit your search criteria. Try widening your query or suggest an organization <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
     </div></div>
   </template>
 
@@ -336,6 +339,12 @@ body {
 </div>
 
 <script type="text/javascript">
+  //TODO: fix icon transperency
+  //TODO: clean code
+  //TODO: add category select
+  //TODO: add fullscreen mode
+  //TODO: add mobile scaling
+
 var serviceData= new Array();
 
 class oppertunity{
@@ -388,9 +397,16 @@ function shuffleArray(array) {
 });
       }else if(document.getElementById("search mode").selectedIndex==1){
         serviceData.sort(function(a, b) {
-    var textA = a.title.toUpperCase();
-    var textB = b.title.toUpperCase();
-    return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+          var aT = a.description.length;
+    var bT = b.description.length;
+    return -(aT-bT);
+});
+  }
+else if(document.getElementById("search mode").selectedIndex==2){
+        serviceData.sort(function(a, b) {
+    var aT = a.description.length;
+    var bT = b.description.length;
+    return (aT-bT);
 });
   }
   else{
