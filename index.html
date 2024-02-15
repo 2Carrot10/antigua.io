@@ -245,8 +245,6 @@ body {
     <button onclick="displayText()" style="float:right;">Card View</button>
   </div>
 </template>
-  
-
 
 <!-- Text box input and button -->
 <h1 style="text-align:center">Service Learning Search</h1>
@@ -458,7 +456,7 @@ serviceData=shuffleArray(serviceData)
         if(serviceData[i]!=null && existsInTags &&
         existsInPhrases &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
-        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox")) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || parseInt((serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)))
+        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox".value)) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || parseInt((serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)))
         
         )
         /*if(serviceData[i]!=null && existsInTags &&
