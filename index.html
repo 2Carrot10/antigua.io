@@ -36,7 +36,9 @@
   .btn2:hover {
     background-color: #2980b9;
   }
-
+  html {
+  scroll-behavior: smooth;
+}
 
 .textbox {
             width: 100%;
@@ -387,7 +389,6 @@ function shuffleArray(array) {
 
     function searchFunction() {
       var numberOfTiles=0;
-
       deleteTiles()
       console.log("search initiated");
       if(document.getElementById("search mode").selectedIndex==0){
@@ -483,6 +484,7 @@ serviceData=shuffleArray(serviceData)
       for (let i = 0; i < searchData.length; i++) {
         if(searchData[i]!=null)if((searchData[i].title!=null) && (searchData[i].title != ""))
       }*/
+      document.documentElement.scrollTop = 500;
     }
     //https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv
 function createPannel(){
