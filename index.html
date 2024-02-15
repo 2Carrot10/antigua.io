@@ -344,6 +344,7 @@ body {
   //TODO: add category select
   //TODO: add fullscreen mode
   //TODO: add mobile scaling
+  //Age<9
 
 var serviceData= new Array();
 
@@ -391,6 +392,7 @@ function shuffleArray(array) {
       console.log("search initiated");
       if(document.getElementById("search mode").selectedIndex==0){
         serviceData.sort(function(a, b) {
+          console.log("0")
     var textA = a.title.toUpperCase();
     var textB = b.title.toUpperCase();
     return (textA > textB) ? 1 : (textA < textB) ? -1 : 0;
@@ -455,7 +457,7 @@ serviceData=shuffleArray(serviceData)
         if(serviceData[i]!=null && existsInTags &&
         existsInPhrases &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
-        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
+        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || parseInt((serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)))
         
         )
         /*if(serviceData[i]!=null && existsInTags &&
