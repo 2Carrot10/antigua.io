@@ -458,17 +458,11 @@ serviceData=shuffleArray(serviceData)
         if(serviceData[i]!=null && existsInTags &&
         existsInPhrases &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
-        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox")) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || parseInt((serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)))
+        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox")) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)))
         
-        )
-        /*if(serviceData[i]!=null && existsInTags &&
-        serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
-        serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
-        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (serviceData[i].minAge <= document.getElementById("minAgeBox").value))
-        
-        )*/{
+        ){
           renderOneTile(serviceData[i].title,serviceData[i].description,serviceData[i].minAge,serviceData[i].address,serviceData[i].website,serviceData[i].zipcode,serviceData[i].tags, false);
-        numberOfTiles++;
+          numberOfTiles++;
         }
       }
       if(numberOfTiles==0){
