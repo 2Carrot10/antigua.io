@@ -454,8 +454,6 @@ serviceData=shuffleArray(serviceData)
         }
         var existsAge=(document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)));
 
-        console.log(existsInPhrases)
-
         if(serviceData[i]!=null && existsInTags &&
         existsInPhrases &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
