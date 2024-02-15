@@ -245,6 +245,8 @@ body {
     <button onclick="displayText()" style="float:right;">Card View</button>
   </div>
 </template>
+  
+
 
 <!-- Text box input and button -->
 <h1 style="text-align:center">Service Learning Search</h1>
@@ -257,7 +259,7 @@ body {
 <p><strong>Keyword Search: </strong><input type="text" id="phraseBox" class="textbox" placeholder="e.g. 'research, cancer, seattle'"></p>
 <p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="e.g. 'City'"></p>
 <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="e.g. '13'"></p>
-<p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox" placeholder="e.g. 'Civic, Differently Abled, Health'"></p>
+<p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox" placeholder="e.g.'Civic, Differently Abled, Health'"></p>
 <p><strong>Sorting: </strong></p>
 </select>
 
@@ -456,8 +458,9 @@ serviceData=shuffleArray(serviceData)
         if(serviceData[i]!=null && existsInTags &&
         existsInPhrases &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
-        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox".value)) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value))
+        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox")) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || parseInt((serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)))
         
+        )
         /*if(serviceData[i]!=null && existsInTags &&
         serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
