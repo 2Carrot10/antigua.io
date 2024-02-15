@@ -456,9 +456,8 @@ serviceData=shuffleArray(serviceData)
         if(serviceData[i]!=null && existsInTags &&
         existsInPhrases &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
-        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox".value)) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || parseInt((serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)))
+        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox".value)) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value))
         
-        )
         /*if(serviceData[i]!=null && existsInTags &&
         serviceData[i].description.toLowerCase().includes(document.getElementById("phraseBox").value.toLowerCase()) &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
