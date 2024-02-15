@@ -452,14 +452,14 @@ serviceData=shuffleArray(serviceData)
           if(!serviceData[i].description.toLowerCase().includes(searchForPhrases[j]))existsInPhrases=false;
         
         }
+        var existsAge=(document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox")) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)));
 
         console.log(existsInPhrases)
 
         if(serviceData[i]!=null && existsInTags &&
         existsInPhrases &&
         serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
-        (document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox")) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)))
-        
+        existsAge
         ){
           renderOneTile(serviceData[i].title,serviceData[i].description,serviceData[i].minAge,serviceData[i].address,serviceData[i].website,serviceData[i].zipcode,serviceData[i].tags, false);
           numberOfTiles++;
