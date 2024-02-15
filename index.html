@@ -256,7 +256,7 @@ body {
     
 <p><strong>Keyword Search: </strong><input type="text" id="phraseBox" class="textbox" placeholder="ex. 'research, cancer, seattle'"></p>
 <p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="ex. 'City'"></p>
-<p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. 13"></p>
+<p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="ex. '13'"></p>
 <p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox" placeholder="ex. 'Civic, Differently Abled, Health'"></p>
 <p><strong>Sorting: </strong></p>
 </select>
@@ -395,14 +395,21 @@ function shuffleArray(array) {
     var textB = b.title.toUpperCase();
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 });
-      }else if(document.getElementById("search mode").selectedIndex==1){
+      }
+      if(document.getElementById("search mode").selectedIndex==1){
+        serviceData.sort(function(a, b) {
+    var textA = a.title.toUpperCase();
+    var textB = b.title.toUpperCase();
+    return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+});
+      }else if(document.getElementById("search mode").selectedIndex==2){
         serviceData.sort(function(a, b) {
           var aT = a.description.length;
     var bT = b.description.length;
     return -(aT-bT);
 });
   }
-else if(document.getElementById("search mode").selectedIndex==2){
+else if(document.getElementById("search mode").selectedIndex==3){
         serviceData.sort(function(a, b) {
     var aT = a.description.length;
     var bT = b.description.length;
@@ -435,8 +442,6 @@ serviceData=shuffleArray(serviceData)
         
         }
         if(searchForTags=="")existsInTags=true;
-
-
 
         var existsInPhrases=true;
         for(let j=0; j<searchForPhrases.length;j++){
