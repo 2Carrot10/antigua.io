@@ -200,7 +200,7 @@
       white-space: nowrap;
     }
 
-    #myBtn {
+    #scrollToTopButton {
       display: none;
       position: fixed;
       bottom: 20px;
@@ -216,7 +216,7 @@
       border-radius: 4px;
     }
 
-    #myBtn:hover {
+    #scrollToTopButton:hover {
       background-color: #555;
     }
   </style>
@@ -225,7 +225,7 @@
 
 <body>
 
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Go to top</button>
+  <button onclick="topFunction()" id="scrollToTopButton" title="Go to top">Go to top</button>
 
 
   <template id="tileTemplate">
@@ -249,7 +249,7 @@
     <div class="opportunity-card">
 
       <div class="opportunity-details">
-        <h1>Search Categories</h1>
+        <h1>Search</h1>
 
         <p><strong>Keyword Search: </strong><input type="text" id="phraseBox" class="textbox"
             placeholder="e.g. 'research, cancer, seattle'"></p>
@@ -270,9 +270,6 @@
           <option value="za">description length (short-long)</option>
           <option value="r">randomized</option>
         </select>
-        <!-- Display area for the entered text -->
-        <p id="displayText"></p></br>
-        <!--<button onclick="">Advanced Search (not yet working)</button> -->
         <div style="text-align:center">
           <button onclick="searchFunction()" class="btn">Search!</button>
         </div>
@@ -280,42 +277,19 @@
     </div>
   </div>
 
-  <template>
-    <div class="groupDiv sideMenu">
-      <h2 style="text-align:center;">bookmarks</h2>
-
-      <div class="opportunity-card">
-        <input type="checkbox" name="subscribe" value="yes">
-        </p>
-        <div class="opportunity-details-small">
-          <h4 style="display:inline">Community Cleanup</h4>
-          <div class="categories" style="display:inline">
-            <span class="category">Community</span>
-            <span class="category">Environment</span>
-          </div>
-        </div>
-        <button onclick="displayText()" style="float:right; display: inline-block">Open</button>
-
-
-      </div>
-
-    </div>
-  </template>
-  <br>
   <div class="groupDiv" id="groupDiv">
-
+<!--Information gets added after search. This will not be empty-->
   </div>
 
   <script type="text/javascript">
-    //TODO: fix icon transperency
     //TODO: clean code
     //TODO: add category select
-    //TODO: add fullscreen mode
     //TODO: add mobile scaling
 
     const csvUrl = 
       'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
     const resultsScrollLocation=620; //position to scroll to when search button is pressed.
+    var serviceData = new Array();
 
     function toggleBackgroundColor(element) {
       if (element.style.backgroundColor === 'green') {
@@ -325,8 +299,7 @@
       }
     }
 
-    var serviceData = new Array();
-
+//stores data about serivce learning oppertunities. Is not saved in the html elements.
     class oppertunity {
       constructor(data) {
         this.data = data;
@@ -359,7 +332,7 @@
 
     function searchFunction() {
       var numberOfTiles = 0;
-      deleteTiles()
+      deleteAllTiles()
       console.log("search initiated");
       if (document.getElementById("search mode").selectedIndex == 0) {
         serviceData.sort(function (a, b) {
@@ -446,7 +419,7 @@
       document.documentElement.scrollTop = resultsScrollLocation;
     }
 
-    function deleteTiles() {
+    function deleteAllTiles() {
       var myNode = document.getElementById("groupDiv");
       while (myNode.firstChild) {
         myNode.removeChild(myNode.lastChild);
@@ -454,13 +427,13 @@
 
     }
 
-    window.onscroll = function () { scrollFunction() };
+    window.onscroll = function () { scrollToTopButtonVisibleCheck() };
 
-    function scrollFunction() {
+    function scrollToTopButtonVisibleCheck() {
       if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-        document.getElementById("myBtn").style.display = "block";
+        document.getElementById("scrollToTopButton").style.display = "block";
       } else {
-        document.getElementById("myBtn").style.display = "none";
+        document.getElementById("scrollToTopButton").style.display = "none";
       }
     }
 
@@ -487,25 +460,6 @@
       myNode.appendChild(clone);
     }
 
-
-    function addItemToTags() {
-
-    }
-
-    function csvFind() {
-      var url = csvUrl;
-      var a = document.createElement("a");
-      a.href = url;
-      fileName = url.split("/").pop();
-      alert(fileName);
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      a.remove();
-    }
-
-
     function parseCSV(str) {
       var arr = [];
       var quote = false;
@@ -523,6 +477,7 @@
       }
       return arr;
     }
+
     function downloadAndDisplayCSV(url) {
 
       fetch(url)
