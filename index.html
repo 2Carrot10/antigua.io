@@ -20,29 +20,12 @@
       background-color: #2980b9;
     }
 
-
-    .btn2 {
-      padding: 2px 2px;
-      border: none;
-      border-color: #000000;
-      border-radius: 5px;
-      background-color: #b3b3b3;
-      color: #000000;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn2:hover {
-      background-color: #2980b9;
-    }
-
     html {
       scroll-behavior: smooth;
     }
 
     .textbox {
-      width: 100%;
+      width: 40%;
       padding: 5px;
       font-size: 14px;
       border: 1px solid #ccc;
@@ -72,34 +55,9 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
-
-
-    .sideMenu {
-      width: 35%;
-      height: 100%;
-      float: right;
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-      padding: 5px;
-    }
-
     .centerSearch {
       margin-left: auto;
       margin-right: auto;
-    }
-
-    /* Fancy code block style */
-    .code-block {
-      background-color: #efefef;
-      border-radius: 5px;
-      padding: .5em;
-      margin: .5em 0;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 16px;
-      line-height: 1.5;
-      overflow-x: auto;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     body {
@@ -133,7 +91,6 @@
     .opportunity-details-small {
       padding: 5px;
     }
-
 
     .scaledTextForMinView {
       margin-right: 400px;
@@ -227,6 +184,12 @@
 
   <button onclick="topFunction()" id="scrollToTopButton" title="Go to top">Go to top</button>
 
+  <template id="no tiles">
+    <div class="opportunity-card">
+      <div class="opportunity-details">
+        <p>There are no service learning oppertunities that fit your search criteria. Try widening your query or suggest an organization <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
+      </div></div>
+    </template>
 
   <template id="tileTemplate">
     <div class="opportunity-card">
@@ -247,7 +210,6 @@
   <h1 style="text-align:center">Service Learning Search</h1>
   <div class="groupDiv">
     <div class="opportunity-card">
-
       <div class="opportunity-details">
         <h1>Search</h1>
 
@@ -256,8 +218,9 @@
         <p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="e.g. 'City'">
         </p>
         <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="e.g. '13'"></p>
+        <p><strong>Include Null Ages: </strong><input type="checkbox" id="minAgeBox" class="textbox" placeholder="e.g. '13'"></p>
         <p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox"
-            placeholder="e.g.'Civic, Differently Abled, Health'"></p>
+            placeholder="e.g. 'Civic, Differently Abled, Health'"></p>
         <span class="clickable-category" onclick="toggleBackgroundColor(this)">Community</span>
         <span class="clickable-category" onclick="toggleBackgroundColor(this)">Environment</span>
         <p><strong>Sorting: </strong></p>
@@ -299,7 +262,7 @@
       }
     }
 
-//stores data about serivce learning oppertunities. Is not saved in the html elements.
+//this class stores data about serivce learning oppertunities. Is not saved in the html elements.
     class oppertunity {
       constructor(data) {
         this.data = data;
@@ -329,11 +292,7 @@
       return array;
     }
 
-
-    function searchFunction() {
-      var numberOfTiles = 0;
-      deleteAllTiles()
-      console.log("search initiated");
+    function orderData(){
       if (document.getElementById("search mode").selectedIndex == 0) {
         serviceData.sort(function (a, b) {
           console.log("0")
@@ -363,59 +322,60 @@
         });
       }
       else {
-        console.log("else")
-        serviceData = shuffleArray(serviceData)
-
+        serviceData = shuffleArray(serviceData);
       }
+    }
 
-      var searchForTags = document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
+    function searchFunction() {
+      var numberOfTiles = 0;
+      deleteAllTiles();
+      orderData();
+
+      var searchForCategories = document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");//splits by commas and removes all spaces
       var searchForPhrases = document.getElementById("phraseBox").value.toLowerCase().split(",");
       for (var i = 0; i < searchForPhrases; i++) {
-        searchForPhrases[i] = searchForPhrases[i].trim();
+        searchForPhrases[i] = searchForPhrases[i].trim();//cuts leading and following spaces. Will not cut out middle spaces.
       }
-      console.log(searchForTags)
 
       for (let i = 0; i < serviceData.length; i++) {
 
-        var existsInTags = true;
-
-        for (let j = 0; j < searchForTags.length; j++) {
+        var existsInCategories = true;
+        for (let j = 0; j < searchForCategories.length; j++) {
           let q = [];
           for (let k = 0; k < serviceData[i].tags.length; k++) {
             if (serviceData[i].tags[k] != null) q[k] = serviceData[i].tags[k].replace(/\s/g, '').toLowerCase()
           }
-          if (!q.includes(searchForTags[j])) existsInTags = false;
-
+          if (!q.includes(searchForCategories[j])) existsInCategories = false;
         }
-        if (searchForTags == "") existsInTags = true;
+        if (searchForTags == "") existsInCategories = true;
 
         var existsInPhrases = true;
         for (let j = 0; j < searchForPhrases.length; j++) {
-
           if (!serviceData[i].description.toLowerCase().includes(searchForPhrases[j])) existsInPhrases = false;
-
         }
+
+        var existsInTitle = serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase());
         var existsAge = (document.getElementById("minAgeBox").value == null || document.getElementById("minAgeBox").value == "" || isNaN(document.getElementById("minAgeBox").value) || document.getElementById("minAgeBox").value == "" || isNaN(document.getElementById("minAgeBox").value) || (parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)));
 
-        if (serviceData[i] != null && existsInTags &&
+        if (existsInCategories &&
           existsInPhrases &&
-          serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
+          existsInTitle &&
           existsAge
         ) {
           renderOneTile(serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].zipcode, serviceData[i].tags, false);
           numberOfTiles++;
         }
       }
-      if (numberOfTiles == 0) {
 
+      //if there are no results
+      if (numberOfTiles == 0) {
         let template = document.getElementById("no tiles");
         let clone = template.content.cloneNode(true);
         var myNode = document.getElementById("groupDiv");
         myNode.appendChild(clone);
-
-
       }
-
+      
+      //after everything has loaded scroll to top
       document.documentElement.scrollTop = resultsScrollLocation;
     }
 
@@ -424,7 +384,6 @@
       while (myNode.firstChild) {
         myNode.removeChild(myNode.lastChild);
       }
-
     }
 
     window.onscroll = function () { scrollToTopButtonVisibleCheck() };
@@ -438,7 +397,6 @@
     }
 
     function renderOneTile(title, description, minAge, address, website, zipcode, tags, minView) {
-
       let template = document.getElementById("tileTemplate");
       let clone = template.content.cloneNode(true);
       clone.getElementById("minAge").innerHTML = minAge;
