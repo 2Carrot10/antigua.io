@@ -170,9 +170,9 @@ function renderOneTile(title, description, minAge, address, website, tags, minVi
     clone.getElementById("description").innerHTML = description;
     clone.getElementById("title").innerHTML = title;
     clone.getElementById("website").innerHTML = website;
-    clone.getElementById("website").setAttribute('href', website);
+    clone.getElementById("websiteURL").setAttribute('href', website);
     clone.getElementById("address").innerHTML = address;
-    clone.getElementById("address").setAttribute('href', "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`);
+    clone.getElementById("addressURL").setAttribute('href', "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`);
     for (let i = 0; i < tags.length; i++) {//test
         if (tags[i] == "" || tags[i] == "\r") continue;
         let tagA = document.createElement("span");
