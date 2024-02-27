@@ -260,6 +260,8 @@ body {
 <p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="e.g. 'City'"></p>
 <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="e.g. '13'"></p>
 <p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox" placeholder="e.g.'Civic, Differently Abled, Health'"></p>
+<p><strong>Zip Code: </strong><input type="text" id="zipcodeBox" class="textbox" placeholder="e.g. '98144'"></p>
+
 <p><strong>Sorting: </strong></p>
 </select>
 
@@ -534,7 +536,7 @@ function addItemToTags() {
 }
 
 function csvFind() {
-var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
+var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRg0Eqtj14Z1tPLWUnLbLax97Mhx_WgtKx7h7-ntAQY3Z7FK-jJ8SKrF6J76p5vY4Mh0hchCVBqO2sf/pub?output=csv';
     var a = document.createElement("a");
     a.href = url;
     fileName = url.split("/").pop();
