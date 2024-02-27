@@ -1,9 +1,39 @@
-.category{
-    border-radius: 4px;
-    padding-left:  8px;
-    padding-right: 8px;
-    margin-right: 4px;
-    background: rgb(237, 245, 253);
-    color:rgb(21, 92, 162);
-    font-size: 12px;
+.category {
+  border-radius: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-right: 4px;
+  background: rgb(237, 245, 253);
+  color: rgb(21, 92, 162);
+  font-size: 12px;
+}
+
+.drop select {
+  background: transparent;
+  width: 168px;
+  padding: 5px;
+  font-size: 16px;
+  line-height: 1;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #000;
+}
+
+select {
+    display: block;
+    width: 100%;
+    font-size: 1em;
+    padding: 0.8rem 0.5rem;
+    border: 1px solid #333;
+    font-family: inherit;
+    /** for the dropdown indicator */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
 }

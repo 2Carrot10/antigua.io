@@ -5,6 +5,7 @@
   <title>Service Learning Search</title>
   <link rel="stylesheet" href="minStyles.css">
   <link rel="icon" href="icon.png">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -117,18 +118,22 @@
           <div class="flex">
             <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox"
               class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="e.g.'Civic, Differently Abled, Health'" type="text" name="search" />
+              placeholder="e.g. 'Civic, Differently Abled, Health'" type="text" name="search" />
           </div>
-          <p><strong>Sorting: </strong></p>
+
           </select>
 
-          <select name="sort mode" id="search mode" class="dropdown">
+          Sorting by:
+          <select name="sort mode" id="search mode" class="drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
             <option value="az">alphabetical (a-z)</option>
             <option value="za">alphabetical (z-a)</option>
             <option value="az">description length (long-short)</option>
             <option value="za">description length (short-long)</option>
             <option value="r">randomized</option>
           </select>
+
+
+          
         </div>
       </div>
     </div>
