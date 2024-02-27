@@ -15,7 +15,7 @@ class oppertunity {
         this.description = data[2];
         this.website = data[4]
         this.address = data[3];
-        this.zipcode = data[5];
+        //I got rid of zipcode
         if (data[8] == "\r")
             this.tags = new Array(3)
         this.tags = [data[6].replace(/(\r\n|\n|\r)/gm, ""), data[7].replace(/(\r\n|\n|\r)/gm, ""), data[8].replace(/(\r\n|\n|\r)/gm, "")];
@@ -116,7 +116,7 @@ function searchFunction() {
             serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
             existsAge
         ) {
-            renderOneTile(serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].zipcode, serviceData[i].tags, false);
+            renderOneTile(serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].tags, false);
             numberOfTiles++;
         }
     }
@@ -162,7 +162,7 @@ function scrollFunction() {
     }
 }
 
-function renderOneTile(title, description, minAge, address, website, zipcode, tags, minView) {
+function renderOneTile(title, description, minAge, address, website, tags, minView) {
 
     let template = document.getElementById("tileTemplate");
     let clone = template.content.cloneNode(true);
@@ -173,7 +173,6 @@ function renderOneTile(title, description, minAge, address, website, zipcode, ta
     clone.getElementById("website").setAttribute('href', website);
     clone.getElementById("address").innerHTML = address;
     clone.getElementById("address").setAttribute('href', "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`);
-    clone.getElementById("zipcode").innerHTML = zipcode;
     for (let i = 0; i < tags.length; i++) {//test
         if (tags[i] == "" || tags[i] == "\r") continue;
         let tagA = document.createElement("span");

@@ -3,7 +3,7 @@
 
 <head>
   <title>Service Learning Search</title>
-  <!--<link rel="stylesheet" href="styles.css">-->
+  <link rel="stylesheet" href="minStyles.css">
   <link rel="icon" href="icon.png">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -14,21 +14,49 @@
 
 
   <template id="tileTemplate">
-    <div class="opportunity-card rounded-md p-4 shadow-sm outline outline-gray-200/50 h-fit">
+    <div class="opportunity-card rounded-2xl p-4 shadow-sm outline outline-gray-200/50 h-fit">
       </p>
       <div class="opportunity-details">
-        <h2 id="title">Community Cleanup</h2>
-        <p><strong>Project/Program Description: </strong><span id="description"> OVF's mission is to facilitate and
+        <h2 id="title" class="font-bold text-2xl">Community Cleanup</h2>
+        <p><span id="description" class="text-sm opacity-75"> OVF's mission is to facilitate and
             increase participation of American overseas voters and military voters and their dependents in federal
             elections by providing public access to innovative voter registration tools and services. Integral to
             achieving our mission is making it easier for all Americans residing around the world, and all military and
             dependents residing outside their home jurisdiction, to be able to stay active in their home state's
             electoral process.</span></p>
-        <p><strong>Minimum Age: </strong> <span id="minAge">13</span></p>
-        <p><strong>Address: </strong><a href="#" id="address">123 Main St</a></p>
-        <p><strong>Website: </strong> <a href="#" id="website">example.com</a></p>
-        <p><strong>Zip Code: </strong> <span id="zipcode">12345</span></p>
-        <div class="categories" id="tags">
+        <p>
+        <div class="flex">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-4 h-4 my-auto">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+          </svg>
+          <span id="minAge" class="ml-2">13</span>
+        </div>
+        </p>
+        <p>
+        <div class="flex">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-4 h-4 my-auto">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+          </svg>
+
+          <a href="#" id="address" class="ml-2">123 Main St</a>
+        </div>
+        </p>
+        <p>
+        <div class="flex">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-4 h-4 my-auto">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+          </svg>
+
+          <a href="#" id="website" class="ml-2">example.com</a></p>
+        </div>
+        <div class="categories flex mt-2" id="tags">
         </div>
       </div>
       <!--
@@ -57,41 +85,49 @@
 
   <!-- Text box input and button -->
   <div class="flex p-4 h-screen">
-  <div class="rounded-2xl p-8 shadow-sm h-fit w-full max-w-lg outline outline-gray-200/50">
-    <div class="opportunity-card">
+    <div class="rounded-2xl p-8 shadow-sm h-fit w-full max-w-lg outline outline-gray-200/50">
+      <div class="opportunity-card">
 
-      <div class="opportunity-details grid gap-2">
-        <div class="flex">
-        <h1>Search Categories</h1>
-        <input id="phraseBox" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="e.g. 'research, cancer, Seattle'" type="text" name="search"/>
-        </div>
-        <div class="flex">
-          Title Includes: <input id="titleBox" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="e.g. 'city'" type="text" name="search"/>
-        </div>
-        </p>
-        <div class="flex">
-          <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number" class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="e.g. '13'" type="text" name="search"/>
-        </div>
+        <div class="opportunity-details grid gap-2">
+          <div class="flex">
+            <h1>Search Categories</h1>
+            <input id="phraseBox"
+              class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="e.g. 'research, cancer, Seattle'" type="text" name="search" />
+          </div>
+          <div class="flex">
+            Title Includes: <input id="titleBox"
+              class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="e.g. 'city'" type="text" name="search" />
+          </div>
+          </p>
+          <div class="flex">
+            <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number"
+              class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="e.g. '13'" type="text" name="search" />
+          </div>
 
-        <div class="flex">
-          <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox" class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="e.g.'Civic, Differently Abled, Health'" type="text" name="search"/>
-        </div>
-        <p><strong>Sorting: </strong></p>
-        </select>
+          <div class="flex">
+            <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox"
+              class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="e.g.'Civic, Differently Abled, Health'" type="text" name="search" />
+          </div>
+          <p><strong>Sorting: </strong></p>
+          </select>
 
-        <select name="sort mode" id="search mode" class="dropdown">
-          <option value="az">alphabetical (a-z)</option>
-          <option value="za">alphabetical (z-a)</option>
-          <option value="az">description length (long-short)</option>
-          <option value="za">description length (short-long)</option>
-          <option value="r">randomized</option>
-        </select>
+          <select name="sort mode" id="search mode" class="dropdown">
+            <option value="az">alphabetical (a-z)</option>
+            <option value="za">alphabetical (z-a)</option>
+            <option value="az">description length (long-short)</option>
+            <option value="za">description length (short-long)</option>
+            <option value="r">randomized</option>
+          </select>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="grid gap-4 ml-4 overflow-y-scroll rounded-md overflow-clip w-full p-4" id="groupDiv">
+    <div class="grid gap-4 ml-4 overflow-y-scroll rounded-md overflow-clip w-full p-4" id="groupDiv">
 
-  </div>
+    </div>
   </div>
 
   <template>
@@ -154,7 +190,7 @@
     </div>
   </template>
   <br>
- 
+
 
   <script type="text/javascript" src="./main.js"">
   </script>
