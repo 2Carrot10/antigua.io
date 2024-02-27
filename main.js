@@ -275,4 +275,8 @@ setTimeout(() => {
         searchFunction()
         console.log('runs')
     })
+    document.getElementById("search mode").addEventListener("input", function () {
+        searchFunction()
+        console.log('runs')
+    })
 }, 1000)
