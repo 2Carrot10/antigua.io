@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Service Learning Search</title>
-<link rel="stylesheet" href="styles.css">
+  <title>Service Learning Search</title>
+  <!--<link rel="stylesheet" href="styles.css">-->
   <link rel="icon" href="icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+
+<body class="overflow-clip">
 
   <button onclick="topFunction()" id="myBtn" title="Go to top">Go to top</button>
 
 
   <template id="tileTemplate">
-    <div class="opportunity-card">
-    </p>
+    <div class="opportunity-card rounded-md p-4 shadow-sm outline outline-gray-200/50 h-fit">
+      </p>
       <div class="opportunity-details">
-            <h2 id="title">Community Cleanup</h2>
-            <p><strong>Project/Program Description: </strong><span id="description"> OVF's mission is to facilitate and increase participation of American overseas voters and military voters and their dependents in federal elections by providing public access to innovative voter registration tools and services. Integral to achieving our mission is making it easier for all Americans residing around the world, and all military and dependents residing outside their home jurisdiction, to be able to stay active in their home state's electoral process.</span></p>
-            <p ><strong>Minimum Age: </strong> <span id="minAge">13</span></p>
-            <p><strong>Address: </strong><a href="#" id="address">123 Main St</a></p>
-            <p><strong>Website: </strong> <a href="#" id="website">example.com</a></p>
-            <p><strong>Zip Code: </strong> <span id="zipcode">12345</span></p>
-            <div class="categories" id="tags">
-            </div>
+        <h2 id="title">Community Cleanup</h2>
+        <p><strong>Project/Program Description: </strong><span id="description"> OVF's mission is to facilitate and
+            increase participation of American overseas voters and military voters and their dependents in federal
+            elections by providing public access to innovative voter registration tools and services. Integral to
+            achieving our mission is making it easier for all Americans residing around the world, and all military and
+            dependents residing outside their home jurisdiction, to be able to stay active in their home state's
+            electoral process.</span></p>
+        <p><strong>Minimum Age: </strong> <span id="minAge">13</span></p>
+        <p><strong>Address: </strong><a href="#" id="address">123 Main St</a></p>
+        <p><strong>Website: </strong> <a href="#" id="website">example.com</a></p>
+        <p><strong>Zip Code: </strong> <span id="zipcode">12345</span></p>
+        <div class="categories" id="tags">
         </div>
-        <!--
+      </div>
+      <!--
         <button onclick="displayText()" style="float:right; display:inline-block;">Open</button>
         <button onclick="displayText()" style="float:right;">list view</button>
         -->
@@ -31,7 +39,7 @@
   </template>
   <template id="tileTemplateSmall">
     <div class="opportunity-card">
-      
+
       <div class="opportunity-details-small">
         <h2 style="display:inline">Community Cleanup</h2>
         <p style="display:inline" class="informationGroup"><strong>Age restrictions:</strong> 13</p>
@@ -39,107 +47,117 @@
         <p class="informationGroup"><strong>Zip Code:</strong> 12345</p>
         <div class="categories" style="display:inline">
         </div>
+      </div>
+      <button onclick="displayText()" style="float:right;">Open</button>
+      <button onclick="displayText()" style="float:right;">Card View</button>
     </div>
-    <button onclick="displayText()" style="float:right;">Open</button>
-    <button onclick="displayText()" style="float:right;">Card View</button>
-  </div>
-</template>
-  
-
-
-<!-- Text box input and button -->
-<h1 style="text-align:center">Service Learning Search</h1>
-<div class= "groupDiv">
-  <div class="opportunity-card">
-
-    <div class="opportunity-details">
-    <h1>Search Categories</h1>
-    
-<p><strong>Keyword Search: </strong><input type="text" id="phraseBox" class="textbox" placeholder="e.g. 'research, cancer, seattle'"></p>
-<p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="e.g. 'City'"></p>
-<p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="e.g. '13'"></p>
-<p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox" placeholder="e.g.'Civic, Differently Abled, Health'"></p>
-<p><strong>Sorting: </strong></p>
-</select>
-
-<select name="sort mode" id="search mode" class="dropdown">
-  <option value="az">alphabetical (a-z)</option>
-  <option value="za">alphabetical (z-a)</option>
-  <option value="az">description length (long-short)</option>
-  <option value="za">description length (short-long)</option>
-  <option value="r">randomized</option>
-</select>
-<!-- Display area for the entered text -->
-<p id="displayText"></p></br>
-<!--<button onclick="">Advanced Search (not yet working)</button> -->
-<div style="text-align:center">
-<button onclick="searchFunction()" class="btn">Search!</button>
-</div>
-</div>
-</div>
-</div>
-
-<template>
-<div class= "groupDiv">
-  <div class="opportunity-card">
-    <div class="opportunity-details">
-    <h2>Search Categories (Advanced Mode)</h2>
-<p><strong>query: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. research"></p>
-
-
-<p>Examples:</p>
-<p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
-<br>
-<p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
-<br>
-<p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
-<br>
-<p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
-<!-- Display area for the entered text -->
-<p id="displayText"></p></br>
-<button onclick="">Basic search</button>
-<div style="text-align:center">
-<button onclick="displayText()">Search!</button>
-</div>
-</div>
-</div>
-</div>
-</template>
-<template id="no tiles">
-  <div class="opportunity-card">
-    <div class="opportunity-details">
-<p>There are no service learning oppertunities that fit your search criteria. Try widening your query or suggest an organization <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
-    </div></div>
   </template>
 
-<template>
-<div class= "groupDiv sideMenu"><h2 style="text-align:center;">bookmarks</h2>
 
-  <div class="opportunity-card">
-    <input type="checkbox" name="subscribe" value="yes">
-  </p>
-      <div class="opportunity-details-small">
-          <h4 style="display:inline">Community Cleanup</h4>
-        <div class="categories" style="display:inline">
-            <span class="category">Community</span>
-            <span class="category">Environment</span>
+
+  <!-- Text box input and button -->
+  <div class="flex p-4 h-screen">
+  <div class="rounded-2xl p-8 shadow-sm h-fit w-full max-w-lg outline outline-gray-200/50">
+    <div class="opportunity-card">
+
+      <div class="opportunity-details grid gap-2">
+        <div class="flex">
+        <h1>Search Categories</h1>
+        <input id="phraseBox" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="e.g. 'research, cancer, Seattle'" type="text" name="search"/>
         </div>
+        <div class="flex">
+          Title Includes: <input id="titleBox" class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="e.g. 'city'" type="text" name="search"/>
+        </div>
+        </p>
+        <div class="flex">
+          <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number" class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="e.g. '13'" type="text" name="search"/>
+        </div>
+
+        <div class="flex">
+          <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox" class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="e.g.'Civic, Differently Abled, Health'" type="text" name="search"/>
+        </div>
+        <p><strong>Sorting: </strong></p>
+        </select>
+
+        <select name="sort mode" id="search mode" class="dropdown">
+          <option value="az">alphabetical (a-z)</option>
+          <option value="za">alphabetical (z-a)</option>
+          <option value="az">description length (long-short)</option>
+          <option value="za">description length (short-long)</option>
+          <option value="r">randomized</option>
+        </select>
       </div>
-      <button onclick="displayText()" style="float:right; display: inline-block">Open</button>
-      
+    </div>
+  </div>
+  <div class="grid gap-4 ml-4 overflow-y-scroll rounded-md overflow-clip w-full p-4" id="groupDiv">
 
   </div>
+  </div>
 
-  
-</div>  
-</template>
-<br>
-<div class="groupDiv" id="groupDiv">
+  <template>
+    <div class="grid gap-4">
+      <div class="opportunity-card">
+        <div class="opportunity-details">
+          <h2>Search Categories (Advanced Mode)</h2>
+          <p><strong>query: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. research"></p>
 
-</div>
 
-<script type="text/javascript" src="./main.js"">
-</script>
+          <p>Examples:</p>
+          <p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
+          <br>
+          <p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
+          <br>
+          <p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
+          <br>
+          <p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
+          <!-- Display area for the entered text -->
+          <p id="displayText"></p></br>
+          <button onclick="">Basic search</button>
+          <div style="text-align:center">
+            <button onclick="displayText()">Search!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="no tiles">
+    <div class="opportunity-card">
+      <div class="opportunity-details">
+        <p>There are no service learning oppertunities that fit your search criteria. Try widening your query or suggest
+          an organization <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.
+        </p>
+      </div>
+    </div>
+  </template>
+
+  <template>
+    <div class="groupDiv sideMenu">
+      <h2 style="text-align:center;">bookmarks</h2>
+
+      <div class="opportunity-card">
+        <input type="checkbox" name="subscribe" value="yes">
+        </p>
+        <div class="opportunity-details-small">
+          <h4 style="display:inline">Community Cleanup</h4>
+          <div class="categories" style="display:inline">
+            <span class="category">Community</span>
+            <span class="category">Environment</span>
+          </div>
+        </div>
+        <button onclick="displayText()" style="float:right; display: inline-block">Open</button>
+
+
+      </div>
+
+
+    </div>
+  </template>
+  <br>
+ 
+
+  <script type="text/javascript" src="./main.js"">
+  </script>
 
 </body>
 </html>
