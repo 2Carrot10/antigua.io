@@ -290,14 +290,16 @@ function highlightKeywords(text, keywords) {
 
 
 function loadChat() {
+    setInterval(()=>{
     searchFunction()
+    }, 1000)
     //dummyTop.scrollIntoView({behavior:'smooth'});        
-    document.getElementById("phraseBox").addEventListener("input", function () {
+    /*document.getElementById("phraseBox").addEventListener("input", function () {
         searchFunction()
         console.log('runs')
     })
     document.getElementById("search mode").addEventListener("input", function () {
         searchFunction()
         console.log('runs')
-    })
+    })*/
 }
