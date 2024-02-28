@@ -176,7 +176,7 @@ function renderOneTile(phrases, title, description, minAge, address, website, ta
     clone.getElementById("minAge").innerHTML = minAge;
     clone.getElementById("description").innerHTML = phrases[0] != '' ? highlightKeywords(description, phrases) : description
     clone.getElementById("title").innerHTML = phrases[0] != '' ? highlightKeywords(title, phrases) : title
-    clone.getElementById("website").innerHTML = website;
+    clone.getElementById("website").innerHTML = phrases[0] != '' ? highlightKeywords(website, phrases) : website;
     clone.getElementById("websiteURL").setAttribute('href', website);
     clone.getElementById("address").innerHTML = address;
     clone.getElementById("addressURL").setAttribute('href', "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`);
