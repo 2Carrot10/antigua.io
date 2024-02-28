@@ -88,6 +88,13 @@ function searchFunction() {
         searchForPhrases[i] = searchForPhrases[i].trim();
     }
     console.log(searchForTags)
+    var myNode = document.getElementById("groupDiv");
+    /*let dummyTop = document.createElement('div')
+    dummyTop.classList = "h-0"
+    dummyTop.id = 'dummyTop'
+    myNode.appendChild(dummyTop)*/
+
+
 
     for (let i = 0; i < serviceData.length; i++) {
 
@@ -116,7 +123,7 @@ function searchFunction() {
             serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
             existsAge
         ) {
-            renderOneTile(serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].tags, false);
+            renderOneTile(searchForPhrases, serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].tags, false);
             numberOfTiles++;
         }
     }
@@ -162,13 +169,13 @@ function scrollFunction() {
     }
 }
 
-function renderOneTile(title, description, minAge, address, website, tags, minView) {
+function renderOneTile(phrases, title, description, minAge, address, website, tags, minView) {
 
     let template = document.getElementById("tileTemplate");
     let clone = template.content.cloneNode(true);
     clone.getElementById("minAge").innerHTML = minAge;
-    clone.getElementById("description").innerHTML = description;
-    clone.getElementById("title").innerHTML = title;
+    clone.getElementById("description").innerHTML = phrases[0] != '' ? highlightKeywords(description, phrases) : description
+    clone.getElementById("title").innerHTML = phrases[0] != '' ? highlightKeywords(title, phrases) : title
     clone.getElementById("website").innerHTML = website;
     clone.getElementById("websiteURL").setAttribute('href', website);
     clone.getElementById("address").innerHTML = address;
@@ -221,25 +228,27 @@ function parseCSV(str) {
     }
     return arr;
 }
-function downloadAndDisplayCSV(url) {
+async function downloadAndDisplayCSV(url) {
     //let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
     //let b = /"/g
     //let c = /("[^"\n]*)\r?\n(?!(([^"]*"){2})*[^"]*$)/; //finds new lines inside ""
 
-    fetch(url)
-        .then(response => response.text()) // Get the text from the response
-        .then(csvData => {
+    await fetch(url)
+    .then(response => response.text()) // Get the text from the response
+    .then(csvData => {
 
-            rows = parseCSV(csvData);
-            for (let i = 1; i < rows.length; i++) {//skip heading row
-                serviceData.push(new oppertunity(rows[i]));
+        rows = parseCSV(csvData);
+        for (let i = 1; i < rows.length; i++) {//skip heading row
+            serviceData.push(new oppertunity(rows[i]));
 
 
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    loadChat()
+    
 }
 
 // Replace 'url_to_csv_file' with the actual URL of the CSV file you want to download and display
@@ -269,8 +278,20 @@ function handleFiles(files) {
     }
 }
 
-setTimeout(() => {
+function highlightKeywords(text, keywords) {
+    let highlightedText = text;
+    keywords.forEach(function (keyword) {
+        const regex = new RegExp(`(${keyword})`, 'gi'); // 'gi' for case-insensitive and global search
+        highlightedText = highlightedText.replace(regex, `<span class="highlight">$1</span>`);
+    });
+    return highlightedText;
+}
+
+
+
+function loadChat() {
     searchFunction()
+    //dummyTop.scrollIntoView({behavior:'smooth'});        
     document.getElementById("phraseBox").addEventListener("input", function () {
         searchFunction()
         console.log('runs')
@@ -279,4 +300,4 @@ setTimeout(() => {
         searchFunction()
         console.log('runs')
     })
-}, 1000)
+}

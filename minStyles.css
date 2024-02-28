@@ -37,3 +37,10 @@ select {
     background-position: right 1rem center;
     background-size: 1em;
 }
+
+.highlight {
+  background-color: #0ea5e950;
+  color: black;
+  border-radius: 4px;
+  height: fit-content;
+}

@@ -11,8 +11,6 @@
 
 <body class="overflow-clip">
 
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Go to top</button>
-
 
   <template id="tileTemplate">
     <div class="opportunity-card rounded-2xl p-4 shadow-sm outline outline-gray-200/50 h-fit w-full">
@@ -26,7 +24,7 @@
             dependents residing outside their home jurisdiction, to be able to stay active in their home state's
             electoral process.</span></p>
         <p>
-        <div class="flex">
+        <div class="flex text-sm opacity-75">
           <svg class="w-4 h-4 my-auto" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
             height="200px" width="200px" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -36,7 +34,7 @@
         </div>
         </p>
         <p>
-          <a href="#" target="_blank" class="flex" id="addressURL">
+          <a href="#" target="_blank" class="flex text-sm opacity-75" id="addressURL">
             <div class="flex">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-4 h-4 my-auto">
@@ -50,7 +48,7 @@
           </a>
         </p>
         <p>
-          <a href="#" target="_blank" class="flex" id="websiteURL">
+          <a href="#" target="_blank" class="flex text-sm opacity-75" id="websiteURL">
             <div class="flex">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-4 h-4 my-auto">
@@ -92,52 +90,64 @@
 
 
   <!-- Text box input and button -->
-  <div class="flex p-4 h-screen">
-    <div class="rounded-2xl p-8 shadow-sm h-fit w-full max-w-lg outline outline-gray-200/50">
+  <div class="flex p-4 h-screen overflow-clip">
+    <div class="rounded-2xl p-8 shadow-sm h-fit w-full max-w-lg outline outline-gray-200/50 mt-4">
       <div class="opportunity-card">
 
         <div class="opportunity-details grid gap-2">
           <div class="flex">
-            <h1>Search Categories</h1>
+           
             <input id="phraseBox"
-              class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="e.g. 'research, cancer, Seattle'" type="text" name="search" />
-          </div>
-          <div class="flex">
-            Title Includes: <input id="titleBox"
-              class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="e.g. 'city'" type="text" name="search" />
-          </div>
-          </p>
-          <div class="flex">
-            <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number"
-              class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="e.g. '13'" type="text" name="search" />
+              class="placeholder:italic placeholder:text-slate-400 block bg-white h-16 w-full border border-slate-300 rounded-2xl px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="Search anything..." type="text" name="search" />
           </div>
 
-          <div class="flex">
-            <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox"
-              class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="e.g. 'Civic, Differently Abled, Health'" type="text" name="search" />
+
+          <div class="collapse collapse-arrow shadow-sm outline outline-gray-200/50">
+            <input type="checkbox" />
+            <div class="collapse-title text-xl font-medium">
+              Advanced
+            </div>
+            <div class="collapse-content shadow-sm h-fit w-full max-w-lg grid gap-2">
+              <div class="flex">
+                Title Includes: <input id="titleBox"
+                  class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  placeholder="e.g. 'city'" type="text" name="search" />
+              </div>
+              </p>
+              <div class="flex">
+                <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number"
+                  class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  placeholder="e.g. '13'" type="text" name="search" />
+              </div>
+
+              <div class="flex">
+                <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox"
+                  class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  placeholder="e.g. 'Civic, Differently Abled, Health'" type="text" name="search" />
+              </div>
+
+              </select>
+
+              Sorting by:
+              <select name="sort mode" id="search mode"
+                class="drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
+                <option value="az">alphabetical (a-z)</option>
+                <option value="za">alphabetical (z-a)</option>
+                <option value="az">description length (long-short)</option>
+                <option value="za">description length (short-long)</option>
+                <option value="r">randomized</option>
+              </select>
+            </div>
           </div>
 
-          </select>
-
-          Sorting by:
-          <select name="sort mode" id="search mode" class="drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
-            <option value="az">alphabetical (a-z)</option>
-            <option value="za">alphabetical (z-a)</option>
-            <option value="az">description length (long-short)</option>
-            <option value="za">description length (short-long)</option>
-            <option value="r">randomized</option>
-          </select>
 
 
-          
         </div>
       </div>
     </div>
-    <div class="grid gap-4 ml-4 overflow-y-scroll rounded-md overflow-clip w-full p-4" id="groupDiv">
+    <div class="grid gap-4 -mr-4 overflow-y-scroll rounded-md overflow-clip w-full p-4 break-words" id="groupDiv">
+      
 
     </div>
   </div>
@@ -171,13 +181,15 @@
   <template id="no tiles">
     <div class="opportunity-card">
       <div class="opportunity-details">
-        <div class="font-bold opacity-50 text-3xl flex"><img src="icon.png" class="h-6 my-auto mr-2 saturate-0 scale-125"/>Nothing Found. Try these:</div>
+        <div class="font-bold opacity-50 text-3xl flex"><img src="icon.png"
+            class="h-6 my-auto mr-2 saturate-0 scale-125" />Nothing Found. Try these:</div>
         <div>
           <ul class="ml-4 text-md opacity-75 list-outside list-disc">
             <li>Widen your query</li>
             <li>Suggest an organization <a class="font-bold"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</li>
-            </ul>
+                href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.
+            </li>
+          </ul>
         </div>
       </div>
     </div>
