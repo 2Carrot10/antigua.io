@@ -90,7 +90,7 @@ function searchFunction() {
     dummyTop.classList = "h-0"
     dummyTop.id = 'dummyTop'
     myNode.appendChild(dummyTop)*/
-    let currentTags = document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",")
+    let currentTags = document.getElementById("tagsBox").value.split(",")
     if (currentTags.length > 0 && currentTags[0] != '') {
 
 
@@ -99,7 +99,7 @@ function searchFunction() {
         topkey.classList = "flex sticky top-0 bg-slate-200/70 h-fit rounded-lg p-2 backdrop-blur-sm z-50 -mb-2 -mx-2"
         currentTags.map((tag) => {
             let miniTag = document.createElement('div')
-            miniTag.classList = "category flex pr-0"
+            miniTag.classList = "category flex pr-0 my-auto"
             miniTag.innerHTML = tag
 
             const template = document.getElementById("close");
@@ -108,6 +108,7 @@ function searchFunction() {
             clone.querySelector('#button').addEventListener('click', ()=>{
                 currentTags = currentTags.filter(item => item !== tag)
                 document.getElementById('tagsBox').setAttribute('value', currentTags.join(', '))
+                searchFunction()
             })
 
             miniTag.appendChild(clone)
@@ -116,6 +117,16 @@ function searchFunction() {
             
 
         })
+        const template = document.getElementById("trash");
+        const clone = template.content.cloneNode(true);
+
+        clone.querySelector('#button').addEventListener('click', ()=>{
+            
+            document.getElementById('tagsBox').setAttribute('value', '')
+            searchFunction()
+        })
+
+        topkey.appendChild(clone)
         myNode.appendChild(topkey)
     }else{
 
@@ -212,9 +223,9 @@ function renderOneTile(phrases, title, description, minAge, address, website, ta
         let tagA = document.createElement("span");
         tagA.classList.add("category");
         tagA.addEventListener('click', () => {
-            let text = tagA.innerHTML
+            let text = tagA.innerHTML.toLowerCase()
 
-            let currentTags = document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",")
+            let currentTags = document.getElementById("tagsBox").value.toLowerCase().split(",")
   
             if (!currentTags.includes(text)) {
                 if (currentTags.length == 1 && currentTags[0] == '') {
@@ -223,6 +234,7 @@ function renderOneTile(phrases, title, description, minAge, address, website, ta
                     currentTags.push(text)
                 }
             }
+            console.log(currentTags)
 
             document.getElementById('tagsBox').setAttribute('value', currentTags.join(', '))
 
