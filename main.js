@@ -99,7 +99,7 @@ function searchFunction() {
         topkey.classList = "flex sticky top-0 bg-slate-200/70 h-fit rounded-lg p-2 backdrop-blur-sm z-50 -mb-2 -mx-2"
         currentTags.map((tag) => {
             let miniTag = document.createElement('div')
-            miniTag.classList = "category flex"
+            miniTag.classList = "category flex pr-0"
             miniTag.innerHTML = tag
 
             const template = document.getElementById("close");
