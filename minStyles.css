@@ -6,6 +6,7 @@
   background: rgb(237, 245, 253);
   color: rgb(21, 92, 162);
   font-size: 12px;
+  cursor: pointer;
 }
 
 .drop select {

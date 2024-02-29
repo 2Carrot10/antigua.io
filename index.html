@@ -11,6 +11,13 @@
 
 <body class="overflow-clip">
 
+  <template id="close" class="transition-all hover:bg-black/20 rounded-sm text-sm opacity-75">
+    <svg id="button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hover:bg-black/20 rounded-md text-sm opacity-75 w-4 h-4 my-auto ml-1 p-0.5" >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+    </svg>
+    
+  </template>
+
 
   <template id="tileTemplate">
     <div class="opportunity-card rounded-2xl p-4 shadow-sm outline outline-gray-200/50 h-fit w-full">
@@ -92,7 +99,7 @@
 
 
   <!-- Text box input and button -->
-  <div class="flex p-4 h-screen overflow-clip">
+  <div class="flex p-4 h-fit max-h-screen overflow-clip">
     <div class="w-full max-w-lg">
     <div class="rounded-2xl p-8 shadow-sm h-fit w-full max-w-lg outline outline-gray-200/50 mt-4">
       <div class="opportunity-card">
@@ -151,7 +158,7 @@
       </div>
       <div class="text-md opacity-75 text-center mt-4 w-full min-w-lg">Made by <a href="https://github.io/2carrot10" target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.io/codeitfast" class="font-bold">Micah</a></div>
     </div>
-    <div class="grid gap-4 -mr-4 overflow-y-scroll rounded-md overflow-clip w-full p-4 break-words" id="groupDiv">
+    <div class="grid gap-4 -mr-4 overflow-y-scroll rounded-md overflow-clip w-full p-4 break-words relative transition-all" id="groupDiv">
 
 
     </div>

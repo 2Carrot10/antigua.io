@@ -50,7 +50,6 @@ function searchFunction() {
     console.log("search initiated");
     if (document.getElementById("search mode").selectedIndex == 0) {
         serviceData.sort(function (a, b) {
-            console.log("0")
             var textA = a.title.toUpperCase();
             var textB = b.title.toUpperCase();
             return (textA > textB) ? 1 : (textA < textB) ? -1 : 0;
@@ -77,7 +76,6 @@ function searchFunction() {
         });
     }
     else {
-        console.log("else")
         serviceData = shuffleArray(serviceData)
 
     }
@@ -87,12 +85,41 @@ function searchFunction() {
     for (var i = 0; i < searchForPhrases; i++) {
         searchForPhrases[i] = searchForPhrases[i].trim();
     }
-    console.log(searchForTags)
     var myNode = document.getElementById("groupDiv");
     /*let dummyTop = document.createElement('div')
     dummyTop.classList = "h-0"
     dummyTop.id = 'dummyTop'
     myNode.appendChild(dummyTop)*/
+    let currentTags = document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",")
+    if (currentTags.length > 0 && currentTags[0] != '') {
+
+
+
+        let topkey = document.createElement('div')
+        topkey.classList = "flex sticky top-0 bg-slate-200/70 h-fit rounded-lg p-2 backdrop-blur-sm z-50 -mb-2 -mx-2"
+        currentTags.map((tag) => {
+            let miniTag = document.createElement('div')
+            miniTag.classList = "category flex"
+            miniTag.innerHTML = tag
+
+            const template = document.getElementById("close");
+            const clone = template.content.cloneNode(true);
+
+            clone.querySelector('#button').addEventListener('click', ()=>{
+                currentTags = currentTags.filter(item => item !== tag)
+                document.getElementById('tagsBox').setAttribute('value', currentTags.join(', '))
+            })
+
+            miniTag.appendChild(clone)
+
+            topkey.appendChild(miniTag)
+            
+
+        })
+        myNode.appendChild(topkey)
+    }else{
+
+    }
 
 
 
@@ -184,6 +211,23 @@ function renderOneTile(phrases, title, description, minAge, address, website, ta
         if (tags[i] == "" || tags[i] == "\r") continue;
         let tagA = document.createElement("span");
         tagA.classList.add("category");
+        tagA.addEventListener('click', () => {
+            let text = tagA.innerHTML
+
+            let currentTags = document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",")
+  
+            if (!currentTags.includes(text)) {
+                if (currentTags.length == 1 && currentTags[0] == '') {
+                    currentTags = [text]
+                } else {
+                    currentTags.push(text)
+                }
+            }
+
+            document.getElementById('tagsBox').setAttribute('value', currentTags.join(', '))
+
+
+        })
         tagA.innerHTML = tags[i];
         clone.getElementById("tags").appendChild(tagA);
     }
@@ -234,21 +278,21 @@ async function downloadAndDisplayCSV(url) {
     //let c = /("[^"\n]*)\r?\n(?!(([^"]*"){2})*[^"]*$)/; //finds new lines inside ""
 
     await fetch(url)
-    .then(response => response.text()) // Get the text from the response
-    .then(csvData => {
+        .then(response => response.text()) // Get the text from the response
+        .then(csvData => {
 
-        rows = parseCSV(csvData);
-        for (let i = 1; i < rows.length; i++) {//skip heading row
-            serviceData.push(new oppertunity(rows[i]));
+            rows = parseCSV(csvData);
+            for (let i = 1; i < rows.length; i++) {//skip heading row
+                serviceData.push(new oppertunity(rows[i]));
 
 
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     loadChat()
-    
+
 }
 
 // Replace 'url_to_csv_file' with the actual URL of the CSV file you want to download and display
@@ -290,8 +334,8 @@ function highlightKeywords(text, keywords) {
 
 
 function loadChat() {
-    setInterval(()=>{
-    searchFunction()
+    setInterval(() => {
+        searchFunction()
     }, 1000)
     //dummyTop.scrollIntoView({behavior:'smooth'});        
     /*document.getElementById("phraseBox").addEventListener("input", function () {
