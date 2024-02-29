@@ -93,15 +93,16 @@
 
   <!-- Text box input and button -->
   <div class="flex p-4 h-screen overflow-clip">
+    <div class="w-full max-w-lg">
     <div class="rounded-2xl p-8 shadow-sm h-fit w-full max-w-lg outline outline-gray-200/50 mt-4">
       <div class="opportunity-card">
 
         <div class="opportunity-details grid gap-2">
           <div class="flex">
 
-            <input id="phraseBox"
-              class="placeholder:italic placeholder:text-slate-400 block bg-white h-16 w-full border border-slate-300 rounded-2xl px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="Search anything..." type="text" name="search" />
+            <textarea id="phraseBox"
+              class="placeholder:italic placeholder:text-slate-400 block bg-white h-32 w-full border border-slate-300 rounded-2xl p-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="Search anything..." type="text" name="search"></textarea>
           </div>
 
 
@@ -147,6 +148,8 @@
 
         </div>
       </div>
+      </div>
+      <div class="text-md opacity-75 text-center mt-4 w-full min-w-lg">Made by <a href="https://github.io/2carrot10" target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.io/codeitfast" class="font-bold">Micah</a></div>
     </div>
     <div class="grid gap-4 -mr-4 overflow-y-scroll rounded-md overflow-clip w-full p-4 break-words" id="groupDiv">
 
