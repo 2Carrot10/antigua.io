@@ -20,6 +20,10 @@
       background-color: #2980b9;
     }
 
+    .btn:disabled{
+      background-color: #e0e0e0;
+      color: #b2b1b1;
+    }
 
     .btn2 {
       padding: 2px 2px;
@@ -225,7 +229,6 @@
         <div class="categories" id="tags">
         </div>
       </div>
-      <button>report mistake or suggest change</button>
       <form action="https://google.com">
         <input type="submit" value="report mistake or suggest change"/>
     </form>
@@ -244,8 +247,7 @@
         <p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="e.g. 'City'">
         </p>
         <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="e.g. '13'"></p>
-        <p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox"
-            placeholder="e.g.'Civic, Differently Abled, Health'"></p>
+        <p><strong>Categories: </strong></p>
             <div id="checkboxes">
               <ul>
                 <li><input type="checkbox">Abilities</li>
@@ -256,21 +258,19 @@
                 <li><input type="checkbox">Differently Abled</li>
                 <li><input type="checkbox">International</li>
                 <li><input type="checkbox">Office-Clerical</li>
-
                 <li><input type="checkbox">Homeless</li>
                 <li><input type="checkbox">Low-income</li>
                 <li><input type="checkbox">Environment</li>
                 <li><input type="checkbox">Transportation</li>
-
                 <li><input type="checkbox">Political-Advocacy</li>
                 <li><input type="checkbox">Transportation</li>
               </ul>
             </div>
         <p><strong>Zip Code: </strong><input type="text" id="zipcodeBox" class="textbox" placeholder="e.g. '98144'"></p>
-          <button type="button">north seattle</button>
-          <button type="button">west seattle</button>
-          <button type="button">east seattle</button>
-          <button type="button">south seattle</button>
+          <button type="button">highlight all north seattle</button>
+          <button type="button">highlight all south seattle</button>
+          <button type="button">highlight all east seattle</button>
+          <button type="button">highlight all west seattle</button>
         <p><strong>Sorting: </strong></p>
         </select>
 
@@ -285,7 +285,7 @@
         <p id="displayText"></p></br>
         <!--<button onclick="">Advanced Search (not yet working)</button> -->
         <div style="text-align:center">
-          <button onclick="searchFunction()" class="btn">Search!</button>
+          <button onclick="searchFunction()" class="btn" id="searchButton" disabled>Search!</button>
         </div>
       </div>
     </div>
@@ -546,14 +546,15 @@
       fetch(url)
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
-
           rows = parseCSV(csvData);
+          
+          document.getElementById("searchButton").disabled= false;
+
           for (let i = 1; i < rows.length; i++) {//skip heading row
             serviceData.push(new oppertunity(rows[i]));
-
-
           }
-        })
+          
+          })
         .catch(error => {
           console.error('Error:', error);
         });
