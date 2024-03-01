@@ -1,106 +1,108 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Service Learning Search</title>
+  <title>Service Learning Search</title>
 
-        <style>
+  <style>
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3498db;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn:hover {
-    background-color: #2980b9;
-  }
-
-
-  .btn2 {
-    padding: 2px 2px;
-    border:none;
-    border-color: #000000;
-    border-radius: 5px;
-    background-color: #b3b3b3;
-    color: #000000;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn2:hover {
-    background-color: #2980b9;
-  }
-  html {
-  scroll-behavior: smooth;
-}
-
-.textbox {
-            width: 100%;
-            padding: 5px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            box-sizing: border-box;
-            margin-bottom: 2px;
-        }
-
-        .dropdown {
-            width: 100%;
-            padding: 5px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            box-sizing: border-box;
-            margin-bottom: 2px;
-        }
-
-        
-.groupDiv {
-  border: 5px outset grey;
-  text-align: left;
-  margin-top:1%;
-  margin-right:.5%;
-  margin-left:.5%;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
+    .btn:hover {
+      background-color: #2980b9;
+    }
 
 
+    .btn2 {
+      padding: 2px 2px;
+      border: none;
+      border-color: #000000;
+      border-radius: 5px;
+      background-color: #b3b3b3;
+      color: #000000;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-.sideMenu{
-  width: 35%;
-  height: 100%;
-  float: right;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  padding: 5px;
-}
+    .btn2:hover {
+      background-color: #2980b9;
+    }
 
-.centerSearch{
-  margin-left: auto;
-  margin-right: auto;
-}
-/* Fancy code block style */
-.code-block {
-  background-color: #efefef;
-  border-radius: 5px;
-  padding: .5em;
-  margin: .5em 0;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 16px;
-  line-height: 1.5;
-  overflow-x: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body {
+    .textbox {
+      width: 100%;
+      padding: 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      box-sizing: border-box;
+      margin-bottom: 2px;
+    }
+
+    .dropdown {
+      width: 100%;
+      padding: 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      box-sizing: border-box;
+      margin-bottom: 2px;
+    }
+
+
+    .groupDiv {
+      border: 5px outset grey;
+      text-align: left;
+      margin-top: 1%;
+      margin-right: .5%;
+      margin-left: .5%;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+
+
+    .sideMenu {
+      width: 35%;
+      height: 100%;
+      float: right;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      padding: 5px;
+    }
+
+    .centerSearch {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Fancy code block style */
+    .code-block {
+      background-color: #efefef;
+      border-radius: 5px;
+      padding: .5em;
+      margin: .5em 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: auto;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
       font-family: 'Arial', sans-serif;
       background-color: #edeaea;
       margin: 0;
@@ -113,7 +115,7 @@ body {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       margin: 20px;
       overflow: hidden;
-      
+
     }
 
     .opportunity-details {
@@ -133,14 +135,14 @@ body {
     }
 
 
-    .scaledTextForMinView{
+    .scaledTextForMinView {
       margin-right: 400px;
       margin-bottom: 5px;
       height: 100px;
-      background-color:#4CAF50;
+      background-color: #4CAF50;
       text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     h2 {
@@ -177,35 +179,34 @@ body {
       border-radius: 5px;
       margin-right: 5px;
       margin-bottom: 5px;
-      display:inline;
+      display: inline;
       line-height: 1.8;
       white-space: nowrap;
     }
 
     #myBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-}
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: red;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 4px;
+    }
 
-#myBtn:hover {
-  background-color: #555;
-}
-
-
+    #myBtn:hover {
+      background-color: #555;
+    }
   </style>
   <link rel="icon" href="icon.png">
 </head>
+
 <body>
 
   <button onclick="topFunction()" id="myBtn" title="Go to top">Go to top</button>
@@ -213,263 +214,230 @@ body {
 
   <template id="tileTemplate">
     <div class="opportunity-card">
-    </p>
+      </p>
       <div class="opportunity-details">
-            <h2 id="title">Community Cleanup</h2>
-            <p><strong>Project/Program Description: </strong><span id="description"> OVF's mission is to facilitate and increase participation of American overseas voters and military voters and their dependents in federal elections by providing public access to innovative voter registration tools and services. Integral to achieving our mission is making it easier for all Americans residing around the world, and all military and dependents residing outside their home jurisdiction, to be able to stay active in their home state's electoral process.</span></p>
-            <p ><strong>Minimum Age: </strong> <span id="minAge">13</span></p>
-            <p><strong>Address: </strong><a href="#" id="address">123 Main St</a></p>
-            <p><strong>Website: </strong> <a href="#" id="website">example.com</a></p>
-            <p><strong>Zip Code: </strong> <span id="zipcode">12345</span></p>
-            <div class="categories" id="tags">
-            </div>
-        </div>
-        <!--
-        <button onclick="displayText()" style="float:right; display:inline-block;">Open</button>
-        <button onclick="displayText()" style="float:right;">list view</button>
-        -->
-    </div>
-  </template>
-  <template id="tileTemplateSmall">
-    <div class="opportunity-card">
-      
-      <div class="opportunity-details-small">
-        <h2 style="display:inline">Community Cleanup</h2>
-        <p style="display:inline" class="informationGroup"><strong>Age restrictions:</strong> 13</p>
-        <p class="informationGroup"><strong>Address: </strong> 124 Main St</p>
-        <p class="informationGroup"><strong>Zip Code:</strong> 12345</p>
-        <div class="categories" style="display:inline">
-        </div>
-    </div>
-    <button onclick="displayText()" style="float:right;">Open</button>
-    <button onclick="displayText()" style="float:right;">Card View</button>
-  </div>
-</template>
-  
-
-
-<!-- Text box input and button -->
-<h1 style="text-align:center">Service Learning Search</h1>
-<div class= "groupDiv">
-  <div class="opportunity-card">
-
-    <div class="opportunity-details">
-    <h1>Search Categories</h1>
-    
-<p><strong>Keyword Search: </strong><input type="text" id="phraseBox" class="textbox" placeholder="e.g. 'research, cancer, seattle'"></p>
-<p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="e.g. 'City'"></p>
-<p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="e.g. '13'"></p>
-<p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox" placeholder="e.g.'Civic, Differently Abled, Health'"></p>
-<p><strong>Zip Code: </strong><input type="text" id="zipcodeBox" class="textbox" placeholder="e.g. '98144'"></p>
-
-<p><strong>Sorting: </strong></p>
-</select>
-
-<select name="sort mode" id="search mode" class="dropdown">
-  <option value="az">alphabetical (a-z)</option>
-  <option value="za">alphabetical (z-a)</option>
-  <option value="az">description length (long-short)</option>
-  <option value="za">description length (short-long)</option>
-  <option value="r">randomized</option>
-</select>
-<!-- Display area for the entered text -->
-<p id="displayText"></p></br>
-<!--<button onclick="">Advanced Search (not yet working)</button> -->
-<div style="text-align:center">
-<button onclick="searchFunction()" class="btn">Search!</button>
-</div>
-</div>
-</div>
-</div>
-
-<template>
-<div class= "groupDiv">
-  <div class="opportunity-card">
-    <div class="opportunity-details">
-    <h2>Search Categories (Advanced Mode)</h2>
-<p><strong>query: </strong><input type="text" id="inputBox" class="textbox" placeholder="ex. research"></p>
-
-
-<p>Examples:</p>
-<p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
-<br>
-<p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
-<br>
-<p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
-<br>
-<p><code class="code-block">(tag:"hello" OR tag:"something") AND age>14 AND phrase:"exact phrase"</code></p>
-<!-- Display area for the entered text -->
-<p id="displayText"></p></br>
-<button onclick="">Basic search</button>
-<div style="text-align:center">
-<button onclick="displayText()">Search!</button>
-</div>
-</div>
-</div>
-</div>
-</template>
-<template id="no tiles">
-  <div class="opportunity-card">
-    <div class="opportunity-details">
-<p>There are no service learning oppertunities that fit your search criteria. Try widening your query or suggest an organization <a href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.</p>
-    </div></div>
-  </template>
-
-<template>
-<div class= "groupDiv sideMenu"><h2 style="text-align:center;">bookmarks</h2>
-
-  <div class="opportunity-card">
-    <input type="checkbox" name="subscribe" value="yes">
-  </p>
-      <div class="opportunity-details-small">
-          <h4 style="display:inline">Community Cleanup</h4>
-        <div class="categories" style="display:inline">
-            <span class="category">Community</span>
-            <span class="category">Environment</span>
+        <h2 id="title">title</h2>
+        <p><strong>Project/Program Description: </strong><span id="description">descriptoin</span></p>
+        <p><strong>Minimum Age: </strong> <span id="minAge">age</span></p>
+        <p><strong>Address: </strong> <span id="address">address</span></p>
+        <p><strong>Website: </strong> <a href="#" id="website">website</a></p>
+        <p><strong>Zip Code: </strong> <span id="zipcode">zipcode</span></p>
+        <div class="categories" id="tags">
         </div>
       </div>
-      <button onclick="displayText()" style="float:right; display: inline-block">Open</button>
-      
+      <button>report mistake or suggest change</button>
+      <form action="https://google.com">
+        <input type="submit" value="report mistake or suggest change"/>
+    </form>
+    </div>
+  </template>
+
+  <h1 style="text-align:center">Service Learning Search</h1>
+  <div class="groupDiv">
+    <div class="opportunity-card">
+
+      <div class="opportunity-details">
+        <h1>Search Categories</h1>
+
+        <p><strong>Keyword Search: </strong><input type="text" id="phraseBox" class="textbox"
+            placeholder="e.g. 'research, cancer, seattle'"></p>
+        <p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="e.g. 'City'">
+        </p>
+        <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="e.g. '13'"></p>
+        <p><strong>Categories: </strong><input type="text" id="tagsBox" class="textbox"
+            placeholder="e.g.'Civic, Differently Abled, Health'"></p>
+            <div id="checkboxes">
+              <label>some label</label>
+              <ul>
+                <li><input type="checkbox">Abilities</li>
+                <li><input type="checkbox">Family</li>
+                <li><input type="checkbox">Youth</li>
+                <li><input type="checkbox">Civic</li>
+                <li><input type="checkbox">Health</li>
+                <li><input type="checkbox">Differently Abled</li>
+                <li><input type="checkbox">International</li>
+                <li><input type="checkbox">Office-Clerical</li>
+
+                <li><input type="checkbox">Homeless</li>
+                <li><input type="checkbox">Low-income</li>
+                <li><input type="checkbox">Environment</li>
+                <li><input type="checkbox">Transportation</li>
+
+                <li><input type="checkbox">Political-Advocacy</li>
+                <li><input type="checkbox">Transportation</li>
+              </ul>
+            </div>
+        <p><strong>Zip Code: </strong><input type="text" id="zipcodeBox" class="textbox" placeholder="e.g. '98144'"></p>
+          <button type="button">north seattle</button>
+          <button type="button">west seattle</button>
+          <button type="button">east seattle</button>
+          <button type="button">south seattle</button>
+        <p><strong>Sorting: </strong></p>
+        </select>
+
+        <select name="sort mode" id="search mode" class="dropdown">
+          <option value="az">alphabetical (a-z)</option>
+          <option value="za">alphabetical (z-a)</option>
+          <option value="az">description length (long-short)</option>
+          <option value="za">description length (short-long)</option>
+          <option value="r">randomized</option>
+        </select>
+        <!-- Display area for the entered text -->
+        <p id="displayText"></p></br>
+        <!--<button onclick="">Advanced Search (not yet working)</button> -->
+        <div style="text-align:center">
+          <button onclick="searchFunction()" class="btn">Search!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="width:200px;
+  height:200px;
+  position:absolute;
+  z-index:0;">
+  <img src="seattle.jpg" style="  height: 100%;width: 100%; position:absolute;
+  z-index:1;
+  bottom:0;
+  right:0;" alt="seattle map"/>
+
+    <embed type="image/svg+xml" src="seattle.svg" style="
+    bottom:0;
+    right:0;" alt="seattle map"/>
+  </div>
+  <br>
+  <div class="groupDiv" id="groupDiv">
 
   </div>
 
-  
-</div>  
-</template>
-<br>
-<div class="groupDiv" id="groupDiv">
+  <script type="text/javascript">
+    //TODO: fix icon transperency
+    //TODO: clean code
+    //TODO: add category select
+    //TODO: add fullscreen mode
+    //TODO: add mobile scaling
+    //Age<9
 
-</div>
+    var serviceData = new Array();
 
-<script type="text/javascript">
-  //TODO: fix icon transperency
-  //TODO: clean code
-  //TODO: add category select
-  //TODO: add fullscreen mode
-  //TODO: add mobile scaling
-  //Age<9
-
-var serviceData= new Array();
-
-class oppertunity{
-  constructor(data){
-    this.data=data;
-    this.title=data[0];
-    this.minAge=data[1];
-    this.description=data[2];
-    this.website=data[4]
-    this.address=data[3];
-    this.zipcode=data[5];
-    if(data[8]=="\r")
-    this.tags=new Array(3)
-    this.tags=[data[6].replace(/(\r\n|\n|\r)/gm, ""), data[7].replace(/(\r\n|\n|\r)/gm, ""), data[8].replace(/(\r\n|\n|\r)/gm, "")];
-  }
+    class oppertunity {
+      constructor(data) {
+        this.data = data;
+        this.title = data[0];
+        this.minAge = data[1];
+        this.description = data[2];
+        this.website = data[4]
+        this.address = data[3];
+        this.zipcode = data[5];
+        if (data[8] == "\r")
+          this.tags = new Array(3)
+        this.tags = [data[6].replace(/(\r\n|\n|\r)/gm, ""), data[7].replace(/(\r\n|\n|\r)/gm, ""), data[8].replace(/(\r\n|\n|\r)/gm, "")];
+      }
 
 
-}
+    }
 
-var progress = 0;
-var hasRun = false;
+    var progress = 0;
+    var hasRun = false;
 
 
 
-function shuffleArray(array) {
-   for (var i = array.length - 1; i > 0; i--) { 
-  
-       // Generate random number 
-       var j = Math.floor(Math.random() * (i + 1));
-                  
-       var temp = array[i];
-       array[i] = array[j];
-       array[j] = temp;
-   }
-      
-   return array;
-}
+    function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+
+        // Generate random number 
+        var j = Math.floor(Math.random() * (i + 1));
+
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+
+      return array;
+    }
 
 
     function searchFunction() {
-      var numberOfTiles=0;
+      var numberOfTiles = 0;
       deleteTiles()
       console.log("search initiated");
-      if(document.getElementById("search mode").selectedIndex==0){
-        serviceData.sort(function(a, b) {
+      if (document.getElementById("search mode").selectedIndex == 0) {
+        serviceData.sort(function (a, b) {
           console.log("0")
-    var textA = a.title.toUpperCase();
-    var textB = b.title.toUpperCase();
-    return (textA > textB) ? 1 : (textA < textB) ? -1 : 0;
-});
+          var textA = a.title.toUpperCase();
+          var textB = b.title.toUpperCase();
+          return (textA > textB) ? 1 : (textA < textB) ? -1 : 0;
+        });
       }
-      else if(document.getElementById("search mode").selectedIndex==1){
-        serviceData.sort(function(a, b) {
-    var textA = a.title.toUpperCase();
-    var textB = b.title.toUpperCase();
-    return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
-});
-      }else if(document.getElementById("search mode").selectedIndex==2){
-        serviceData.sort(function(a, b) {
+      else if (document.getElementById("search mode").selectedIndex == 1) {
+        serviceData.sort(function (a, b) {
+          var textA = a.title.toUpperCase();
+          var textB = b.title.toUpperCase();
+          return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+        });
+      } else if (document.getElementById("search mode").selectedIndex == 2) {
+        serviceData.sort(function (a, b) {
           var aT = a.description.length;
-    var bT = b.description.length;
-    return -(aT-bT);
-});
-  }
-else if(document.getElementById("search mode").selectedIndex==3){
-        serviceData.sort(function(a, b) {
-    var aT = a.description.length;
-    var bT = b.description.length;
-    return (aT-bT);
-});
-  }
-  else{
-console.log("else")
-serviceData=shuffleArray(serviceData)
+          var bT = b.description.length;
+          return -(aT - bT);
+        });
+      }
+      else if (document.getElementById("search mode").selectedIndex == 3) {
+        serviceData.sort(function (a, b) {
+          var aT = a.description.length;
+          var bT = b.description.length;
+          return (aT - bT);
+        });
+      }
+      else {
+        console.log("else")
+        serviceData = shuffleArray(serviceData)
+      }
 
-  }
-
-      var searchForTags= document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
-      var searchForPhrases= document.getElementById("phraseBox").value.toLowerCase().split(",");
-      for(var i = 0; i<searchForPhrases; i++){
-        searchForPhrases[i]= searchForPhrases[i].trim();
+      var searchForTags = document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
+      var searchForPhrases = document.getElementById("phraseBox").value.toLowerCase().split(",");
+      for (var i = 0; i < searchForPhrases; i++) {
+        searchForPhrases[i] = searchForPhrases[i].trim();
       }
       console.log(searchForTags)
 
       for (let i = 0; i < serviceData.length; i++) {
 
-        var existsInTags=true;
+        var existsInTags = true;
 
-        for(let j=0; j<searchForTags.length;j++){
-          let q=[];
-          for(let k=0; k<serviceData[i].tags.length;k++){
-            if(serviceData[i].tags[k]!=null)q[k]=serviceData[i].tags[k].replace(/\s/g, '').toLowerCase()
+        for (let j = 0; j < searchForTags.length; j++) {
+          let q = [];
+          for (let k = 0; k < serviceData[i].tags.length; k++) {
+            if (serviceData[i].tags[k] != null) q[k] = serviceData[i].tags[k].replace(/\s/g, '').toLowerCase()
           }
-          if(!q.includes(searchForTags[j]))existsInTags=false;
-        
+          if (!q.includes(searchForTags[j])) existsInTags = false;
+
         }
-        if(searchForTags=="")existsInTags=true;
+        if (searchForTags == "") existsInTags = true;
 
-        var existsInPhrases=true;
-        for(let j=0; j<searchForPhrases.length;j++){
+        var existsInPhrases = true;
+        for (let j = 0; j < searchForPhrases.length; j++) {
 
-          if(!serviceData[i].description.toLowerCase().includes(searchForPhrases[j]))existsInPhrases=false;
-        
+          if (!serviceData[i].description.toLowerCase().includes(searchForPhrases[j])) existsInPhrases = false;
+
         }
-        var existsAge=(document.getElementById("minAgeBox").value==null || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || document.getElementById("minAgeBox").value=="" || isNaN(document.getElementById("minAgeBox").value) || (parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)));
+        var existsAge = (document.getElementById("minAgeBox").value == null || document.getElementById("minAgeBox").value == "" || isNaN(document.getElementById("minAgeBox").value) || document.getElementById("minAgeBox").value == "" || isNaN(document.getElementById("minAgeBox").value) || (parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)));
 
-        if(serviceData[i]!=null && existsInTags &&
-        existsInPhrases &&
-        serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
-        existsAge
-        ){
-          renderOneTile(serviceData[i].title,serviceData[i].description,serviceData[i].minAge,serviceData[i].address,serviceData[i].website,serviceData[i].zipcode,serviceData[i].tags, false);
+        if (serviceData[i] != null && existsInTags &&
+          existsInPhrases &&
+          serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
+          existsAge
+        ) {
+          renderOneTile(serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].zipcode, serviceData[i].tags, false);
           numberOfTiles++;
         }
       }
-      if(numberOfTiles==0){
+      if (numberOfTiles == 0) {
 
         let template = document.getElementById("no tiles");
-  let clone = template.content.cloneNode(true);
-  var myNode = document.getElementById("groupDiv");
-  myNode.appendChild(clone);
+        let clone = template.content.cloneNode(true);
+        var myNode = document.getElementById("groupDiv");
+        myNode.appendChild(clone);
 
 
       }
@@ -480,141 +448,147 @@ serviceData=shuffleArray(serviceData)
       document.documentElement.scrollTop = 620;
     }
     //https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv
-function createPannel(){
-const para = document.createElement("p");
-const node = document.createTextNode("This is new.");
-para.appendChild(node);
+    function createPannel() {
+      const para = document.createElement("p");
+      const node = document.createTextNode("This is new.");
+      para.appendChild(node);
 
-const element = document.getElementById("div1");
-element.appendChild(para);
-}
-function deleteTiles(){
-  var myNode = document.getElementById("groupDiv");
-  while (myNode.firstChild) {
-    myNode.removeChild(myNode.lastChild);
-  }
+      const element = document.getElementById("div1");
+      element.appendChild(para);
+    }
+    function deleteTiles() {
+      var myNode = document.getElementById("groupDiv");
+      while (myNode.firstChild) {
+        myNode.removeChild(myNode.lastChild);
+      }
 
-}
+    }
 
-window.onscroll = function() {scrollFunction()};
+    window.onscroll = function () { scrollFunction() };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-    document.getElementById("myBtn").style.display = "block";
-  } else {
-    document.getElementById("myBtn").style.display = "none";
-  }
-}
+    function scrollFunction() {
+      if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+        document.getElementById("myBtn").style.display = "block";
+      } else {
+        document.getElementById("myBtn").style.display = "none";
+      }
+    }
 
-function renderOneTile(title,description,minAge,address,website,zipcode,tags,minView){
+    function renderOneTile(title, description, minAge, address, website, zipcode, tags, minView) {
 
-  let template = document.getElementById("tileTemplate");
-  let clone = template.content.cloneNode(true);
-  clone.getElementById("minAge").innerHTML=minAge;
-  clone.getElementById("description").innerHTML=description;
-  clone.getElementById("title").innerHTML=title;
-  clone.getElementById("website").innerHTML=website;
-  clone.getElementById("website").setAttribute('href', website);
-  clone.getElementById("address").innerHTML=address;
-  clone.getElementById("address").setAttribute('href',"https://www.google.com/maps/search/?api=1&query="+`${encodeURIComponent(address)}`);
-  clone.getElementById("zipcode").innerHTML=zipcode;
-  for (let i = 0; i < tags.length; i++) {//test
-    if(tags[i]=="" || tags[i]=="\r")continue;
-    let tagA = document.createElement("span");
-    tagA.classList.add("category");
-    tagA.innerHTML=tags[i];
-    clone.getElementById("tags").appendChild(tagA);
-  }
+      let template = document.getElementById("tileTemplate");
+      let clone = template.content.cloneNode(true);
+      clone.getElementById("minAge").innerHTML = minAge;
+      clone.getElementById("description").innerHTML = description;
+      clone.getElementById("title").innerHTML = title;
+      clone.getElementById("website").innerHTML = website;
+      clone.getElementById("website").setAttribute('href', website);
+      if(/\d/.test(address)){
+        clone.getElementById("address").innerHTML = "<a href="+address+">"+address+"<\a>"
+      } else {
+        clone.getElementById("address").innerHTML = address;
+      }
 
-  var myNode = document.getElementById("groupDiv");
-  myNode.appendChild(clone);
-}
+      clone.getElementById("address").setAttribute('href', "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`);
+      clone.getElementById("zipcode").innerHTML = zipcode;
+      for (let i = 0; i < tags.length; i++) {//test
+        if (tags[i] == "" || tags[i] == "\r") continue;
+        let tagA = document.createElement("span");
+        tagA.classList.add("category");
+        tagA.innerHTML = tags[i];
+        clone.getElementById("tags").appendChild(tagA);
+      }
 
-
-function addItemToTags() {
-
-}
-
-function csvFind() {
-var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRg0Eqtj14Z1tPLWUnLbLax97Mhx_WgtKx7h7-ntAQY3Z7FK-jJ8SKrF6J76p5vY4Mh0hchCVBqO2sf/pub?output=csv';
-    var a = document.createElement("a");
-    a.href = url;
-    fileName = url.split("/").pop();
-    alert(fileName);
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
-}
+      var myNode = document.getElementById("groupDiv");
+      myNode.appendChild(clone);
+    }
 
 
-function parseCSV(str) {
-    var arr = [];
-    var quote = false;
-    for (var row = col = c = 0; c < str.length; c++) {
-        var cc = str[c], nc = str[c+1];
+    function addItemToTags() {
+
+    }
+
+    function csvFind() {
+      var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRg0Eqtj14Z1tPLWUnLbLax97Mhx_WgtKx7h7-ntAQY3Z7FK-jJ8SKrF6J76p5vY4Mh0hchCVBqO2sf/pub?output=csv';
+      var a = document.createElement("a");
+      a.href = url;
+      fileName = url.split("/").pop();
+      alert(fileName);
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+    }
+
+
+    function parseCSV(str) {
+      var arr = [];
+      var quote = false;
+      for (var row = col = c = 0; c < str.length; c++) {
+        var cc = str[c], nc = str[c + 1];
         arr[row] = arr[row] || [];
         arr[row][col] = arr[row][col] || '';
-        
+
         if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
         if (cc == '"') { quote = !quote; continue; }
         if (cc == ',' && !quote) { ++col; continue; }
         if (cc == '\n' && !quote) { ++row; col = 0; continue; }
-        
-        arr[row][col] += cc;
-    }
-    return arr;
-}
-function downloadAndDisplayCSV(url) {
-  //let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
-  //let b = /"/g
-  //let c = /("[^"\n]*)\r?\n(?!(([^"]*"){2})*[^"]*$)/; //finds new lines inside ""
 
-    fetch(url)
+        arr[row][col] += cc;
+      }
+      return arr;
+    }
+    function downloadAndDisplayCSV(url) {
+      //let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
+      //let b = /"/g
+      //let c = /("[^"\n]*)\r?\n(?!(([^"]*"){2})*[^"]*$)/; //finds new lines inside ""
+
+      fetch(url)
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
 
-            rows = parseCSV(csvData);            
-            for (let i = 1; i < rows.length; i++) {//skip heading row
-              serviceData.push(new oppertunity(rows[i]));
-              
-            
-            }
+          rows = parseCSV(csvData);
+          for (let i = 1; i < rows.length; i++) {//skip heading row
+            serviceData.push(new oppertunity(rows[i]));
+
+
+          }
         })
         .catch(error => {
-            console.error('Error:', error);
+          console.error('Error:', error);
         });
-}
+    }
 
-// Replace 'url_to_csv_file' with the actual URL of the CSV file you want to download and display
-const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
+    // Replace 'url_to_csv_file' with the actual URL of the CSV file you want to download and display
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
 
-downloadAndDisplayCSV(csvUrl);
+    downloadAndDisplayCSV(csvUrl);
 
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
 
-function handleFiles(files) {
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
+    function handleFiles(files) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
 
-    const textNode = document.createElement("p"); // Create a paragraph element for displaying text
-    textNode.classList.add("text");
-    const element = document.getElementById("div1");
-    element.appendChild(textNode); // Assuming that "div1" is the div output where the content will be displayed.
+        const textNode = document.createElement("p"); // Create a paragraph element for displaying text
+        textNode.classList.add("text");
+        const element = document.getElementById("div1");
+        element.appendChild(textNode); // Assuming that "div1" is the div output where the content will be displayed.
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      textNode.innerText = e.target.result; // Set the text content with the file content
-    };
-    reader.readAsText(file);
-  }
-}
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          textNode.innerText = e.target.result; // Set the text content with the file content
+        };
+        reader.readAsText(file);
+      }
+    }
 
-</script>
+  </script>
 
 </body>
+
 </html>
