@@ -16,6 +16,30 @@
       transition: background-color 0.3s ease;
     }
 
+    .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
     .btn:hover {
       background-color: #2980b9;
     }
@@ -226,6 +250,7 @@
         <p><strong>Address: </strong> <span id="address">address</span></p>
         <p><strong>Website: </strong> <a href="#" id="website">website</a></p>
         <p><strong>Zip Code: </strong> <span id="zipcode">zipcode</span></p>
+        
         <div class="categories" id="tags">
         </div>
       </div>
@@ -267,10 +292,21 @@
               </ul>
             </div>
         <p><strong>Zip Code: </strong><input type="text" id="zipcodeBox" class="textbox" placeholder="e.g. '98144'"></p>
-          <button type="button">highlight all north seattle</button>
-          <button type="button">highlight all south seattle</button>
-          <button type="button">highlight all east seattle</button>
-          <button type="button">highlight all west seattle</button>
+        
+  <div style="  position: relative;
+  top: 0;
+  left: 0;">    
+
+    <img src="seattle.jpg" class="seattleMapImage" style="  position: relative; border-radius: 5%;
+    top: 0; width:50%; height:auto;
+    left: 0;" onclick="clickSeattle(this.id)" alt="seattle map"/>
+      
+    <object id="svgobject" style="  position: absolute;
+    top: 0px;
+    left: 0px; width:50%; height:auto;"
+class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
+
+</div>
         <p><strong>Sorting: </strong></p>
         </select>
 
@@ -290,26 +326,13 @@
       </div>
     </div>
   </div>
-
-  <div style="width:200px;
-  height:200px;
-  position:absolute;
-  z-index:0;">
-  <img src="seattle.jpg" style="  height: 100%;width: 100%; position:absolute;
-  z-index:1;
-  bottom:0;
-  right:0;" alt="seattle map"/>
-
-    <embed id="seattleSVG" type="image/svg+xml" src="seattle.svg" style="
-    bottom:0;
-    right:0;" alt="seattle map"/>
-  </div>
   <br>
   <div class="groupDiv" id="groupDiv">
 
   </div>
 
   <script type="text/javascript">
+
     //TODO: fix icon transperency
     //TODO: clean code
     //TODO: add category select
@@ -338,8 +361,9 @@
 
     var progress = 0;
     var hasRun = false;
-
-
+    function clickSeattle(a){
+      console.log("clikced" + a)
+    }
 
     function shuffleArray(array) {
       for (var i = array.length - 1; i > 0; i--) {
@@ -586,6 +610,57 @@
         reader.readAsText(file);
       }
     }
+    function setupMap(){
+
+      var defaultMapColor="#cccccc80";
+    var highlightMapColor="#55555555";
+    var selectedMapColor="#00ff0055";
+    var selectedAndHighlightedMapColor="#00990055";
+  var mySvg = document.getElementById("svgobject").contentDocument.querySelectorAll('svg');
+
+var myNodes = mySvg[0].querySelectorAll('path[id]');
+
+for( var i = 0; i < myNodes.length; i++ ) {
+        myNodes[i].addEventListener('click', function(){updateMapColor(this,true,true)});
+        myNodes[i].addEventListener("mouseover", function(){updateMapColor(this,true,false)}, false);
+        myNodes[i].addEventListener("mouseout", function(){updateMapColor(this,false,false)}, false);
+        myNodes[i].style.fill = defaultMapColor;
+        myNodes[i].setAttribute("class","tooltip");
+        myNodes[i].innerHTML="<text class='tooltiptext' x='5' y='15' fill='red'>I love SVG!</text>"
+}
+
+
+function updateMapColor(self, mouseOnElement, clicked){
+
+
+var currentState = self.getAttribute("data-selected") === "true";
+if (clicked) {
+  currentState = !currentState;
+  self.setAttribute("data-selected", currentState.toString());
+}
+console.log(!!self.getAttribute("data-selected"));
+  /*
+  var currentState = (!!self.getAttribute("data_selected"))!=clicked;
+  if(clicked)self.setAttribute("data_selected", currentState);
+  console.log(!!self.getAttribute("data_selected"))*/
+  //currentState= !!self.getAttribute("data_selected");
+    if(mouseOnElement){
+      if(currentState){
+        self.style.fill=selectedAndHighlightedMapColor;
+    }else{
+      self.style.fill=highlightMapColor;
+    }
+      }
+  else{
+    if(currentState){
+      self.style.fill=selectedMapColor;
+    }else{
+      self.style.fill=defaultMapColor;
+    }
+  }
+
+}
+}
 
   </script>
 
