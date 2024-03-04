@@ -297,7 +297,8 @@
   top: 0;
   left: 0;">    
 
-    <img src="seattle.jpg" class="seattleMapImage" style="  position: relative; border-radius: 5%;
+    <img src="seattle.jpg" class="seattleMapImage" style="  position: relative; border-radius: 10%;
+    border-width: thick;
     top: 0; width:50%; height:auto;
     left: 0;" onclick="clickSeattle(this.id)" alt="seattle map"/>
       
@@ -341,6 +342,8 @@ class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
     //Age<9
 
     var serviceData = new Array();
+    var zipcodesHighlighted=[];
+    zipcodesHighlighted.push("hello");
 
     class oppertunity {
       constructor(data) {
@@ -351,19 +354,22 @@ class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
         this.website = data[4]
         this.address = data[3];
         this.zipcode = data[5];
-        if (data[8] == "\r")
-          this.tags = new Array(3)
-        this.tags = [data[6].replace(/(\r\n|\n|\r)/gm, ""), data[7].replace(/(\r\n|\n|\r)/gm, ""), data[8].replace(/(\r\n|\n|\r)/gm, "")];
-      }
+
+        this.tags = new Array(3)
+        
+        //console.log(data[6] + " : " +data[6].replace(/(\r\n|\n|\r)/gm, ""));
+        if(data[6]!=null)this.tags.push(data[6].replace(/(\r\n|\n|\r)/gm, ""));
+        if(data[7]!=null)this.tags.push(data[7].replace(/(\r\n|\n|\r)/gm, ""));
+        if(data[8]!=null)this.tags.push(data[8].replace(/(\r\n|\n|\r)/gm, ""));
+        
+        }
+      
 
 
     }
 
     var progress = 0;
     var hasRun = false;
-    function clickSeattle(a){
-      console.log("clikced" + a)
-    }
 
     function shuffleArray(array) {
       for (var i = array.length - 1; i > 0; i--) {
@@ -383,10 +389,8 @@ class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
     function searchFunction() {
       var numberOfTiles = 0;
       deleteTiles()
-      console.log("search initiated");
       if (document.getElementById("search mode").selectedIndex == 0) {
         serviceData.sort(function (a, b) {
-          console.log("0")
           var textA = a.title.toUpperCase();
           var textB = b.title.toUpperCase();
           return (textA > textB) ? 1 : (textA < textB) ? -1 : 0;
@@ -413,7 +417,6 @@ class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
         });
       }
       else {
-        console.log("else")
         serviceData = shuffleArray(serviceData)
       }
 
@@ -422,7 +425,6 @@ class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
       for (var i = 0; i < searchForPhrases; i++) {
         searchForPhrases[i] = searchForPhrases[i].trim();
       }
-      console.log(searchForTags)
 
       for (let i = 0; i < serviceData.length; i++) {
 
@@ -612,10 +614,14 @@ class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
     }
     function setupMap(){
 
-      var defaultMapColor="#cccccc80";
+      var defaultMapColor="#cccccc55";
+      var defaultLineWidth=1;
     var highlightMapColor="#55555555";
+    var highlightLineWidth=2;
     var selectedMapColor="#00ff0055";
+    var selectedLineWidth=1;
     var selectedAndHighlightedMapColor="#00990055";
+    var selectedAndHighlightedLineWidth = 2;
   var mySvg = document.getElementById("svgobject").contentDocument.querySelectorAll('svg');
 
 var myNodes = mySvg[0].querySelectorAll('path[id]');
@@ -632,30 +638,31 @@ for( var i = 0; i < myNodes.length; i++ ) {
 
 function updateMapColor(self, mouseOnElement, clicked){
 
-
 var currentState = self.getAttribute("data-selected") === "true";
 if (clicked) {
   currentState = !currentState;
   self.setAttribute("data-selected", currentState.toString());
 }
-console.log(!!self.getAttribute("data-selected"));
-  /*
-  var currentState = (!!self.getAttribute("data_selected"))!=clicked;
-  if(clicked)self.setAttribute("data_selected", currentState);
-  console.log(!!self.getAttribute("data_selected"))*/
-  //currentState= !!self.getAttribute("data_selected");
+if(clicked&& currentState){
+document.getElementById("zipcodeBox").value+=", "+self.id;
+}
+
     if(mouseOnElement){
       if(currentState){
         self.style.fill=selectedAndHighlightedMapColor;
+      self.setAttribute("stroke-width",selectedAndHighlightedLineWidth);
     }else{
+      self.setAttribute("stroke-width",highlightLineWidth);
       self.style.fill=highlightMapColor;
     }
       }
   else{
     if(currentState){
-      self.style.fill=selectedMapColor;
+      self.style.fill=selectedMapColor;    
+      self.setAttribute("stroke-width", selectedLineWidth);
     }else{
       self.style.fill=defaultMapColor;
+      self.setAttribute("stroke-width", defaultLineWidth);
     }
   }
 
