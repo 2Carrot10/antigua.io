@@ -1,12 +1,9 @@
 var serviceData = new Array();
 var prefillServiceLearningOpportunitiesFeedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLScdaHfP6BeGAFyy3abi7YNacV48-gfRoezyBUzPY-OPuzRH_g/viewform?usp=pp_url&entry.576703126="
-var zipcodesHighlighted = [];
 var zipDictionary = new Map();
-zipcodesHighlighted.push("hello");
 const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
 
 downloadAndDisplayCSV(csvUrl);
-
 
 class oppertunity {
   constructor(data) {
@@ -28,15 +25,11 @@ class oppertunity {
 
 function shuffleArray(array) {
   for (var i = array.length - 1; i > 0; i--) {
-
-    // Generate random number 
     var j = Math.floor(Math.random() * (i + 1));
-
     var temp = array[i];
     array[i] = array[j];
     array[j] = temp;
   }
-
   return array;
 }
 
@@ -53,10 +46,8 @@ function searchFunction() {
   
   */
 
-
-
   var numberOfTiles = 0;
-  deleteAllTiles()
+  deleteAllTiles();
   if (document.getElementById("search mode").selectedIndex == 0) {
     serviceData.sort(function (a, b) {
       var textA = a.title.toUpperCase();
@@ -112,9 +103,7 @@ function searchFunction() {
 
     var existsInPhrases = true;
     for (let j = 0; j < searchForPhrases.length; j++) {
-
       if (!serviceData[i].description.toLowerCase().includes(searchForPhrases[j])) existsInPhrases = false;
-
     }
     var existsAge = (document.getElementById("minAgeBox").value == null || document.getElementById("minAgeBox").value == "" || isNaN(document.getElementById("minAgeBox").value) || document.getElementById("minAgeBox").value == "" || isNaN(document.getElementById("minAgeBox").value) || (parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)));
 
@@ -128,18 +117,11 @@ function searchFunction() {
     }
   }
   if (numberOfTiles == 0) {
-
     let template = document.getElementById("no tiles");
     let clone = template.content.cloneNode(true);
     var myNode = document.getElementById("groupDiv");
     myNode.appendChild(clone);
-
-
   }
-  /*
-  for (let i = 0; i < searchData.length; i++) {
-    if(searchData[i]!=null)if((searchData[i].title!=null) && (searchData[i].title != ""))
-  }*/
   document.documentElement.scrollTop = 620;
 }
 
@@ -148,7 +130,6 @@ function deleteAllTiles() {
   while (myNode.firstChild) {
     myNode.removeChild(myNode.lastChild);
   }
-
 }
 
 window.onscroll = function () { scrollFunction() };
@@ -172,8 +153,7 @@ function renderOneTile(title, description, minAge, address, website, zipcode, ta
   clone.getElementById("website").setAttribute('href', website);
   if (/\d/.test(address)) {
     clone.getElementById("address").innerHTML = "<a href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
-    //clone.getElementById("address").setAttribute('href', "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`);
-  } else {
+   } else {
     clone.getElementById("address").innerHTML = address;
   }
 
@@ -185,7 +165,6 @@ function renderOneTile(title, description, minAge, address, website, zipcode, ta
     tagA.innerHTML = tags[i];
     clone.getElementById("tags").appendChild(tagA);
   }
-
   var myNode = document.getElementById("groupDiv");
   myNode.appendChild(clone);
 }
@@ -241,7 +220,6 @@ window.setupMap = function setupMap() {
       zipDictionary.set(myNodes[i].id, false);
     }
   }
-  //map.set('key', {'value1', 'value2'});
   var defaultMapColor = "#cccccc55";
   var defaultLineWidth = 1;
   var highlightMapColor = "#55555555";
