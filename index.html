@@ -8,9 +8,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
-  
 </head>
-
 <body>
 
   <button onclick="topFunction()" id="myBtn" title="Go to top">Go to top</button>
@@ -70,10 +68,6 @@
       <div class="categories flex mt-2" id="tags">
       </div>
     </div>
-    <!--
-        <button onclick="displayText()" style="float:right; display:inline-block;">Open</button>
-        <button onclick="displayText()" style="float:right;">list view</button>
-        -->
     </div>
   </template>
 
@@ -105,16 +99,17 @@
                   <button onclick="searchFunction()" class="btn
                   bg-white border rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:ring-sky-500
                   " id="searchButton" disabled>Search!</button>
+      
 
                 </div>
                 <div class="centered-under-title">
-                  <a href="hello">about</a> 
+                  <a href="hello" style="color:blue">about</a> 
                   <a href="hello">credits</a>
                 </div>
 
+                
     <div class="opportunity-card">
       <div class="opportunity-details">
-        <h1>Search Categories</h1>
         <p><strong>Keyword Search: </strong><input type="text" id="phraseBox" class="textbox"
             placeholder="e.g. 'research, cancer, seattle'"></p>
         <p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="e.g. 'City'">
@@ -156,21 +151,18 @@
 class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
 
 </div>
-<button type="button" onclick="setupMapDictionary()">clear all</button>
 <small>map and zipcode boundaries from: <a href="https://simplemaps.com/city/seattle/zips">https://simplemaps.com/city/seattle/zips</a></small>
         <p><strong>Sorting: </strong></p>
         </select>
 
-        <select name="sort mode" id="search mode" class="dropdown">
-          <option value="az">alphabetical (a-z)</option>
-          <option value="za">alphabetical (z-a)</option>
-          <option value="az">description length (long-short)</option>
-          <option value="za">description length (short-long)</option>
-          <option value="r">randomized</option>
-        </select>
-        <!-- Display area for the entered text -->
-        <p id="displayText"></p></br>
-        <!--<button onclick="">Advanced Search (not yet working)</button> -->
+        <select name="sort mode" id="search mode"
+        class="drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
+        <option value="az">alphabetical (a-z)</option>
+        <option value="za">alphabetical (z-a)</option>
+        <option value="az">description length (long-short)</option>
+        <option value="za">description length (short-long)</option>
+        <option value="r">randomized</option>
+      </select>
     </div>
   </div>
   <br>
