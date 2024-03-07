@@ -1,7 +1,10 @@
 var serviceData = new Array();
 var prefillServiceLearningOpportunitiesFeedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLScdaHfP6BeGAFyy3abi7YNacV48-gfRoezyBUzPY-OPuzRH_g/viewform?usp=pp_url&entry.576703126="
+var ServiceLearningFeedback = "";
 var zipDictionary = new Map();
 const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
+
+//idea http://127.0.0.1:5500/searchResults.html?keywords=&title=&age&categories&zipcodes=&sort+mode=
 
 downloadAndDisplayCSV(csvUrl);
 
