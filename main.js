@@ -160,7 +160,7 @@ function renderOneTile(title, description, minAge, address, website, zipcode, ta
     clone.getElementById("address").innerHTML = address;
   }
 
-  clone.getElementById("zipcode").innerHTML = zipcode;
+  //clone.getElementById("zipcode").innerHTML = zipcode;
   for (let i = 0; i < tags.length; i++) {
     if (tags[i] == "" || tags[i] == "\r") continue;
     let tagA = document.createElement("span");
