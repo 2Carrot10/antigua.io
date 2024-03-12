@@ -11,8 +11,38 @@
 </head>
 <body>
 
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Go to top</button>
+  <template id="search-data-error">
+    <div class="alert-wrapper">
+        <div role="alert" class="alert-card alert alert-error">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>Neccecary data not found. Reload the page to try again. If the error persists, report a problem.</span>
+        </div>
+      </div>
+    </template>
 
+  <template id="data-not-ready-error">
+    <div class="alert-wrapper">
+        <div role="alert" class="alert-card alert alert-error">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+            <line x1="12" y1="12" x2="12" y2="8" stroke="currentColor" stroke-width="2" />
+            <line x1="12" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" />
+            <circle cx="12" cy="12" r="1" fill="currentColor" />
+          </svg>
+          <span>The neccecary data is still loading. Try again in a few seconds.</span>
+        </div>
+      </div>
+    </template>
+
+    <template id="data-not-retrieved-error">
+      <div class="alert-wrapper">
+          <div role="alert" class="alert-card alert alert-error">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Network connection attempt to google sheets data timed out. Reload the page to try again. If the error persists, report a problem.</span>
+          </div>
+        </div>
+      </template>
+  
   <template id="tileTemplate">
     <div class="opportunity-card rounded-2xl p-4 shadow-sm outline outline-gray-200/50 h-fit w-full">
       </p>
@@ -52,20 +82,18 @@
         <p>
 
         <div class="flex relative text-sm opacity-75">
-          <a href="#" target="_blank" class="absolute w-full h-full top-0 left-0 z-1 background-transparent"
-            id="websiteURL"></a>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-4 h-4 my-auto">
             <path stroke-linecap="round" stroke-linejoin="round"
               d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
           </svg>
 
-          <div id="website" class="ml-2">example.com</div>
+          <a id="website" class="ml-2 hyperlink">example.com</a>
         </div>
         </p>
-
+        <div class="categories flex mt-2" id="tags">
       </div>
-      <div class="categories flex mt-2" id="tags">
+      
       </div>
     </div>
     </div>
@@ -80,7 +108,7 @@
         <div>
           <ul class="ml-4 text-md opacity-75 list-outside list-disc">
             <li>Widen your query</li>
-            <li>Suggest an organization <a class="font-bold" target="_blank"
+            <li>Suggest an organization <a class="hyperlink" target="_blank"
                 href="https://docs.google.com/forms/d/e/1FAIpQLSezn1RW8V5RXPtWaBf1BkZl0H_cCB9aKXcOueOsfvToBrJ3mg/viewform">here</a>.
             </li>
           </ul>
@@ -88,23 +116,22 @@
       </div>
     </div>
   </template>
+  
 
-<div style="top: 54%;" class="centered-title">
-  <h1 style="font-size: 3em;  text-shadow: 2px 2px #797979;">Service Learning Search</h1>
+<div style="top: 54%;" class="centered-title"><!--Herculanum-->
+  <h1 style="font-size: 3em;  text-shadow: 2px 2px #ffffff; font-family: 'Gill Sans', sans-serif"><b>Service Learning Search</b></h1>
   <img src="icon.png" style="width:100px; height:auto">
 </div><div class="centered-under-title">
-  <input id="search-box" autocomplete="off"
+  <input id="search-box" autocomplete="off" style="font-size: 20px;"
                   class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
                   placeholder="search anything..." type="text" name="search" />
-                  <button onclick="searchFunction()" class="btn
-                  bg-white border rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:ring-sky-500
-                  " id="searchButton" disabled>Search!</button>
       
 
                 </div>
                 <div class="centered-under-title">
-                  <a href="hello" style="margin-right: 20%;">about</a> 
-                  <a href="hello"style="margin-left: -0%;">credits</a>
+                  <a href="/about" style="margin-right: 7%;" class="hyperlink">about</a>
+                  <a href="/advanced" style="text-align: center;" class="hyperlink">use advanced search</a> 
+                  <a href="/credits"style="margin-left: 7%;" class="hyperlink">credits</a> 
                 </div>
 
                 
@@ -151,7 +178,7 @@
 class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
 
 </div>
-<small>map and zipcode boundaries from: <a href="https://simplemaps.com/city/seattle/zips">https://simplemaps.com/city/seattle/zips</a></small>
+<small>map and zipcode boundaries from: <a class="hyperlink" href="https://simplemaps.com/city/seattle/zips">https://simplemaps.com/city/seattle/zips</a></small>
         <p><strong>Sorting: </strong></p>
         </select>
 

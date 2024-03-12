@@ -8,18 +8,43 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-/* This is a single-line comment */
-    .navbar{
-
-
-    }
-
 
     .btn:hover {
       background-color: #2980b9;
     }
 
-    .btn:disabled{
+    .alert-card{
+        position: fixed;
+        bottom: 20px;
+        display: inline-table;
+        word-wrap: normal;
+        margin-right: auto;
+        display:inline-table;
+max-width:50%;
+z-index: 10000;
+    }
+    .alert-wrapper{
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      margin-top: -100px;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .tooltip-button:hover .tooltiptext {
+      visibility: visible;
+    }
+
+    .btn:disabled {
       background-color: #e0e0e0;
       color: #b2b1b1;
     }
@@ -53,7 +78,7 @@
       box-sizing: border-box;
       margin-bottom: 2px;
     }
-    
+
     .groupDiv {
       border: 5px outset grey;
       text-align: left;
@@ -95,15 +120,11 @@
 
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #edeaea;
-      margin: 0;
-      padding: 0;
+      /*background-color: #efefef;*/
     }
 
-    a{
-
-      color: #8b2727;
-      background-color: #2980b9;
+    .hyperlink {
+      color: #27598b;
       text-decoration: underline;
     }
 
@@ -119,31 +140,23 @@
     .opportunity-details {
       padding: 20px;
     }
-
-    .opportunity-card-small {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      margin: 5px;
-      overflow: hidden;
-    }
-
+    
     .centered-title {
       margin: auto;
-      align-items:center;
-      justify-content:center;
-      display:flex;
+      align-items: center;
+      justify-content: center;
+      display: flex;
       text-align: center;
       width: 60%;
-      height:200px;
+      height: 250px;
       padding: 10px;
     }
 
-    .centered-under-title{
+    .centered-under-title {
       margin: auto;
-      align-items:center;
-      justify-content:center;
-      display:flex;
+      align-items: center;
+      justify-content: center;
+      display: flex;
       text-align: center;
       width: 60%;
       padding: 10px;
@@ -179,15 +192,14 @@
 
 
     .category {
-      background-color: #4CAF50;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 5px;
-      margin-right: 5px;
-      padding-bottom: 3px;
-      margin-bottom: 5px;
-      line-height: 1.8;
-      white-space: nowrap;
+      border-radius: 4px;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-right: 4px;
+      background: rgb(237, 245, 253);
+      color: rgb(21, 92, 162);
+      font-size: 12px;
+      cursor: pointer;
     }
 
     .informationGroup {

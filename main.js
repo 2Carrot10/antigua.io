@@ -3,7 +3,15 @@ const prefillServiceLearningOpportunitiesFeedbackUrl = "https://docs.google.com/
 var ServiceLearningFeedback = "";
 var zipDictionary = new Map();
 const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
+const alertTimeFadeLengthLong=1; 
+const alertTimeUntilFadeLong=10;
 
+const alertTimeFadeLengthShort=1; 
+const alertTimeUntilFadeShort=5;
+var mostReccentAlertMessage;
+
+var isSearchReady = false;
+var isSearchBroken = false;
 //idea http://127.0.0.1:5500/searchResults.html?keywords=&title=&age&categories&zipcodes=&sort+mode=
 
 downloadAndDisplayCSV(csvUrl);
@@ -27,7 +35,7 @@ class oppertunity {
     this.address = data[3];
     this.zipcode = data[5];
 
-    this.tags = new Array(3)
+    this.tags = new Array(0)
 
     if (data[6] != null) this.tags.push(data[6].replace(/(\r\n|\n|\r)/gm, ""));
     if (data[7] != null) this.tags.push(data[7].replace(/(\r\n|\n|\r)/gm, ""));
@@ -45,12 +53,6 @@ function shuffleArray(array) {
   return array;
 }
 
-
-function searchFunction() {
-
-  var advancedMode=false;
-  var hasRun = false;
-
   /*var array = []
   var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
   
@@ -59,6 +61,64 @@ function searchFunction() {
   }
   
   */
+
+
+  function searchIsBroken(){
+    console.log("search broken");
+    let template = document.getElementById("search-data-error");
+    createAlert(template,alertTimeFadeLengthLong, alertTimeUntilFadeLong);
+}
+function searchNotReady(){
+    let template = document.getElementById("data-not-ready-error");
+    createAlert(template,alertTimeFadeLengthShort, alertTimeUntilFadeShort);
+}
+
+function dataRetrievalError(){
+    let template = document.getElementById("data-not-retrieved-error");
+    createAlert(template,alertTimeFadeLengthLong, alertTimeUntilFadeLong);
+}
+
+function createAlert(template, timeToFade, timeUntilFade){
+
+//ensures only one message is on screen at a time
+if((null != mostReccentAlertMessage) && (null!= mostReccentAlertMessage.parentNode)){
+    mostReccentAlertMessage.parentNode.removeChild(mostReccentAlertMessage);
+}
+  let clone = template.content.cloneNode(true);
+  let container = document.createElement('div');
+  container.appendChild(clone);
+  document.body.appendChild(container);
+  mostReccentAlertMessage=container;
+  removeFadeOut(container, timeToFade, timeUntilFade);
+}
+
+function removeFadeOut(el, timeToFade, timeUntilStart) {
+    //TODO: clean evaluated code
+    el.style="opacity: 1;-webkit-transition: opacity 1000ms linear;transition: opacity "+(timeToFade*1000)+"ms linear;";
+setTimeout(function(){
+    el.style.opacity = 0;
+},timeUntilStart*1000)
+    setTimeout(function() {
+        if(null!=el.parentNode){
+        el.parentNode.removeChild(el);
+        }
+    }, (timeToFade+timeUntilStart)*1000);
+}
+
+function searchFunction(isAdvanced) {
+
+    if(isSearchBroken){
+        searchIsBroken();
+        return;
+    }
+    else if(!isSearchReady){
+        searchNotReady();
+        return;
+    }
+
+  var advancedMode=false;
+  var hasRun = false;
+
 
   var numberOfTiles = 0;
   deleteAllTiles();
@@ -146,16 +206,6 @@ function deleteAllTiles() {
   }
 }
 
-window.onscroll = function () { scrollFunction() };
-
-function scrollFunction() {
-  if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-    document.getElementById("myBtn").style.display = "block";
-  } else {
-    document.getElementById("myBtn").style.display = "none";
-  }
-}
-
 function renderOneTile(title, description, minAge, address, website, zipcode, tags) {
 
   let template = document.getElementById("tileTemplate");
@@ -166,7 +216,7 @@ function renderOneTile(title, description, minAge, address, website, zipcode, ta
   clone.getElementById("website").innerHTML = website;
   clone.getElementById("website").setAttribute('href', website);
   if (/\d/.test(address)) {
-    clone.getElementById("address").innerHTML = "<a href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
+    clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
    } else {
     clone.getElementById("address").innerHTML = address;
   }
@@ -206,15 +256,17 @@ function downloadAndDisplayCSV(url) {
     .then(response => response.text()) // Get the text from the response
     .then(csvData => {
       rows = parseCSV(csvData);
-
-      document.getElementById("searchButton").disabled = false;
-
+  
       for (let i = 1; i < rows.length; i++) {//skip heading row
         serviceData.push(new oppertunity(rows[i]));
       }
+      
+      isSearchReady=true;
 
     })
     .catch(error => {
+    isSearchBroken = true;
+        dataRetrievalError();
       console.error('Error:', error);
     });
 }
