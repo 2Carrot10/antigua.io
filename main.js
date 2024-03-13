@@ -12,10 +12,8 @@ var mostReccentAlertMessage;
 
 var isSearchReady = false;
 var isSearchBroken = false;
-//idea http://127.0.0.1:5500/searchResults.html?keywords=&title=&age&categories&zipcodes=&sort+mode=
 
 downloadAndDisplayCSV(csvUrl);
-
 
 
 const searchBox = document.getElementById("search-box");
@@ -64,7 +62,6 @@ function shuffleArray(array) {
 
 
   function searchIsBroken(){
-    console.log("search broken");
     let template = document.getElementById("search-data-error");
     createAlert(template,alertTimeFadeLengthLong, alertTimeUntilFadeLong);
 }
@@ -104,6 +101,58 @@ setTimeout(function(){
         }
     }, (timeToFade+timeUntilStart)*1000);
 }
+
+function simpleSearchFunction(){
+  
+  var searchBoxValue = document.getElementById("search-box").value;
+
+  var searchForPhrases = searchBoxValue.toLowerCase().split(" ");
+  for (var i = 0; i < searchForPhrases.length; i++) {
+    searchForPhrases[i] = searchForPhrases[i].trim();
+  }
+        serviceData.sort(function (a, b) {
+          var aVal= getSimpleSearchRating(a, searchForPhrases);
+          var bVal = getSimpleSearchRating(b, searchForPhrases);
+          console.log(aVal +"a val")
+          return -(aVal-bVal);
+        });
+    
+}
+
+function countInstances(string, word) {
+  return string.split(word).length - 1;
+}
+
+//look for word in title, add points for each word found in title(+5)
+//look for % of that word used in description as 0 to 1. +30*quantity
+//look for word in tags +4
+//look for word in address +1
+//look for word in zipcode +10
+
+/*
+    this.data = data;
+    this.title = data[0];
+    this.minAge = data[1];
+    this.description = data[2];
+    this.website = data[4]
+    this.address = data[3];
+    this.zipcode = data[5];
+*/
+
+//retune function
+function getSimpleSearchRating(oppertunity, search){
+  var value=0;
+  for(var i=0; i<search.length; i++){
+    value+=5*countInstances(oppertunity.description,search[i]);//in characters. this is because longer desciptions should not be favored.
+    value+=20*countInstances(oppertunity.title,search[i])
+    value+=5*countInstances(oppertunity.address,search[i])
+    value+=10*countInstances(oppertunity.website,search[i])
+    value+=30*countInstances(oppertunity.zipcode,search[i])
+  }
+  console.log("value afeafe" + value)
+  return value;
+}
+
 
 function searchFunction(isAdvanced) {
 
@@ -152,6 +201,7 @@ function searchFunction(isAdvanced) {
   else {
     serviceData = shuffleArray(serviceData)
   }
+  simpleSearchFunction();
   var searchForTags = true//document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
   var searchForPhrases = document.getElementById("phraseBox").value.toLowerCase().split(",");
   for (var i = 0; i < searchForPhrases; i++) {
@@ -162,7 +212,6 @@ function searchFunction(isAdvanced) {
     var existsInZip = zipDictionary.get(serviceData[i].zipcode);
     if (existsInZip == false) existsInZip = false;
     existsInZip = !!existsInZip;
-    console.log(existsInZip)
     var existsInTags = true;
 
     for (let j = 0; j < searchForTags.length; j++) {
@@ -215,6 +264,9 @@ function renderOneTile(title, description, minAge, address, website, zipcode, ta
   clone.getElementById("title").innerHTML = title;
   clone.getElementById("website").innerHTML = website;
   clone.getElementById("website").setAttribute('href', website);
+
+  clone.getElementById("report-oppertunity-link").setAttribute('href',prefillServiceLearningOpportunitiesFeedbackUrl+`${encodeURIComponent(title)}`);
+
   if (/\d/.test(address)) {
     clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
    } else {
@@ -267,7 +319,6 @@ function downloadAndDisplayCSV(url) {
     .catch(error => {
     isSearchBroken = true;
         dataRetrievalError();
-      console.error('Error:', error);
     });
 }
 
@@ -299,6 +350,9 @@ window.setupMap = function setupMap() {
   var myNodes = mySvg[0].querySelectorAll('path[id]');
 
   for (var i = 0; i < myNodes.length; i++) {
+
+    //avoids clicing on tiny zipcodes
+    if(i==4||i==7||i==8)continue;
     myNodes[i].addEventListener('click', function () { updateMapColor(this, true, true) });
     myNodes[i].addEventListener("mouseover", function () { updateMapColor(this, true, false) }, false);
     myNodes[i].addEventListener("mouseout", function () { updateMapColor(this, false, false) }, false);
@@ -308,15 +362,18 @@ window.setupMap = function setupMap() {
 
   function updateMapColor(self, mouseOnElement, clicked) {
 
+    //tiny zipcodes are part of larger zipcode so you can select them easily.
+    if(self.id=="98104"){
+        updateMapColor(self.parentNode.children[8], mouseOnElement,clicked)
+        updateMapColor(self.parentNode.children[7], mouseOnElement,clicked)
+        updateMapColor(self.parentNode.children[4], mouseOnElement,clicked)
+    }
     var currentState = self.getAttribute("data-selected") === "true";
     if (clicked) {
       currentState = !currentState;
       self.setAttribute("data-selected", currentState.toString());
     }
-    /*
-    if(clicked && currentState){
-    //document.getElementById("zipcodeBox").value+=", "+self.id;
-    }*/
+
 
     zipDictionary.set(self.id, currentState);
 
@@ -338,7 +395,6 @@ window.setupMap = function setupMap() {
         self.setAttribute("stroke-width", defaultLineWidth);
       }
     }
-    console.log(zipDictionary)
   }
 
 }
