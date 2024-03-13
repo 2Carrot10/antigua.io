@@ -32,6 +32,7 @@ class oppertunity {
     this.website = data[4]
     this.address = data[3];
     this.zipcode = data[5];
+    this.searchRating = 0;
 
     this.tags = new Array(0)
 
@@ -106,7 +107,12 @@ function simpleSearchFunction(){
   
   var searchBoxValue = document.getElementById("search-box").value;
 
-  var searchForPhrases = searchBoxValue.toLowerCase().split(" ");
+  //var searchForPhrases = searchBoxValue.toLowerCase().split(" ");
+
+//searchBoxValue.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g).forEach(function(val,index){searchForPhrases[index]=val.replace("\"","")});
+var searchForPhrases=[];
+searchBoxValue.match(/(".*?"|[^" \s]+)(?=\s* |\s*$)/g).forEach(function(val,index){searchForPhrases[index]=val.replaceAll("\"","")});
+  console.log(searchForPhrases)
   for (var i = 0; i < searchForPhrases.length; i++) {
     searchForPhrases[i] = searchForPhrases[i].trim();
   }
@@ -123,22 +129,6 @@ function countInstances(string, word) {
   return string.split(word).length - 1;
 }
 
-//look for word in title, add points for each word found in title(+5)
-//look for % of that word used in description as 0 to 1. +30*quantity
-//look for word in tags +4
-//look for word in address +1
-//look for word in zipcode +10
-
-/*
-    this.data = data;
-    this.title = data[0];
-    this.minAge = data[1];
-    this.description = data[2];
-    this.website = data[4]
-    this.address = data[3];
-    this.zipcode = data[5];
-*/
-
 //retune function
 function getSimpleSearchRating(oppertunity, search){
   var value=0;
@@ -149,7 +139,7 @@ function getSimpleSearchRating(oppertunity, search){
     value+=10*countInstances(oppertunity.website,search[i])
     value+=30*countInstances(oppertunity.zipcode,search[i])
   }
-  console.log("value afeafe" + value)
+  oppertunity.searchRating=value;
   return value;
 }
 
