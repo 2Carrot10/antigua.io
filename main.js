@@ -61,14 +61,14 @@ function shuffleArray(array) {
   return array;
 }
 
-function searchIsBroken() {
+export function searchIsBroken() {
   createAlert(searchDataError, alertTimeFadeLengthLong, alertTimeUntilFadeLong);
 }
-function searchNotReady() {
+export function searchNotReady() {
   createAlert(dataNotReadyError, alertTimeFadeLengthShort, alertTimeUntilFadeShort);
 }
 
-function dataRetrievalError() {
+export function dataRetrievalError() {
   createAlert(dataNotRetrievedError, alertTimeFadeLengthLong, alertTimeUntilFadeLong);
 }
 
@@ -78,7 +78,6 @@ function createAlert(template, timeToFade, timeUntilFade) {
   if ((null != mostReccentAlertMessage) && (null != mostReccentAlertMessage.parentNode)) {
     mostReccentAlertMessage.parentNode.removeChild(mostReccentAlertMessage);
   }
-  console.log(template);
   let clone = template.content.cloneNode(true);
   let container = document.createElement('div');
   container.appendChild(clone);
@@ -98,51 +97,6 @@ function removeFadeOut(el, timeToFade, timeUntilStart) {
       el.parentNode.removeChild(el);
     }
   }, (timeToFade + timeUntilStart) * 1000);
-}
-
-function simpleSearchFunction() {
-
-  if (isSearchBroken) {
-    searchIsBroken();
-    return;
-  }
-  else if (!isSearchReady) {
-    searchNotReady();
-    return;
-  }
-
-  deleteAllTiles();
-
-  var searchBoxValue = document.getElementById("search-box").value;
-  var searchForPhrases = [];
-  searchForPhrases[1]=searchBoxValue;//extra weight is given to exact term instead of individual parts
-
-  //complecated regex to split string into string array based on spaces outside of quotes.
-  searchBoxValue.match(/(".*?"|[^" \s]+)(?=\s* |\s*$)/g).forEach(function (val, index) { searchForPhrases[index] = val.replaceAll("\"", "") });
-  for (var i = 1; i < searchForPhrases.length; i++) {
-    searchForPhrases[i] = searchForPhrases[i].trim();
-  }
-
-  serviceData.sort(function (a, b) {
-    var aVal = getSimpleSearchRating(a, searchForPhrases);
-    var bVal = getSimpleSearchRating(b, searchForPhrases);
-    return -(aVal - bVal);
-  });
-
-  var numberOfTiles = 0;
-  for (let i = 0; i < serviceData.length; i++) {
-  if (serviceData[i].searchRating>0) {
-    renderOneTile(serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].zipcode, serviceData[i].tags, false);
-    numberOfTiles++;
-  }
-  }
-  if (numberOfTiles == 0) {
-    let clone = nothingFoundTemplate.content.cloneNode(true);
-    var myNode = document.getElementById("groupDiv");
-    myNode.appendChild(clone);
-  }
-  document.documentElement.scrollTop = document.getElementById("groupDiv").getBoundingClientRect().top-4;
-
 }
 
 function countInstances(string, word) {
@@ -166,7 +120,7 @@ function getSimpleSearchRating(oppertunity, search) {
 }
 
 
-function searchFunction(isAdvanced) {
+export function searchFunction(isAdvanced) {
   simpleSearchFunction();
   if (isSearchBroken) {
     searchIsBroken();
@@ -265,8 +219,26 @@ function deleteAllTiles() {
     myNode.removeChild(myNode.lastChild);
   }
 }
+export function isSearchError(){
+if (isSearchBroken) {
+  searchIsBroken();
+  return true;
+}
+else if (!isSearchReady) {
+  searchNotReady();
+  return true;
+}
+return false;
+}
 
-function renderOneTile(title, description, minAge, address, website, zipcode, tags) {
+export function renderNothingFoundCard(){
+  let clone = nothingFoundTemplate.content.cloneNode(true);
+  var myNode = document.getElementById("groupDiv");
+  myNode.appendChild(clone);
+
+}
+
+export function renderOneTile(title, description, minAge, address, website, zipcode, tags) {
 
   let clone = tileTemplate.content.cloneNode(true);
   clone.getElementById("minAge").innerHTML = minAge;
@@ -312,18 +284,14 @@ function parseCSV(str) {
   return arr;
 }
 function downloadAndDisplayCSV(url) {
-
   fetch(url)
-    .then(response => response.text()) // Get the text from the response
+    .then(response => (response.text())) // Get the text from the response
     .then(csvData => {
       rows = parseCSV(csvData);
-
-      for (let i = 1; i < rows.length; i++) {//skip heading row
-        serviceData.push(new oppertunity(rows[i]));
+      for (let i = 1; i < rows.length; i++) { //skip heading row
+        serviceData.push(new oppertunity(rows[i]));  
       }
-
       isSearchReady = true;
-
     })
     .catch(error => {
       isSearchBroken = true;
