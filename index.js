@@ -43,7 +43,7 @@ function simpleSearchFunction() {
     if (numberOfTiles == 0) {
         main.renderNothingFoundCard();
     }
-    document.documentElement.scrollTop = document.getElementById("groupDiv").getBoundingClientRect().top-4;
+    document.documentElement.scrollTop = document.getElementById("groupDiv").offsetTop-4;
   }
 
   

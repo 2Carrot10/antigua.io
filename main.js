@@ -112,6 +112,15 @@ export function searchFunction() {
     return;
   }
 
+  function ensureHttps(url) {
+    // Check if the URL starts with 'http://' or 'https://'
+    if (/^https?:\/\//i.test(url)) {
+      return url; // URL is already complete with http or https
+    } else {
+      return 'https://' + url; // Add 'https://' to the URL
+    }
+  }
+
   var advancedMode = false;
   var hasRun = false;
 

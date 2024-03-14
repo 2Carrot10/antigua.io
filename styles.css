@@ -124,6 +124,13 @@ z-index: 10000;
 
     }
 
+    .sticky-div {
+      position: sticky;
+      z-index: 100;
+      top: 0px;
+      padding: 10px 0px;
+    }
+    
     .opportunity-details {
       padding: 20px;
     }
@@ -221,3 +228,19 @@ z-index: 10000;
     #myBtn:hover {
       background-color: #555;
     }
+
+
+    #expand-container {
+      overflow: hidden;
+    }
+    #expand-contract {
+      border-bottom: 1px solid red;
+      margin-top: -100%;
+      transition: all 1s;
+    }
+    
+    #expand-contract.expanded {
+       background-color: green;
+       margin-top: 0;
+    }
+    
