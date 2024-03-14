@@ -18,9 +18,11 @@ var dataNotRetrievedError;
 var searchDataError;
 var dataNotReadyError;
 
-downloadAndDisplayCSV(csvUrl);
-
 fetchTemplates();
+downloadAndDisplayCSV();
+
+export function getServiceData(){return serviceData}
+
 
 async function fetchTemplates(){
   var templates = document.createElement( 'template' )
@@ -77,7 +79,7 @@ function createAlert(template, timeToFade, timeUntilFade) {
   //ensures only one message is on screen at a time
   if ((null != mostReccentAlertMessage) && (null != mostReccentAlertMessage.parentNode)) {
     mostReccentAlertMessage.parentNode.removeChild(mostReccentAlertMessage);
-  }
+  } 
   let clone = template.content.cloneNode(true);
   let container = document.createElement('div');
   container.appendChild(clone);
@@ -98,27 +100,6 @@ function removeFadeOut(el, timeToFade, timeUntilStart) {
     }
   }, (timeToFade + timeUntilStart) * 1000);
 }
-
-function countInstances(string, word) {
-  return string.split(word).length - 1;
-}
-
-//retune function
-function getSimpleSearchRating(oppertunity, search) {
-  var value = 0;
-
-  //TODO: retune this
-  for (var i = 0; i < search.length; i++) {
-    value += 5 * countInstances(oppertunity.description, search[i]);
-    value += 20 * countInstances(oppertunity.title, search[i])
-    value += 6 * countInstances(oppertunity.address, search[i])
-    value += 10 * countInstances(oppertunity.website, search[i])
-    value += 30 * countInstances(oppertunity.zipcode, search[i])
-  }
-  oppertunity.searchRating = value;
-  return value;
-}
-
 
 export function searchFunction(isAdvanced) {
   simpleSearchFunction();
@@ -213,7 +194,7 @@ export function searchFunction(isAdvanced) {
   document.documentElement.scrollTop = 620;
 }
 
-function deleteAllTiles() {
+export function deleteAllTiles() {
   var myNode = document.getElementById("groupDiv");
   while (myNode.firstChild) {
     myNode.removeChild(myNode.lastChild);
@@ -237,8 +218,19 @@ export function renderNothingFoundCard(){
   myNode.appendChild(clone);
 
 }
+export function renderOneTile(opp){
+  console.log("log:"+opp)
+  renderOneTileFromVal(opp.title,
+     opp.description, 
+     opp.minAge, 
+     opp.address, 
+     opp.website, 
+     opp.zipcode, 
+     opp.tags, 
+     false);
+}
 
-export function renderOneTile(title, description, minAge, address, website, zipcode, tags) {
+function renderOneTileFromVal(title, description, minAge, address, website, zipcode, tags) {
 
   let clone = tileTemplate.content.cloneNode(true);
   clone.getElementById("minAge").innerHTML = minAge;
@@ -269,7 +261,10 @@ export function renderOneTile(title, description, minAge, address, website, zipc
 function parseCSV(str) {
   var arr = [];
   var quote = false;
-  for (var row = col = c = 0; c < str.length; c++) {
+  var row = 0;
+  var col = 0;
+  var c = 0;
+  for (; c < str.length; c++) {
     var cc = str[c], nc = str[c + 1];
     arr[row] = arr[row] || [];
     arr[row][col] = arr[row][col] || '';
@@ -283,17 +278,21 @@ function parseCSV(str) {
   }
   return arr;
 }
-function downloadAndDisplayCSV(url) {
-  fetch(url)
-    .then(response => (response.text())) // Get the text from the response
+function downloadAndDisplayCSV() {
+  fetch(csvUrl)
+    .then(response => response.text()) // Get the text from the response
     .then(csvData => {
-      rows = parseCSV(csvData);
-      for (let i = 1; i < rows.length; i++) { //skip heading row
-        serviceData.push(new oppertunity(rows[i]));  
+      var rows = parseCSV(csvData);
+
+      for (let i = 1; i < rows.length; i++) {//skip heading row
+        serviceData.push(new oppertunity(rows[i]));
       }
+
       isSearchReady = true;
+
     })
     .catch(error => {
+      console.error("Error fetching CSV data:", error);
       isSearchBroken = true;
       dataRetrievalError();
     });

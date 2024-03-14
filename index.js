@@ -6,17 +6,8 @@ searchBox.addEventListener("keyup", function (event) {
     simpleSearchFunction();
   }
 });
-
 function simpleSearchFunction() {
     if(main.isSearchError())return;
-    if (isSearchBroken) {
-      main.searchIsBroken();
-      return;
-    }
-    else if (!isSearchReady) {
-      main.searchNotReady();
-      return;
-    }
   
     main.deleteAllTiles();
   
@@ -36,22 +27,42 @@ function simpleSearchFunction() {
       searchForPhrases[i] = searchForPhrases[i].trim();
     }
   
-    serviceData.sort(function (a, b) {
+    main.getServiceData().sort(function (a, b) {
       var aVal = getSimpleSearchRating(a, searchForPhrases);
       var bVal = getSimpleSearchRating(b, searchForPhrases);
       return -(aVal - bVal);
     });
   
     var numberOfTiles = 0;
-    for (let i = 0; i < serviceData.length; i++) {
-    if (serviceData[i].searchRating>0) {
-      main.renderOneTile(serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].zipcode, serviceData[i].tags, false);
-      numberOfTiles++;
+    for (let i = 0; i < main.getServiceData().length; i++) {
+    if (main.getServiceData()[i].searchRating>0) {
+        main.renderOneTile(main.getServiceData()[i]);
+        numberOfTiles++;
     }
     }
     if (numberOfTiles == 0) {
         main.renderNothingFoundCard();
     }
     document.documentElement.scrollTop = document.getElementById("groupDiv").getBoundingClientRect().top-4;
+  }
+
   
+//retune function
+function getSimpleSearchRating(oppertunity, search) {
+    var value = 0;
+  
+    //TODO: retune this
+    for (var i = 0; i < search.length; i++) {
+      value += 5 * countInstances(oppertunity.description, search[i]);
+      value += 20 * countInstances(oppertunity.title, search[i])
+      value += 6 * countInstances(oppertunity.address, search[i])
+      value += 10 * countInstances(oppertunity.website, search[i])
+      value += 30 * countInstances(oppertunity.zipcode, search[i])
+    }
+    oppertunity.searchRating = value;
+    return value;
+  }
+
+  function countInstances(string, word) {
+    return string.split(word).length - 1;
   }
