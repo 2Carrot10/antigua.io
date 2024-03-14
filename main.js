@@ -28,6 +28,15 @@ async function fetchTemplates(){
     dataNotRetrievedError = templates.content.querySelector('#data-not-retrieved-error')
 }
 
+function ensureHttps(url) {
+  // Check if the URL starts with 'http://' or 'https://'
+  if (/^https?:\/\//i.test(url)) {
+    return url; // URL is already complete with http or https
+  } else {
+    return 'https://' + url; // Add 'https://' to the URL
+  }
+}
+
 
 class oppertunity {
   constructor(data) {
@@ -249,7 +258,7 @@ function renderOneTile(phrases, title, description, minAge, address, website, ta
   clone.getElementById("description").innerHTML = phrases[0] != '' ? highlightKeywords(description, phrases) : description
   clone.getElementById("title").innerHTML = phrases[0] != '' ? highlightKeywords(title, phrases) : title
   clone.getElementById("website").innerHTML = phrases[0] != '' ? highlightKeywords(website, phrases) : website;
-  clone.getElementById("websiteURL").setAttribute('href', website);
+  clone.getElementById("websiteURL").setAttribute('href', ensureHttps(website));
   clone.getElementById("address").innerHTML = address;
   clone.getElementById("addressURL").setAttribute('href', "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`);
   for (let i = 0; i < tags.length; i++) {//test
@@ -432,5 +441,5 @@ function loadChat() {
       times++
       searchFunction()
     }
-  }, 100)
+  }, 10)
 }
