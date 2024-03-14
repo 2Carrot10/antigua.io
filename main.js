@@ -34,7 +34,7 @@ async function fetchTemplates(){
     dataNotReadyError = templates.content.querySelector('#data-not-ready-error')
 }
 
-class oppertunity {
+class opportunity {
   constructor(data) {
     this.data = data;
     this.title = data[0];
@@ -101,7 +101,7 @@ function removeFadeOut(el, timeToFade, timeUntilStart) {
   }, (timeToFade + timeUntilStart) * 1000);
 }
 
-export function searchFunction(isAdvanced) {
+export function searchFunction() {
   simpleSearchFunction();
   if (isSearchBroken) {
     searchIsBroken();
@@ -239,7 +239,7 @@ function renderOneTileFromVal(title, description, minAge, address, website, zipc
   clone.getElementById("website").innerHTML = website;
   clone.getElementById("website").setAttribute('href', website);
 
-  clone.getElementById("report-oppertunity-link").setAttribute('href', prefillServiceLearningOpportunitiesFeedbackUrl + `${encodeURIComponent(title)}`);
+  clone.getElementById("report-opportunity-link").setAttribute('href', prefillServiceLearningOpportunitiesFeedbackUrl + `${encodeURIComponent(title)}`);
 
   if (/\d/.test(address)) {
     clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
@@ -285,7 +285,7 @@ function downloadAndDisplayCSV() {
       var rows = parseCSV(csvData);
 
       for (let i = 1; i < rows.length; i++) {//skip heading row
-        serviceData.push(new oppertunity(rows[i]));
+        serviceData.push(new opportunity(rows[i]));
       }
 
       isSearchReady = true;

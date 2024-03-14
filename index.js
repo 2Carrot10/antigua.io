@@ -11,7 +11,7 @@ function simpleSearchFunction() {
   
     main.deleteAllTiles();
   
-    var searchBoxValue = searchBox.value;
+    var searchBoxValue = searchBox.value.toLowerCase();
     var searchForPhrases = [];
     searchForPhrases[1]=searchBoxValue;//extra weight is given to exact term instead of individual parts
   
@@ -48,18 +48,18 @@ function simpleSearchFunction() {
 
   
 //retune function
-function getSimpleSearchRating(oppertunity, search) {
+function getSimpleSearchRating(opportunity, search) {
     var value = 0;
   
     //TODO: retune this
     for (var i = 0; i < search.length; i++) {
-      value += 5 * countInstances(oppertunity.description, search[i]);
-      value += 20 * countInstances(oppertunity.title, search[i])
-      value += 6 * countInstances(oppertunity.address, search[i])
-      value += 10 * countInstances(oppertunity.website, search[i])
-      value += 30 * countInstances(oppertunity.zipcode, search[i])
+      value += 5 * countInstances(opportunity.description.toLowerCase(), search[i]);
+      value += 20 * countInstances(opportunity.title.toLowerCase(), search[i])
+      value += 6 * countInstances(opportunity.address.toLowerCase(), search[i])
+      value += 10 * countInstances(opportunity.website.toLowerCase(), search[i])
+      value += 30 * countInstances(opportunity.zipcode.toLowerCase(), search[i])
     }
-    oppertunity.searchRating = value;
+    opportunity.searchRating = value;
     return value;
   }
 
