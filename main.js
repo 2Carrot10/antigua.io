@@ -3,23 +3,40 @@ const prefillServiceLearningOpportunitiesFeedbackUrl = "https://docs.google.com/
 var ServiceLearningFeedback = "";
 var zipDictionary = new Map();
 const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
-const alertTimeFadeLengthLong=1; 
-const alertTimeUntilFadeLong=10;
+const alertTimeFadeLengthLong = 1;
+const alertTimeUntilFadeLong = 10;
 
-const alertTimeFadeLengthShort=1; 
-const alertTimeUntilFadeShort=5;
+const alertTimeFadeLengthShort = 1;
+const alertTimeUntilFadeShort = 5;
 var mostReccentAlertMessage;
 
 var isSearchReady = false;
 var isSearchBroken = false;
 
+var tileTemplate;
+var nothingFoundTemplate;
+var dataNotRetrievedError;
+var searchDataError;
+var dataNotReadyError;
+
 downloadAndDisplayCSV(csvUrl);
 
+fetchTemplates();
+
+async function fetchTemplates(){
+  var templates = document.createElement( 'template' )
+    templates.innerHTML = await ( await fetch('templates.html')).text()
+    tileTemplate = templates.content.querySelector('#tile-template');
+    nothingFoundTemplate = templates.content.querySelector('#no-tiles');
+    dataNotRetrievedError = templates.content.querySelector('#data-not-retrieved-error')
+    searchDataError = templates.content.querySelector('#search-data-error')
+    dataNotReadyError = templates.content.querySelector('#data-not-ready-error')
+}
 
 const searchBox = document.getElementById("search-box");
-searchBox.addEventListener("keyup", function(event) {
+searchBox.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
-      searchFunction();
+    simpleSearchFunction();
   }
 });
 
@@ -52,77 +69,98 @@ function shuffleArray(array) {
   return array;
 }
 
-  /*var array = []
-  var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
-  
-  for (var i = 0; i < checkboxes.length; i++) {
-    array.push(checkboxes[i].value)
-  }
-  
-  */
-
-
-  function searchIsBroken(){
-    let template = document.getElementById("search-data-error");
-    createAlert(template,alertTimeFadeLengthLong, alertTimeUntilFadeLong);
+/*var array = []
+var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+ 
+for (var i = 0; i < checkboxes.length; i++) {
+  array.push(checkboxes[i].value)
 }
-function searchNotReady(){
-    let template = document.getElementById("data-not-ready-error");
-    createAlert(template,alertTimeFadeLengthShort, alertTimeUntilFadeShort);
+ 
+*/
+
+
+function searchIsBroken() {
+  createAlert(searchDataError, alertTimeFadeLengthLong, alertTimeUntilFadeLong);
+}
+function searchNotReady() {
+  createAlert(dataNotReadyError, alertTimeFadeLengthShort, alertTimeUntilFadeShort);
 }
 
-function dataRetrievalError(){
-    let template = document.getElementById("data-not-retrieved-error");
-    createAlert(template,alertTimeFadeLengthLong, alertTimeUntilFadeLong);
+function dataRetrievalError() {
+  createAlert(dataNotRetrievedError, alertTimeFadeLengthLong, alertTimeUntilFadeLong);
 }
 
-function createAlert(template, timeToFade, timeUntilFade){
+function createAlert(template, timeToFade, timeUntilFade) {
 
-//ensures only one message is on screen at a time
-if((null != mostReccentAlertMessage) && (null!= mostReccentAlertMessage.parentNode)){
+  //ensures only one message is on screen at a time
+  if ((null != mostReccentAlertMessage) && (null != mostReccentAlertMessage.parentNode)) {
     mostReccentAlertMessage.parentNode.removeChild(mostReccentAlertMessage);
-}
+  }
+  console.log(template);
   let clone = template.content.cloneNode(true);
   let container = document.createElement('div');
   container.appendChild(clone);
   document.body.appendChild(container);
-  mostReccentAlertMessage=container;
+  mostReccentAlertMessage = container;
   removeFadeOut(container, timeToFade, timeUntilFade);
 }
 
 function removeFadeOut(el, timeToFade, timeUntilStart) {
-    //TODO: clean evaluated code
-    el.style="opacity: 1;-webkit-transition: opacity 1000ms linear;transition: opacity "+(timeToFade*1000)+"ms linear;";
-setTimeout(function(){
+  //TODO: clean evaluated code
+  el.style = "opacity: 1;-webkit-transition: opacity 1000ms linear;transition: opacity " + (timeToFade * 1000) + "ms linear;";
+  setTimeout(function () {
     el.style.opacity = 0;
-},timeUntilStart*1000)
-    setTimeout(function() {
-        if(null!=el.parentNode){
-        el.parentNode.removeChild(el);
-        }
-    }, (timeToFade+timeUntilStart)*1000);
+  }, timeUntilStart * 1000)
+  setTimeout(function () {
+    if (null != el.parentNode) {
+      el.parentNode.removeChild(el);
+    }
+  }, (timeToFade + timeUntilStart) * 1000);
 }
 
-function simpleSearchFunction(){
-  
+function simpleSearchFunction() {
+
+  if (isSearchBroken) {
+    searchIsBroken();
+    return;
+  }
+  else if (!isSearchReady) {
+    searchNotReady();
+    return;
+  }
+
+  deleteAllTiles();
+
   var searchBoxValue = document.getElementById("search-box").value;
+  var searchForPhrases = [];
+  searchForPhrases[1]=searchBoxValue;//extra weight is given to exact term instead of individual parts
 
-  //var searchForPhrases = searchBoxValue.toLowerCase().split(" ");
-
-//searchBoxValue.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g).forEach(function(val,index){searchForPhrases[index]=val.replace("\"","")});
-var searchForPhrases=[];
-searchBoxValue.match(/(".*?"|[^" \s]+)(?=\s* |\s*$)/g).forEach(function(val,index){searchForPhrases[index]=val.replaceAll("\"","")});
-  console.log(searchForPhrases)
-  for (var i = 0; i < searchForPhrases.length; i++) {
+  //complecated regex to split string into string array based on spaces outside of quotes.
+  searchBoxValue.match(/(".*?"|[^" \s]+)(?=\s* |\s*$)/g).forEach(function (val, index) { searchForPhrases[index] = val.replaceAll("\"", "") });
+  for (var i = 1; i < searchForPhrases.length; i++) {
     searchForPhrases[i] = searchForPhrases[i].trim();
   }
-        serviceData.sort(function (a, b) {
-          var aVal= getSimpleSearchRating(a, searchForPhrases);
-          var bVal = getSimpleSearchRating(b, searchForPhrases);
-          console.log(aVal +"a val")
-          return -(aVal-bVal);
-        });
-    
+
+  serviceData.sort(function (a, b) {
+    var aVal = getSimpleSearchRating(a, searchForPhrases);
+    var bVal = getSimpleSearchRating(b, searchForPhrases);
+    return -(aVal - bVal);
+  });
+
+  var numberOfTiles = 0;
+  for (let i = 0; i < serviceData.length; i++) {
+  if (serviceData[i].searchRating>0) {
+    renderOneTile(serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].zipcode, serviceData[i].tags, false);
+    numberOfTiles++;
+  }
+  }
+  if (numberOfTiles == 0) {
+    let clone = nothingFoundTemplate.content.cloneNode(true);
+    var myNode = document.getElementById("groupDiv");
+    myNode.appendChild(clone);
+  }
+  document.documentElement.scrollTop = document.getElementById("groupDiv").getBoundingClientRect().top-4;
+
 }
 
 function countInstances(string, word) {
@@ -130,32 +168,34 @@ function countInstances(string, word) {
 }
 
 //retune function
-function getSimpleSearchRating(oppertunity, search){
-  var value=0;
-  for(var i=0; i<search.length; i++){
-    value+=5*countInstances(oppertunity.description,search[i]);//in characters. this is because longer desciptions should not be favored.
-    value+=20*countInstances(oppertunity.title,search[i])
-    value+=5*countInstances(oppertunity.address,search[i])
-    value+=10*countInstances(oppertunity.website,search[i])
-    value+=30*countInstances(oppertunity.zipcode,search[i])
+function getSimpleSearchRating(oppertunity, search) {
+  var value = 0;
+
+  //TODO: retune this
+  for (var i = 0; i < search.length; i++) {
+    value += 5 * countInstances(oppertunity.description, search[i]);
+    value += 20 * countInstances(oppertunity.title, search[i])
+    value += 6 * countInstances(oppertunity.address, search[i])
+    value += 10 * countInstances(oppertunity.website, search[i])
+    value += 30 * countInstances(oppertunity.zipcode, search[i])
   }
-  oppertunity.searchRating=value;
+  oppertunity.searchRating = value;
   return value;
 }
 
 
 function searchFunction(isAdvanced) {
+  simpleSearchFunction();
+  if (isSearchBroken) {
+    searchIsBroken();
+    return;
+  }
+  else if (!isSearchReady) {
+    searchNotReady();
+    return;
+  }
 
-    if(isSearchBroken){
-        searchIsBroken();
-        return;
-    }
-    else if(!isSearchReady){
-        searchNotReady();
-        return;
-    }
-
-  var advancedMode=false;
+  var advancedMode = false;
   var hasRun = false;
 
 
@@ -191,7 +231,6 @@ function searchFunction(isAdvanced) {
   else {
     serviceData = shuffleArray(serviceData)
   }
-  simpleSearchFunction();
   var searchForTags = true//document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
   var searchForPhrases = document.getElementById("phraseBox").value.toLowerCase().split(",");
   for (var i = 0; i < searchForPhrases; i++) {
@@ -247,23 +286,21 @@ function deleteAllTiles() {
 
 function renderOneTile(title, description, minAge, address, website, zipcode, tags) {
 
-  let template = document.getElementById("tileTemplate");
-  let clone = template.content.cloneNode(true);
+  let clone = tileTemplate.content.cloneNode(true);
   clone.getElementById("minAge").innerHTML = minAge;
   clone.getElementById("description").innerHTML = description;
   clone.getElementById("title").innerHTML = title;
   clone.getElementById("website").innerHTML = website;
   clone.getElementById("website").setAttribute('href', website);
 
-  clone.getElementById("report-oppertunity-link").setAttribute('href',prefillServiceLearningOpportunitiesFeedbackUrl+`${encodeURIComponent(title)}`);
+  clone.getElementById("report-oppertunity-link").setAttribute('href', prefillServiceLearningOpportunitiesFeedbackUrl + `${encodeURIComponent(title)}`);
 
   if (/\d/.test(address)) {
     clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
-   } else {
+  } else {
     clone.getElementById("address").innerHTML = address;
   }
 
-  //clone.getElementById("zipcode").innerHTML = zipcode;
   for (let i = 0; i < tags.length; i++) {
     if (tags[i] == "" || tags[i] == "\r") continue;
     let tagA = document.createElement("span");
@@ -298,17 +335,17 @@ function downloadAndDisplayCSV(url) {
     .then(response => response.text()) // Get the text from the response
     .then(csvData => {
       rows = parseCSV(csvData);
-  
+
       for (let i = 1; i < rows.length; i++) {//skip heading row
         serviceData.push(new oppertunity(rows[i]));
       }
-      
-      isSearchReady=true;
+
+      isSearchReady = true;
 
     })
     .catch(error => {
-    isSearchBroken = true;
-        dataRetrievalError();
+      isSearchBroken = true;
+      dataRetrievalError();
     });
 }
 
@@ -342,7 +379,7 @@ window.setupMap = function setupMap() {
   for (var i = 0; i < myNodes.length; i++) {
 
     //avoids clicing on tiny zipcodes
-    if(i==4||i==7||i==8)continue;
+    if (i == 4 || i == 7 || i == 8) continue;
     myNodes[i].addEventListener('click', function () { updateMapColor(this, true, true) });
     myNodes[i].addEventListener("mouseover", function () { updateMapColor(this, true, false) }, false);
     myNodes[i].addEventListener("mouseout", function () { updateMapColor(this, false, false) }, false);
@@ -353,10 +390,10 @@ window.setupMap = function setupMap() {
   function updateMapColor(self, mouseOnElement, clicked) {
 
     //tiny zipcodes are part of larger zipcode so you can select them easily.
-    if(self.id=="98104"){
-        updateMapColor(self.parentNode.children[8], mouseOnElement,clicked)
-        updateMapColor(self.parentNode.children[7], mouseOnElement,clicked)
-        updateMapColor(self.parentNode.children[4], mouseOnElement,clicked)
+    if (self.id == "98104") {
+      updateMapColor(self.parentNode.children[8], mouseOnElement, clicked)
+      updateMapColor(self.parentNode.children[7], mouseOnElement, clicked)
+      updateMapColor(self.parentNode.children[4], mouseOnElement, clicked)
     }
     var currentState = self.getAttribute("data-selected") === "true";
     if (clicked) {
