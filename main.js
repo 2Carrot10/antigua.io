@@ -1,7 +1,6 @@
 var serviceData = new Array();
 const prefillServiceLearningOpportunitiesFeedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLScdaHfP6BeGAFyy3abi7YNacV48-gfRoezyBUzPY-OPuzRH_g/viewform?usp=pp_url&entry.576703126="
 var ServiceLearningFeedback = "";
-var zipDictionary = new Map();
 const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
 const alertTimeFadeLengthLong = 1;
 const alertTimeUntilFadeLong = 10;
@@ -33,13 +32,6 @@ async function fetchTemplates(){
     dataNotReadyError = templates.content.querySelector('#data-not-ready-error')
 }
 
-const searchBox = document.getElementById("search-box");
-searchBox.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    simpleSearchFunction();
-  }
-});
-
 class oppertunity {
   constructor(data) {
     this.data = data;
@@ -68,16 +60,6 @@ function shuffleArray(array) {
   }
   return array;
 }
-
-/*var array = []
-var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
- 
-for (var i = 0; i < checkboxes.length; i++) {
-  array.push(checkboxes[i].value)
-}
- 
-*/
-
 
 function searchIsBroken() {
   createAlert(searchDataError, alertTimeFadeLengthLong, alertTimeUntilFadeLong);
