@@ -216,8 +216,16 @@ z-index: 10000;
       background-color: #555;
     }
 
-
-    #expand-container {
-      overflow: hidden;
-    }
+   #expand-container {
+     overflow: hidden;
+   }
+   
+   .expand-contract {
+     margin-top: -100%;
+     transition: 1s all 0s;
+   }
+   
+   .expand-contract.expanded {
+      margin-top: 0;
+   }
     

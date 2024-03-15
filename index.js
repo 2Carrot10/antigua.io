@@ -1,11 +1,27 @@
 import * as main from "/main.js";
 
+var advancedMode = false;
+export function expandContract(){
+    advancedMode=!advancedMode;
+    let el = document.getElementById("simple-search")
+    el.classList.toggle('expanded')
+    el.classList.toggle('collapsed')
+
+    let el2 = document.getElementById("advanced-search")
+    el2.classList.toggle('expanded')
+    el2.classList.toggle('collapsed')
+    
+}
+
+expandContract()
+
 const searchBox = document.getElementById("search-box");
 searchBox.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
     simpleSearchFunction();
   }
 });
+
 function simpleSearchFunction() {
     if(main.isSearchError())return;
   

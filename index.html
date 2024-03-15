@@ -8,6 +8,16 @@
 
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="module" src="index.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <script type="module">
+    import {expandContract} from './index.js'
+    
+    document.querySelector('#expand-contract-button').addEventListener('click', expandContract)
+  </script>
 </head>
 <body>
 
@@ -46,29 +56,60 @@
   -->
 
                    
-<!--start of new section-->
-<div id="search" class="sticky-div transition-all w-full flex-justify-center items-center place-content-top mx-auto z-50 !w-7/12">
-  <div class="rounded-2xl rounded-t-none shadow-sm h-fit w-full bg-white/75 mx-auto backdrop-blur-sm">
-    <div class="w-full">
+<!--start of new section sticky-div -->
+<div id="search" class="transition-all mx-auto z-50 !w-7/12">
+  <div class="rounded-2xl rounded-t-none shadow-sm bg-white/75 mx-auto backdrop-blur-sm">
 
-      <div class="opportunity-details grid gap-2 w-full">
-        <div class="flex w-full">
+      <div class="grid gap-2 w-full">
+        <div class="flex w-full" id="expand-container">
+            <div id="simple-search"  class="expand-contract expanded" style="display:block;width:100%;">
 
           <input id="search-box"
             class="w-full :italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl p-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
             placeholder="Search anything..." type="text" name="search"></input>
+          </div>   
+      </div>
+
+      <div class="flex w-full" id="expand-container">
+        <div id="advanced-search"  class="expand-contract contracted" style="display:block;width:100%;">
+          <div class="flex">
+            Title Includes: <input id="titleBox"
+              class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="e.g. 'city'" type="text" name="search" />
+          </div>
+      
+          <div class="flex">
+            <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number"
+              class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="e.g. '13'" type="text" name="search" />
+          </div>
+      
+          <div class="flex">
+            <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox"
+              class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="e.g. 'Civic, Differently Abled, Health'" type="text" name="search" />
+          </div>
+          Sorting by:
+          <select name="sort mode" id="search mode"
+            class="drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
+            <option value="az">alphabetical (a-z)</option>
+            <option value="za">alphabetical (z-a)</option>
+            <option value="az">description length (long-short)</option>
+            <option value="za">description length (short-long)</option>
+            <option value="r">randomized</option>
+          </select>
         </div>
-        
+      </div>
+
+          </div>
         <div class="w-full flex justify-between h-fit mb-2 px-2">
-        <div id="advanced" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer">Advanced</div>
+        <div id="expand-contract-button" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer">Advanced</div>
         <div class="text-md opacity-75 text-center min-w-lg">Made by <a href="https://github.com/2carrot10"
           target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast"
           class="font-bold" target="_blank">Micah</a></div>
           <div><a href="URL TO BE ADDED"
             class="font-bold text-md opacity-75 text-center min-w-lg">About</a></div>
-            <button>minimise</button>
-          
-        </div>
+            <button>side by side view</button>
       </div>
     </div>
   </div>
@@ -152,10 +193,5 @@ class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
   <div id="groupDiv">
 
   </div>
-
-  <script type="module" src="index.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 </body>
 </html>
