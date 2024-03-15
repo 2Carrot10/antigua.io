@@ -1,3 +1,4 @@
+var canUseWebWorker = (typeof(Worker) !== "undefined");
 var serviceData = new Array();
 const prefillServiceLearningOpportunitiesFeedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLScdaHfP6BeGAFyy3abi7YNacV48-gfRoezyBUzPY-OPuzRH_g/viewform?usp=pp_url&entry.576703126="
 var ServiceLearningFeedback = "";
@@ -21,17 +22,17 @@ var dataNotReadyError;
 fetchTemplates();
 downloadAndDisplayCSV();
 
-export function getServiceData(){return serviceData}
+export function getServiceData() { return serviceData }
 
 
-async function fetchTemplates(){
-  var templates = document.createElement( 'template' )
-    templates.innerHTML = await ( await fetch('templates.html')).text()
-    tileTemplate = templates.content.querySelector('#tile-template');
-    nothingFoundTemplate = templates.content.querySelector('#no-tiles');
-    dataNotRetrievedError = templates.content.querySelector('#data-not-retrieved-error')
-    searchDataError = templates.content.querySelector('#search-data-error')
-    dataNotReadyError = templates.content.querySelector('#data-not-ready-error')
+async function fetchTemplates() {
+  var templates = document.createElement('template')
+  templates.innerHTML = await (await fetch('templates.html')).text()
+  tileTemplate = templates.content.querySelector('#tile-template');
+  nothingFoundTemplate = templates.content.querySelector('#no-tiles');
+  dataNotRetrievedError = templates.content.querySelector('#data-not-retrieved-error')
+  searchDataError = templates.content.querySelector('#search-data-error')
+  dataNotReadyError = templates.content.querySelector('#data-not-ready-error')
 }
 
 class opportunity {
@@ -79,7 +80,7 @@ function createAlert(template, timeToFade, timeUntilFade) {
   //ensures only one message is on screen at a time
   if ((null != mostReccentAlertMessage) && (null != mostReccentAlertMessage.parentNode)) {
     mostReccentAlertMessage.parentNode.removeChild(mostReccentAlertMessage);
-  } 
+  }
   let clone = template.content.cloneNode(true);
   let container = document.createElement('div');
   container.appendChild(clone);
@@ -102,6 +103,8 @@ function removeFadeOut(el, timeToFade, timeUntilStart) {
 }
 
 export function searchFunction() {
+  if (window.getSelection) { window.getSelection().removeAllRanges(); }
+  else if (document.selection) { document.selection.empty(); }
   simpleSearchFunction();
   if (isSearchBroken) {
     searchIsBroken();
@@ -112,96 +115,26 @@ export function searchFunction() {
     return;
   }
 
-  function ensureHttps(url) {
-    // Check if the URL starts with 'http://' or 'https://'
-    if (/^https?:\/\//i.test(url)) {
-      return url; // URL is already complete with http or https
-    } else {
-      return 'https://' + url; // Add 'https://' to the URL
-    }
-  }
-
-  var advancedMode = false;
-  var hasRun = false;
-
-
-  var numberOfTiles = 0;
-  deleteAllTiles();
-  if (document.getElementById("search mode").selectedIndex == 0) {
-    serviceData.sort(function (a, b) {
-      var textA = a.title.toUpperCase();
-      var textB = b.title.toUpperCase();
-      return (textA > textB) ? 1 : (textA < textB) ? -1 : 0;
-    });
-  }
-  else if (document.getElementById("search mode").selectedIndex == 1) {
-    serviceData.sort(function (a, b) {
-      var textA = a.title.toUpperCase();
-      var textB = b.title.toUpperCase();
-      return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
-    });
-  } else if (document.getElementById("search mode").selectedIndex == 2) {
-    serviceData.sort(function (a, b) {
-      var aT = a.description.length;
-      var bT = b.description.length;
-      return -(aT - bT);
-    });
-  }
-  else if (document.getElementById("search mode").selectedIndex == 3) {
-    serviceData.sort(function (a, b) {
-      var aT = a.description.length;
-      var bT = b.description.length;
-      return (aT - bT);
-    });
-  }
-  else {
-    serviceData = shuffleArray(serviceData)
-  }
-  var searchForTags = true//document.getElementById("tagsBox").value.replace(/\s/g, '').toLowerCase().split(",");
-  var searchForPhrases = document.getElementById("phraseBox").value.toLowerCase().split(",");
-  for (var i = 0; i < searchForPhrases; i++) {
-    searchForPhrases[i] = searchForPhrases[i].trim();
-  }
-
-  for (let i = 0; i < serviceData.length; i++) {
-    var existsInZip = zipDictionary.get(serviceData[i].zipcode);
-    if (existsInZip == false) existsInZip = false;
-    existsInZip = !!existsInZip;
-    var existsInTags = true;
-
-    for (let j = 0; j < searchForTags.length; j++) {
-      let q = [];
-      for (let k = 0; k < serviceData[i].tags.length; k++) {
-        if (serviceData[i].tags[k] != null) q[k] = serviceData[i].tags[k].replace(/\s/g, '').toLowerCase()
-      }
-      if (!q.includes(searchForTags[j])) existsInTags = false;
-
-    }
-    if (searchForTags == "") existsInTags = true;
-
-    var existsInPhrases = true;
-    for (let j = 0; j < searchForPhrases.length; j++) {
-      if (!serviceData[i].description.toLowerCase().includes(searchForPhrases[j])) existsInPhrases = false;
-    }
-    var existsAge = (document.getElementById("minAgeBox").value == null || document.getElementById("minAgeBox").value == "" || isNaN(document.getElementById("minAgeBox").value) || document.getElementById("minAgeBox").value == "" || isNaN(document.getElementById("minAgeBox").value) || (parseInt(serviceData[i].minAge) <= parseInt(document.getElementById("minAgeBox").value)));
-
-    if (serviceData[i] != null && existsInTags && existsInZip &&
-      existsInPhrases &&
-      serviceData[i].title.toLowerCase().includes(document.getElementById("titleBox").value.toLowerCase()) &&
-      existsAge
-    ) {
-      renderOneTile(serviceData[i].title, serviceData[i].description, serviceData[i].minAge, serviceData[i].address, serviceData[i].website, serviceData[i].zipcode, serviceData[i].tags, false);
-      numberOfTiles++;
-    }
-  }
-  if (numberOfTiles == 0) {
-    let template = document.getElementById("no tiles");
-    let clone = template.content.cloneNode(true);
-    var myNode = document.getElementById("groupDiv");
-    myNode.appendChild(clone);
-  }
-  document.documentElement.scrollTop = 620;
 }
+
+export function highlightKeywords(text, keywords) {
+  let highlightedText = text;
+  keywords.forEach(function (keyword) {
+      const regex = new RegExp(`(${keyword})`, 'gi'); // 'gi' for case-insensitive and global search
+      highlightedText = highlightedText.replace(regex, `<span class="highlight">$1</span>`);
+  });
+  return highlightedText;
+}
+
+function ensureHttps(url) {
+  // Check if the URL starts with 'http://' or 'https://'
+  if (/^https?:\/\//i.test(url)) {
+    return url; // URL is already complete with http or https
+  } else {
+    return 'https://' + url; // Add 'https://' to the URL
+  }
+}
+
 
 export function deleteAllTiles() {
   var myNode = document.getElementById("groupDiv");
@@ -209,46 +142,44 @@ export function deleteAllTiles() {
     myNode.removeChild(myNode.lastChild);
   }
 }
-export function isSearchError(){
-if (isSearchBroken) {
-  searchIsBroken();
-  return true;
-}
-else if (!isSearchReady) {
-  searchNotReady();
-  return true;
-}
-return false;
+export function isSearchError() {
+  if (isSearchBroken) {
+    searchIsBroken();
+    return true;
+  }
+  else if (!isSearchReady) {
+    searchNotReady();
+    return true;
+  }
+  return false;
 }
 
-export function renderNothingFoundCard(){
+export function renderNothingFoundCard() {
   let clone = nothingFoundTemplate.content.cloneNode(true);
   var myNode = document.getElementById("groupDiv");
   myNode.appendChild(clone);
 
 }
-export function renderOneTile(opp){
-  console.log("log:"+opp)
+export function renderOneTile(opp,highlightWords=[]) {
   renderOneTileFromVal(opp.title,
-     opp.description, 
-     opp.minAge, 
-     opp.address, 
-     opp.website, 
-     opp.zipcode, 
-     opp.tags, 
-     false);
+    opp.description,
+    opp.minAge,
+    opp.address,
+    opp.website,
+    opp.zipcode,
+    opp.tags, highlightWords);
 }
 
-function renderOneTileFromVal(title, description, minAge, address, website, zipcode, tags) {
+function renderOneTileFromVal(title, description, minAge, address, website, zipcode, tags, highlightWords) {
 
   let clone = tileTemplate.content.cloneNode(true);
   clone.getElementById("minAge").innerHTML = minAge;
-  clone.getElementById("description").innerHTML = description;
-  clone.getElementById("title").innerHTML = title;
-  clone.getElementById("website").innerHTML = website;
+  clone.getElementById("description").innerHTML = highlightKeywords(description,highlightWords);
+  clone.getElementById("title").innerHTML = highlightKeywords(title,highlightWords);
+  clone.getElementById("website").innerHTML = highlightKeywords(website,highlightWords);
   clone.getElementById("website").setAttribute('href', website);
 
-  clone.getElementById("report-opportunity-link").setAttribute('href', prefillServiceLearningOpportunitiesFeedbackUrl + `${encodeURIComponent(title)}`);
+  //clone.getElementById("report-opportunity-link").setAttribute('href', prefillServiceLearningOpportunitiesFeedbackUrl + `${encodeURIComponent(title)}`);
 
   if (/\d/.test(address)) {
     clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"

@@ -25,38 +25,7 @@
   <h1 style="font-size: 3em;  text-shadow: 2px 2px #ffffff; font-family: 'Gill Sans', sans-serif"><b>Service Learning Search</b></h1>
   <img src="icon.png" style="width:100px; height:auto; margin-left: 3%;">
 </div>
-
-<!--
-    <div class="flex">
-      Title Includes: <input id="titleBox"
-        class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-        placeholder="e.g. 'city'" type="text" name="search" />
-    </div>
-
-    <div class="flex">
-      <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number"
-        class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-        placeholder="e.g. '13'" type="text" name="search" />
-    </div>
-
-    <div class="flex">
-      <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox"
-        class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-        placeholder="e.g. 'Civic, Differently Abled, Health'" type="text" name="search" />
-    </div>
-    Sorting by:
-    <select name="sort mode" id="search mode"
-      class="drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
-      <option value="az">alphabetical (a-z)</option>
-      <option value="za">alphabetical (z-a)</option>
-      <option value="az">description length (long-short)</option>
-      <option value="za">description length (short-long)</option>
-      <option value="r">randomized</option>
-    </select>
-  -->
-
                    
-<!--start of new section sticky-div -->
 <div id="search" class="transition-all mx-auto z-50 !w-7/12">
   <div class="rounded-2xl rounded-t-none shadow-sm bg-white/75 mx-auto backdrop-blur-sm">
 
@@ -72,32 +41,40 @@
 
       <div class="flex w-full" id="expand-container">
         <div id="advanced-search"  class="expand-contract contracted" style="display:block;width:100%;">
+
+
+          <div class="flex">
+            Description Includes: <input id="titleBox"
+              class="textbox placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="e.g. 'city'" type="text" name="research, computer" />
+          </div>
           <div class="flex">
             Title Includes: <input id="titleBox"
-              class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              class="textbox placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
               placeholder="e.g. 'city'" type="text" name="search" />
           </div>
       
           <div class="flex">
             <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number"
-              class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              class="textbox my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
               placeholder="e.g. '13'" type="text" name="search" />
           </div>
       
           <div class="flex">
             <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox"
-              class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              class="textbox my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
               placeholder="e.g. 'Civic, Differently Abled, Health'" type="text" name="search" />
           </div>
           Sorting by:
           <select name="sort mode" id="search mode"
-            class="drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
+            class="textbox drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
             <option value="az">alphabetical (a-z)</option>
             <option value="za">alphabetical (z-a)</option>
             <option value="az">description length (long-short)</option>
             <option value="za">description length (short-long)</option>
             <option value="r">randomized</option>
           </select>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">search!</button>
         </div>
       </div>
 
@@ -107,88 +84,21 @@
         <div class="text-md opacity-75 text-center min-w-lg">Made by <a href="https://github.com/2carrot10"
           target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast"
           class="font-bold" target="_blank">Micah</a></div>
-          <div><a href="URL TO BE ADDED"
-            class="font-bold text-md opacity-75 text-center min-w-lg">About</a></div>
-            <button>side by side view</button>
+          <div>
+            <div class="text-md opacity-75 text-center min-w-lg">
+            <a class="font-bold" href="/sideView.html">Side by side view</a>
+          </div>
+          </div>
+
       </div>
     </div>
   </div>
-  <!--
-  <div id="search" class="transition-all w-full flex-justify-center items-center place-content-top mx-auto z-50 !w-7/12 left-0 right-0">
-    <div class="rounded-2xl rounded-t-none shadow-sm h-fit w-full bg-white/75 backdrop-blur-sm mx-auto">
-minimise
-    </div>
-    -->
   </div>
 </div>
-<!--end of new section-->
 
 <div class="centered-under-title">
 
 </div>
-                
-            
-
-
-              <template>  
-    <div class="opportunity-card">
-      <div class="opportunity-details">
-        <p><strong>Keyword Search: </strong><input type="text" id="phraseBox" class="textbox"
-            placeholder="e.g. 'research, cancer, seattle'"></p>
-        <p><strong>Title Includes: </strong><input type="text" id="titleBox" class="textbox" placeholder="e.g. 'City'">
-        </p>
-        <p><strong>Age: </strong><input type="text" id="minAgeBox" class="textbox" placeholder="e.g. '13'"></p>
-        <p><strong>Categories: </strong></p>
-            <div id="checkboxes">
-              <ul>
-                <li><input type="checkbox">Abilities</li>
-                <li><input type="checkbox">Family</li>
-                <li><input type="checkbox">Youth</li>
-                <li><input type="checkbox">Civic</li>
-                <li><input type="checkbox">Health</li>
-                <li><input type="checkbox">Differently Abled</li>
-                <li><input type="checkbox">International</li>
-                <li><input type="checkbox">Office-Clerical</li>
-                <li><input type="checkbox">Homeless</li>
-                <li><input type="checkbox">Low-income</li>
-                <li><input type="checkbox">Environment</li>
-                <li><input type="checkbox">Transportation</li>
-                <li><input type="checkbox">Political-Advocacy</li>
-                <li><input type="checkbox">Transportation</li>
-              </ul>
-            </div>
-        <p><strong>Zip Code: </strong></p>
-        
-  <div style="  position: relative;
-  top: 0;
-  left: 0;">    
-
-    <img src="seattle.jpg" class="seattleMapImage" style="  position: relative; border-radius: 20%;
-    border-width: thick;
-    top: 0; width:50%; height:auto;
-    left: 0;" onclick="clickSeattle(this.id)" alt="seattle map"/>
-      
-    <object id="svgobject" style="  position: absolute;
-    top: 0px;
-    left: 0px; width:50%; height:auto;"
-class="seattleMapImage" data="seattle.svg" onLoad="setupMap()"></object>
-
-</div>
-<small>map and zipcode boundaries from: <a class="hyperlink" href="https://simplemaps.com/city/seattle/zips">https://simplemaps.com/city/seattle/zips</a></small>
-        <p><strong>Sorting: </strong></p>
-        </select>
-
-        <select name="sort mode" id="search mode"
-        class="drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
-        <option value="az">alphabetical (a-z)</option>
-        <option value="za">alphabetical (z-a)</option>
-        <option value="az">description length (long-short)</option>
-        <option value="za">description length (short-long)</option>
-        <option value="r">randomized</option>
-      </select>
-    </div>
-  </div>
-</template>
   <br>
   <div id="groupDiv">
 
