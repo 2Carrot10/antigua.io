@@ -75,19 +75,7 @@ z-index: 10000;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
-
-
-
-    .sideMenu {
-      width: 35%;
-      height: 100%;
-      float: right;
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-      padding: 5px;
-    }
-
+    
     .centerSearch {
       margin-left: auto;
       margin-right: auto;
@@ -128,7 +116,6 @@ z-index: 10000;
       position: sticky;
       z-index: 100;
       top: 0px;
-      padding: 10px 0px;
     }
     
     .opportunity-details {
@@ -232,15 +219,5 @@ z-index: 10000;
 
     #expand-container {
       overflow: hidden;
-    }
-    #expand-contract {
-      border-bottom: 1px solid red;
-      margin-top: -100%;
-      transition: all 1s;
-    }
-    
-    #expand-contract.expanded {
-       background-color: green;
-       margin-top: 0;
     }
     

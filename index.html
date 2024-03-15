@@ -16,8 +16,6 @@
   <img src="icon.png" style="width:100px; height:auto; margin-left: 3%;">
 </div>
 
-  <div class="sticky-div centered-under-title">
-
 <!--
     <div class="flex">
       Title Includes: <input id="titleBox"
@@ -47,31 +45,48 @@
     </select>
   -->
 
-<input id="search-box" autocomplete="off" style="font-size: 20px;"
-                  class="my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                  placeholder="search anything..." type="text" name="search" />
-</div>
+                   
+<!--start of new section-->
+<div id="search" class="sticky-div transition-all w-full flex-justify-center items-center place-content-top mx-auto z-50 !w-7/12">
+  <div class="rounded-2xl rounded-t-none shadow-sm h-fit w-full bg-white/75 mx-auto backdrop-blur-sm">
+    <div class="w-full">
 
+      <div class="opportunity-details grid gap-2 w-full">
+        <div class="flex w-full">
+
+          <input id="search-box"
+            class="w-full :italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl p-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+            placeholder="Search anything..." type="text" name="search"></input>
+        </div>
+        
+        <div class="w-full flex justify-between h-fit mb-2 px-2">
+        <div id="advanced" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer">Advanced</div>
+        <div class="text-md opacity-75 text-center min-w-lg">Made by <a href="https://github.com/2carrot10"
+          target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast"
+          class="font-bold" target="_blank">Micah</a></div>
+          <div><a href="URL TO BE ADDED"
+            class="font-bold text-md opacity-75 text-center min-w-lg">About</a></div>
+            <button>minimise</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--
+  <div id="search" class="transition-all w-full flex-justify-center items-center place-content-top mx-auto z-50 !w-7/12 left-0 right-0">
+    <div class="rounded-2xl rounded-t-none shadow-sm h-fit w-full bg-white/75 backdrop-blur-sm mx-auto">
+minimise
+    </div>
+    -->
+  </div>
+</div>
+<!--end of new section-->
 
 <div class="centered-under-title">
 
-                </div>
-                <div class="w-full flex justify-between h-fit mb-2 px-2">
-                  <div id="advanced" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer">Advanced</div>
-                  <div class="text-md opacity-75 text-center min-w-lg">Made by <a href="https://github.com/2carrot10"
-                    target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast"
-                    class="font-bold" target="_blank">Micah</a></div>
-                    <div><a href="URL TO BE ADDED"
-                      class="font-bold text-md opacity-75 text-center min-w-lg">About</a></div>
-                    
-                  </div>
-                </div>
-
-                <div class="collapse bg-base-200">
-                  <div class="collapse-content"> 
-                    <p>hello</p>
-                  </div>
-                </div>
+</div>
+                
+            
 
 
               <template>  
