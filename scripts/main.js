@@ -27,7 +27,7 @@ export function getServiceData() { return serviceData }
 
 async function fetchTemplates() {
   var templates = document.createElement('template')
-  templates.innerHTML = await (await fetch('templates.html')).text()
+  templates.innerHTML = await (await fetch('assets/templates.html')).text()
   tileTemplate = templates.content.querySelector('#tile-template');
   nothingFoundTemplate = templates.content.querySelector('#no-tiles');
   dataNotRetrievedError = templates.content.querySelector('#data-not-retrieved-error')

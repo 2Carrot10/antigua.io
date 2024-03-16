@@ -3,18 +3,18 @@
 
 <head>
   <title>Service Learning Search</title>
-  <link href="styles.css" rel="stylesheet" type="text/css" />
-  <link rel="icon" href="icon.png">
+  <link href="styles/styles.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="assets/icon.png">
 
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <script type="module" src="index.js"></script>
+  <script type="module" src="scripts/index.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <script type="module">
-    import { expandContract } from './index.js'
+    import { expandContract } from './scripts/index.js'
 
     document.querySelector('#expand-contract-button').addEventListener('click', expandContract)
   </script>
@@ -24,7 +24,7 @@
   <div style="top: 54%;" class="centered-title">
     <h1 style="font-size: 3em;  text-shadow: 2px 2px #ffffff; font-family: 'Gill Sans', sans-serif"><b>Service Learning
         Search</b></h1>
-    <img src="icon.png" style="width:100px; height:auto; margin-left: 3%;">
+    <img src="assets/icon.png" style="width:100px; height:auto; margin-left: 3%;">
   </div>
 
   <div id="search" class="transition-all mx-auto z-50 !w-7/12">
@@ -42,6 +42,7 @@
         <div class="flex w-full" id="expand-container">
           <div id="advanced-search" class="expand-contract contracted" style="display:block;width:100%;">
 
+            <!--simple search-->
             <div style="width:50%;float:left;">
               <div class="flex">
                 Description Includes: <input id="descriptionBox" autocomplete="off"
@@ -74,9 +75,10 @@
               </select>
             </div>
 
+            <!--advanced search-->
             <div style="float:right; position:relative; width:50%">
               <div style="  position: relative; top: 0; left: 0;">
-                <img src="seattle.jpg" class="seattleMapImage" style="position: relative; border-radius: 20%;
+                <img src="assets/seattle.jpg" class="seattleMapImage" style="position: relative; border-radius: 20%;
             border-width: thick;top: 0; width:50%; height:auto; left: 0;" onclick="clickSeattle(this.id)"
                   alt="seattle map" />
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">highlight
@@ -85,7 +87,7 @@
                   none</button>
                 <object id="svgobject" style="  position: absolute;
             top: 0px;
-            left: 0px; width:50%; height:auto;" class="seattleMapImage" data="seattle.svg"
+            left: 0px; width:50%; height:auto;" class="seattleMapImage" data="assets/seattle.svg"
                   onLoad="setupMap()"></object>
               </div>
             </div>
