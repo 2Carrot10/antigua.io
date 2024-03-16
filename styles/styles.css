@@ -56,11 +56,8 @@ z-index: 10000;
       scroll-behavior: smooth;
     }
 
-    .textbox {
-      border: 1px solid #ccc;
-      border-radius: 2px;
-      box-sizing: border-box;
-      margin-bottom: 2px;
+    .input-box {
+      width:100%;
     }
     
     .highlight {
