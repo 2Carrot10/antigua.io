@@ -12,96 +12,113 @@
   <script type="module" src="index.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
+
   <script type="module">
-    import {expandContract} from './index.js'
-    
+    import { expandContract } from './index.js'
+
     document.querySelector('#expand-contract-button').addEventListener('click', expandContract)
   </script>
 </head>
+
 <body>
+  <div style="top: 54%;" class="centered-title">
+    <h1 style="font-size: 3em;  text-shadow: 2px 2px #ffffff; font-family: 'Gill Sans', sans-serif"><b>Service Learning
+        Search</b></h1>
+    <img src="icon.png" style="width:100px; height:auto; margin-left: 3%;">
+  </div>
 
-<div style="top: 54%;" class="centered-title">
-  <h1 style="font-size: 3em;  text-shadow: 2px 2px #ffffff; font-family: 'Gill Sans', sans-serif"><b>Service Learning Search</b></h1>
-  <img src="icon.png" style="width:100px; height:auto; margin-left: 3%;">
-</div>
-                   
-<div id="search" class="transition-all mx-auto z-50 !w-7/12">
-  <div class="rounded-2xl rounded-t-none shadow-sm bg-white/75 mx-auto backdrop-blur-sm">
-
+  <div id="search" class="transition-all mx-auto z-50 !w-7/12">
+    <div class="rounded-2xl rounded-t-none shadow-sm bg-white/75 mx-auto backdrop-blur-sm">
       <div class="grid gap-2 w-full">
         <div class="flex w-full" id="expand-container">
-            <div id="simple-search"  class="expand-contract expanded" style="display:block;width:100%;">
 
-          <input id="search-box"
-            class="w-full :italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl p-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-            placeholder="Search anything..." type="text" name="search"></input>
-          </div>   
-      </div>
+          <div id="simple-search" class="expand-contract expanded" style="display:block;width:100%;">
+            <input id="search-box" autocomplete="off"
+              class="w-full :italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl p-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              placeholder="Search anything..." type="text" name="search">
+          </div>
 
-      <div class="flex w-full" id="expand-container">
-        <div id="advanced-search"  class="expand-contract contracted" style="display:block;width:100%;">
-
-
-          <div class="flex">
-            Description Includes: <input id="titleBox"
-              class="textbox placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="e.g. 'city'" type="text" name="research, computer" />
-          </div>
-          <div class="flex">
-            Title Includes: <input id="titleBox"
-              class="textbox placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="e.g. 'city'" type="text" name="search" />
-          </div>
-      
-          <div class="flex">
-            <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number"
-              class="textbox my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="e.g. '13'" type="text" name="search" />
-          </div>
-      
-          <div class="flex">
-            <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox"
-              class="textbox my-auto placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="e.g. 'Civic, Differently Abled, Health'" type="text" name="search" />
-          </div>
-          Sorting by:
-          <select name="sort mode" id="search mode"
-            class="textbox drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
-            <option value="az">alphabetical (a-z)</option>
-            <option value="za">alphabetical (z-a)</option>
-            <option value="az">description length (long-short)</option>
-            <option value="za">description length (short-long)</option>
-            <option value="r">randomized</option>
-          </select>
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">search!</button>
         </div>
-      </div>
+        <div class="flex w-full" id="expand-container">
+          <div id="advanced-search" class="expand-contract contracted" style="display:block;width:100%;">
 
+            <div style="width:50%;float:left;">
+              <div class="flex">
+                Description Includes: <input id="descriptionBox" autocomplete="off"
+                  class="input-box placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  placeholder="e.g. 'research, computer'" type="text" name="description" />
+              </div>
+              <div class="flex">
+                Title Includes: <input id="titleBox" autocomplete="off"
+                  class="input-box placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  placeholder="e.g. 'city'" type="text" name="search" />
+              </div>
+              <div class="flex">
+                <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number" autocomplete="off"
+                  class="input-box my-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  placeholder="e.g. '13'" type="text" name="search" />
+              </div>
+              <div class="flex">
+                <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox" autocomplete="off"
+                  class="input-box my-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  placeholder="e.g. 'Civic, Differently Abled, Health'" type="text" name="search" />
+              </div>
+              Sorting by:
+              <select name="sort mode" id="search mode"
+                class="input-box drop w-full border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
+                <option value="az">alphabetical (a-z)</option>
+                <option value="za">alphabetical (z-a)</option>
+                <option value="az">description length (long-short)</option>
+                <option value="za">description length (short-long)</option>
+                <option value="r">randomized</option>
+              </select>
+            </div>
+
+            <div style="float:right; position:relative; width:50%">
+              <div style="  position: relative; top: 0; left: 0;">
+                <img src="seattle.jpg" class="seattleMapImage" style="position: relative; border-radius: 20%;
+            border-width: thick;top: 0; width:50%; height:auto; left: 0;" onclick="clickSeattle(this.id)"
+                  alt="seattle map" />
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">highlight
+                  all</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">highlight
+                  none</button>
+                <object id="svgobject" style="  position: absolute;
+            top: 0px;
+            left: 0px; width:50%; height:auto;" class="seattleMapImage" data="seattle.svg"
+                  onLoad="setupMap()"></object>
+              </div>
+            </div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">search!</button>
           </div>
-        <div class="w-full flex justify-between h-fit mb-2 px-2">
-        <div id="expand-contract-button" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer">Advanced</div>
+
+        </div>
+
+      </div>
+      <div class="w-full flex justify-between h-fit mb-2 px-2">
+        <div id="expand-contract-button" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer">
+          Advanced</div>
         <div class="text-md opacity-75 text-center min-w-lg">Made by <a href="https://github.com/2carrot10"
-          target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast"
-          class="font-bold" target="_blank">Micah</a></div>
-          <div>
-            <div class="text-md opacity-75 text-center min-w-lg">
+            target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast" class="font-bold"
+            target="_blank">Micah</a></div>
+        <div>
+          <div class="text-md opacity-75 text-center min-w-lg">
             <a class="font-bold" href="/sideView.html">Side by side view</a>
           </div>
-          </div>
+        </div>
 
       </div>
     </div>
   </div>
+
+  <div class="centered-under-title">
+
   </div>
-</div>
-
-<div class="centered-under-title">
-
-</div>
   <br>
+
   <div id="groupDiv">
 
   </div>
 </body>
+
 </html>

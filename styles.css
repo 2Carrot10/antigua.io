@@ -57,13 +57,12 @@ z-index: 10000;
     }
 
     .textbox {
-      width: 40%;
       border: 1px solid #ccc;
       border-radius: 2px;
       box-sizing: border-box;
       margin-bottom: 2px;
     }
-
+    
     .highlight {
       background-color: #0ea5e950;
       color: black;
