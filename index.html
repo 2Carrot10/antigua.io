@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <script type="module" src="scripts/index.js"></script>
+  <script type="module" src="scripts/load.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -20,21 +20,23 @@
   </script>
 </head>
 
-<body>
-  <div style="top: 54%;" class="centered-title">
-    <h1 style="font-size: 3em;  text-shadow: 2px 2px #ffffff; font-family: 'Gill Sans', sans-serif"><b>Service Learning
+<body class="h-screen flex justify-center items-center place-content-center">
+  <div class="h-fit my-auto">
+  <div class="centered-title h-fit my-auto">
+    <h1 style="font-size: 3em; font-family: 'Gill Sans', sans-serif"><b>DTS
         Search</b></h1>
     <img src="assets/icon.png" style="width:100px; height:auto; margin-left: 3%;">
   </div>
 
   <div id="search" class="transition-all mx-auto z-50 !w-7/12">
-    <div class="rounded-2xl rounded-t-none shadow-sm bg-white/75 mx-auto backdrop-blur-sm">
+    <div class="rounded-2xl rounded-t-none bg-white/75 mx-auto backdrop-blur-sm">
+      <form action="search.html" method="get">
       <div class="grid gap-2 w-full">
         <div class="flex w-full" id="expand-container">
             <!--simple search-->
           <div id="simple-search" class="expand-contract expanded" style="display:block;width:100%;">
             <input id="search-box" autocomplete="off"
-              class="w-full :italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-2xl p-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              class="w-full :italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-full p-3 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
               placeholder="Search anything..." type="text" name="search">
           </div>
 
@@ -111,16 +113,10 @@
 
       </div>
     </div>
+  </form>
   </div>
-
-  <div class="centered-under-title">
-
-  </div>
-  <br>
-
-  <div id="groupDiv">
-
-  </div>
+ 
+</div>
 </body>
 
 </html>
