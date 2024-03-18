@@ -252,9 +252,6 @@ export function downloadAndDisplayCSV() {
 
     console.log(serviceData)
 
-
-    //IMPORTANT, used to speed up load
-    localStorage.setItem('csvData', JSON.stringify(rows));
     isSearchReady = true;
 
 }

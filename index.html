@@ -18,6 +18,8 @@
 
     document.querySelector('#expand-contract-button').addEventListener('click', expandContract)
   </script>
+
+
 </head>
 
 <body class="h-screen flex justify-center items-center place-content-center">
@@ -30,7 +32,7 @@
 
   <div id="search" class="transition-all mx-auto z-50 !w-7/12">
     <div class="rounded-2xl rounded-t-none bg-white/75 mx-auto backdrop-blur-sm">
-      <form action="search.html" method="get">
+      <form action="search.html" method="get" id="searchform">
       <div class="grid gap-2 w-full">
         <div class="flex w-full" id="expand-container">
             <!--simple search-->
@@ -117,6 +119,15 @@
   </div>
  
 </div>
+<script>
+  document.getElementById('searchform').addEventListener('submit', function(event) {
+      var userInput = document.getElementById('simple-search').value;
+      if (!userInput.trim()) { // Checks if the input is empty or whitespace
+          event.preventDefault(); // Prevents the form from submitting
+          alert('empty')
+      }
+  });
+  </script>
 </body>
 
 </html>
