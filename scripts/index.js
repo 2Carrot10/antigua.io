@@ -27,6 +27,6 @@ export function expandContract() {
         document.getElementById("expand-contract-button").innerHTML="Simple mode";
     }
     else{
-        document.getElementById("expand-contract-button").innerHTML="Advanced mode";
+        document.getElementById("expand-contract-button").innerHTML="Advanced";
     }
 }
