@@ -85,7 +85,7 @@ function simpleSearchFunction() {
 
     }
     if (numberOfTiles < 1) {
-        //main.renderNothingFoundCard();
+        main.renderNothingFoundCard();
     }
     let time2 = Date.now()
     document.getElementById('results_number').innerHTML =
@@ -93,8 +93,6 @@ function simpleSearchFunction() {
             ("About " + (Math.round(numberOfTiles / 10) * 10).toString() + " results")
             : numberOfTiles.toString() + (numberOfTiles == 1 ? " result" : " results"))
         + " (" + ((time2 - time1) / 1000).toString() + " seconds)"
-
-    document.documentElement.scrollTop = document.getElementById("groupDiv").offsetTop - 4;
 
     var map = L.map('map').setView([0, 0], 2); // Initialize the map with a world view
 
