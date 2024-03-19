@@ -5,9 +5,9 @@ var isMobile = function () {
     return check;
 }();
 
-if (isMobile) {
+/*if (isMobile) {
     window.location.replace("/mobile.html")
-}
+}*/
 
 
 var advancedMode = false;
