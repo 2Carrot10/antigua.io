@@ -33,13 +33,11 @@ export function expandContract() {
 
 var params = new URLSearchParams(window.location.search);
 var searchBox = params.get('search');
-console.log(searchBox)
 
 async function loadall() {
     await simpleSearchFunction();
 }
 
-loadall()
 function simpleSearchFunction() {
     let time1 = Date.now()
 
@@ -76,7 +74,7 @@ function simpleSearchFunction() {
     for (let i = 0; i < main.getServiceData().length; i++) {
 
         if (main.getServiceData()[i].searchRating > 0) {
-            if(addresses.length < 3){
+            if(addresses.length < 5){
                 addresses.push(main.getServiceData()[i].address)
             }
             main.renderOneTile(main.getServiceData()[i], searchForPhrases);
@@ -117,7 +115,6 @@ function simpleSearchFunction() {
                 
 
         });
-        map.fitBounds(bounds);
     });
 
 }
@@ -142,3 +139,5 @@ function getSimpleSearchRating(opportunity, search) {
 function countInstances(string, word) {
     return string.split(word).length - 1;
 }
+
+loadall()
