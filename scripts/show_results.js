@@ -18,11 +18,8 @@ if (isMobile) {
     console.log(element)
     if (element && element.parentNode) {
         element.parentNode.removeChild(element); // This removes the element from the DOM
-      }
-    
+    } 
 }
-
-
 
 var advancedMode = false;
 export function expandContract() {
@@ -97,7 +94,7 @@ function simpleSearchFunction() {
 
     }
     if (numberOfTiles < 1) {
-        //main.renderNothingFoundCard();
+        main.renderNothingFoundCard();
     }
     let time2 = Date.now()
     document.getElementById('results_number').innerHTML =
@@ -105,8 +102,6 @@ function simpleSearchFunction() {
             ("About " + (Math.round(numberOfTiles / 10) * 10).toString() + " results")
             : numberOfTiles.toString() + (numberOfTiles == 1 ? " result" : " results"))
         + " (" + ((time2 - time1) / 1000).toString() + " seconds)"
-
-    document.documentElement.scrollTop = document.getElementById("groupDiv").offsetTop - 4;
 
     var map = L.map('map').setView([47.6062, -122.3321], 10);
 

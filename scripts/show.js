@@ -160,7 +160,8 @@ export function isSearchError() {
     return false;
 }
 
-export function renderNothingFoundCard() {
+export async function renderNothingFoundCard() {
+    await fetchTemplates();
     let clone = nothingFoundTemplate.content.cloneNode(true);
     var myNode = document.getElementById("groupDiv");
     myNode.appendChild(clone);
