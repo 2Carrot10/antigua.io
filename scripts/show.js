@@ -185,14 +185,20 @@ async function renderOneTileFromVal(title, description, minAge, address, website
     clone.getElementById("description").innerHTML = highlightKeywords(description, highlightWords);
     clone.getElementById("title").innerHTML = highlightKeywords(title, highlightWords);
     clone.getElementById("website").innerHTML = highlightKeywords(website, highlightWords);
-    clone.getElementById("website").setAttribute('href', ensureHttps(website));
+    clone.getElementById("websiteURL").setAttribute('href', ensureHttps(website));
 
     //clone.getElementById("report-opportunity-link").setAttribute('href', prefillServiceLearningOpportunitiesFeedbackUrl + `${encodeURIComponent(title)}`);
-
+    clone.getElementById("address").innerHTML = address//highlightKeywords(address,highlightKeywords);
     if (/\d/.test(address)) {
-        clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
+        clone.getElementById("addressURL").setAttribute('href', ensureHttps(
+            
+            "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`
+        ));
+        clone.getElementById("address").classList+=" hyperlink";
+
+        //clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
     } else {
-        clone.getElementById("address").innerHTML = address;
+        //clone.getElementById("address").innerHTML = address;
     }
 
     for (let i = 0; i < tags.length; i++) {
