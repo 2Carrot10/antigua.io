@@ -55,7 +55,7 @@
           <!--advanced search-->
           <div id="advanced-search" class="expand-contract contracted" style="display:block;width:100%;">
 
-            <div style="width:50%; float:left;">
+            <div style="width:50%; float:left;" class="grid gap-2">
               <div class="flex">
                 Description Includes: <input id="descriptionBox" autocomplete="off"
                   class="input-box placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
@@ -76,6 +76,7 @@
                   class="input-box my-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
                   placeholder="e.g. 'Civic, Health'" type="text" name="search" />
               </div>
+              <div class="flex">
               Sorting by:
               <select name="sort mode" id="search mode"
                 class="input-box drop border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
@@ -86,6 +87,7 @@
                 <option value="r">randomized</option>
               </select>
             </div>
+            </div>
 
             <div style="float:right; position:relative; width:50%">
               <div style="position: relative; top: 0; left: 0;">
@@ -93,9 +95,9 @@
                 <img src="assets/seattle.jpg" class="seattleMapImage" style="position: relative; border-radius: 20%;
             border-width: thick;top: 0; width:80%; height:auto; left: 0;" onclick="clickSeattle(this.id)"
                   alt="seattle map" />
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">highlight
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">select
                   all</button>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">highlight
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">select
                   none</button>
                 <object id="svgobject" style="  position: absolute; top: 0px;
             left: 0px; width:80%; height:auto;" class="seattleMapImage" data="assets/seattle.svg"
@@ -126,14 +128,14 @@
 </div>
 <script>
   document.getElementById('searchform').addEventListener('submit', function(event) {
-      var userInput = document.getElementById('simple-search').value;
+      var userInput = document.getElementById('search-box').value;
       if (!userInput.trim()) { // Checks if the input is empty or whitespace
+        alert('empty')
           event.preventDefault(); // Prevents the form from submitting
-          alert('empty')
       }
   });
   document.getElementById('search-button').addEventListener('click', (e)=>{
-    if (!document.getElementById('simple-search'.value).trim()){
+    if (!document.getElementById('search-box').value.trim()){
       e.preventDefault()
     }
   })
