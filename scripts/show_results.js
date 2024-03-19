@@ -88,7 +88,7 @@ function simpleSearchFunction() {
     for (let i = 0; i < main.getServiceData().length; i++) {
 
         if (main.getServiceData()[i].searchRating > 0) {
-            if (addresses.length < 5) {
+            if (addresses.length < 25) {
                 addresses.push(main.getServiceData()[i].address)
             }
             main.renderOneTile(main.getServiceData()[i], searchForPhrases);
@@ -108,7 +108,7 @@ function simpleSearchFunction() {
 
     document.documentElement.scrollTop = document.getElementById("groupDiv").offsetTop - 4;
 
-    var map = L.map('map').setView([0, 0], 2); // Initialize the map with a world view
+    var map = L.map('map').setView([47.6062, -122.3321], 10); // Initialize the map with a world view
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',

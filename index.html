@@ -40,9 +40,9 @@
             <!--simple search-->
           <div id="simple-search" class="expand-contract expanded w-full relative">
             <input id="search-box" autocomplete="off"
-              class="w-full :italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-full p-3 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              class="w-full :italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-full p-2 sm:p-3 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
               placeholder="Search anything..." type="text" name="search" />
-              <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 absolute right-1.5 my-auto top-1.5 cursor-pointer">
+              <button type="submit" id="search-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 absolute right-1 my-auto top-1 sm:top-1.5 sm:right-1.5 cursor-pointer">
                 <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
                 <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z" clip-rule="evenodd" />
               </svg></button>
@@ -118,9 +118,6 @@
         target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast" class="font-bold"
         target="_blank">Micah</a></div>
     <div>
-      <div class="text-md opacity-75 text-center min-w-lg mx-4">
-        <a class="font-bold" href="/sideView.html">Side by side view</a>
-      </div>
     </div>
 
   </div>
@@ -135,6 +132,11 @@
           alert('empty')
       }
   });
+  document.getElementById('search-button').addEventListener('click', (e)=>{
+    if (!document.getElementById('simple-search'.value).trim()){
+      e.preventDefault()
+    }
+  })
   </script>
 </body>
 
