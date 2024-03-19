@@ -108,7 +108,7 @@ function simpleSearchFunction() {
 
     document.documentElement.scrollTop = document.getElementById("groupDiv").offsetTop - 4;
 
-    var map = L.map('map').setView([47.6062, -122.3321], 10); // Initialize the map with a world view
+    var map = L.map('map').setView([47.6062, -122.3321], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -124,7 +124,6 @@ function simpleSearchFunction() {
                 var latlng = results[0].center;
                 L.marker(latlng).addTo(map)
                     .bindPopup(place)
-                    .openPopup();
             }
 
 
