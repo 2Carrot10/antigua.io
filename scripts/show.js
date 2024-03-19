@@ -23,6 +23,7 @@ var dataNotReadyError;
 var params = new URLSearchParams(window.location.search);
 var text = params.get('search'); 
 document.getElementById('search-box').value = text;
+document.getElementById('search-box-2').value = text;
 
 fetchTemplates();
 downloadAndDisplayCSV();
