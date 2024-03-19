@@ -18,11 +18,8 @@ if (isMobile) {
     console.log(element)
     if (element && element.parentNode) {
         element.parentNode.removeChild(element); // This removes the element from the DOM
-      }
-    
+    } 
 }
-
-
 
 var advancedMode = false;
 export function expandContract() {
@@ -105,7 +102,7 @@ function simpleSearchFunction() {
             ("About " + (Math.round(numberOfTiles / 10) * 10).toString() + " results")
             : numberOfTiles.toString() + (numberOfTiles == 1 ? " result" : " results"))
         + " (" + ((time2 - time1) / 1000).toString() + " seconds)"
-        
+
     var map = L.map('map').setView([47.6062, -122.3321], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
