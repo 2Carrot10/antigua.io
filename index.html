@@ -27,9 +27,7 @@
 <body class="h-screen flex justify-center items-center place-content-center">
   <div class="h-fit my-auto">
   <div class="centered-title h-fit my-auto">
-    <h1 style="font-size: 3em; font-family: 'Gill Sans', sans-serif"><b>DTS
-        Search</b></h1>
-    <img src="assets/icon.png" style="width:100px; height:auto; margin-left: 3%;">
+    <img src="image/dts_search.png" class="w-full max-w-sm h-auto rounded-md">
   </div>
 
   <div id="search" class="transition-all mx-auto z-50 !w-full max-w-2xl">
@@ -40,13 +38,12 @@
             <!--simple search-->
           <div id="simple-search" class="expand-contract expanded w-full relative">
             <input id="search-box" autocomplete="off"
-              class="w-full :italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-full p-2 sm:p-3 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              class="w-full :italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-full p-2 sm:p-3 !px-4 !pl-10 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
               placeholder="Search anything..." type="text" name="search" />
-              <button type="submit" id="search-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 absolute right-1 my-auto top-1 sm:top-1.5 sm:right-1.5 cursor-pointer">
-                <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
-                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z" clip-rule="evenodd" />
-              </svg></button>
-              
+              <!--<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 opacity-75 absolute left-1 my-auto top-1 sm:top-1.5 sm:left-1.5 cursor-pointer">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>-->
+              <svg class="w-6 h-6 opacity-50 absolute left-2 my-auto top-2 sm:top-2.5 sm:left-2.5 cursor-pointer" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 6.5C10 8.433 8.433 10 6.5 10C4.567 10 3 8.433 3 6.5C3 4.567 4.567 3 6.5 3C8.433 3 10 4.567 10 6.5ZM9.30884 10.0159C8.53901 10.6318 7.56251 11 6.5 11C4.01472 11 2 8.98528 2 6.5C2 4.01472 4.01472 2 6.5 2C8.98528 2 11 4.01472 11 6.5C11 7.56251 10.6318 8.53901 10.0159 9.30884L12.8536 12.1464C13.0488 12.3417 13.0488 12.6583 12.8536 12.8536C12.6583 13.0488 12.3417 13.0488 12.1464 12.8536L9.30884 10.0159Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
           </div>
 
         </div>

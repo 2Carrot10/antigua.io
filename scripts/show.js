@@ -190,7 +190,7 @@ async function renderOneTileFromVal(title, description, minAge, address, website
     //clone.getElementById("report-opportunity-link").setAttribute('href', prefillServiceLearningOpportunitiesFeedbackUrl + `${encodeURIComponent(title)}`);
 
     if (/\d/.test(address)) {
-        //clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
+        clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
     } else {
         clone.getElementById("address").innerHTML = address;
     }
