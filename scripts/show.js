@@ -148,6 +148,7 @@ export function deleteAllTiles() {
         myNode.removeChild(myNode.lastChild);
     }
 }
+
 export function isSearchError() {
     if (isSearchBroken) {
         searchIsBroken();
@@ -165,8 +166,8 @@ export async function renderNothingFoundCard() {
     let clone = nothingFoundTemplate.content.cloneNode(true);
     var myNode = document.getElementById("groupDiv");
     myNode.appendChild(clone);
-
 }
+
 export function renderOneTile(opp, highlightWords = []) {
     renderOneTileFromVal(opp.title,
         opp.description,
@@ -185,16 +186,21 @@ async function renderOneTileFromVal(title, description, minAge, address, website
     clone.getElementById("description").innerHTML = highlightKeywords(description, highlightWords);
     clone.getElementById("title").innerHTML = highlightKeywords(title, highlightWords);
     clone.getElementById("website").innerHTML = highlightKeywords(website, highlightWords);
-    clone.getElementById("websiteURL").setAttribute('href', website);
+    clone.getElementById("websiteURL").setAttribute('href', ensureHttps(website));
 
     //clone.getElementById("report-opportunity-link").setAttribute('href', prefillServiceLearningOpportunitiesFeedbackUrl + `${encodeURIComponent(title)}`);
-
+    clone.getElementById("address").innerHTML = address//highlightKeywords(address,highlightKeywords);
     if (/\d/.test(address)) {
+        clone.getElementById("addressURL").setAttribute('href', ensureHttps(
+            
+            "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`
+        ));
+        clone.getElementById("address").classList+=" hyperlink";
+
         //clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
     } else {
-        clone.getElementById("address").innerHTML = address;
+        //clone.getElementById("address").innerHTML = address;
     }
-    clone.getElementById('addressURL').setAttribute('href', "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`)
 
     for (let i = 0; i < tags.length; i++) {
         if (tags[i] == "" || tags[i] == "\r") continue;
@@ -227,7 +233,7 @@ function parseCSV(str) {
     }
     return arr;
 }
-export async function downloadAndDisplayCSV() {
+export function downloadAndDisplayCSV() {
     class opportunity {
         constructor(data) {
             this.data = data;
@@ -247,32 +253,16 @@ export async function downloadAndDisplayCSV() {
         }
     }
 
-    let rows = JSON.parse(localStorage.getItem('csvData'))
-    
-    if(rows == null || rows == undefined){
-        await fetch(csvUrl)
-        .then(response => response.text()) // Get the text from the response
-        .then(csvData => {
-            rows = parseCSV(csvData);
-            localStorage.setItem('csvData', JSON.stringify(rows));
-
-        })
-        .catch(error => {
-            console.error("Error fetching CSV data:", error);
-        });
-    }
+    const rows = JSON.parse(localStorage.getItem('csvData'))
 
     for (let i = 1; i < rows.length; i++) {//skip heading row
         serviceData.push(new opportunity(rows[i]));
     }
 
+    console.log(serviceData)
+
     isSearchReady = true;
 
-}
-
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
 }
 
 window.setupMap = function setupMap() {

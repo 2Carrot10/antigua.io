@@ -6,12 +6,6 @@ var isMobile = function () {
     return check;
 }();
 
-/*
-if (isMobile) {
-    window.location.replace("/mobile.html")
-}
-*/
-
 if (isMobile) {
     console.log('mobile')
     var element = document.getElementById("not-mobile");
@@ -74,13 +68,8 @@ function simpleSearchFunction() {
         return -(aVal - bVal);
     });
 
-    var hasFoundAnything = false;//purposfuly made global although this should be avoided.
-    //so lambda function can access this variable
-
     var numberOfTiles = 0;
-
     let addresses = []
-
 
     for (let i = 0; i < main.getServiceData().length; i++) {
 
@@ -112,7 +101,6 @@ function simpleSearchFunction() {
 
     var geocoder = L.Control.Geocoder.nominatim(); // Using Nominatim geocoder
 
-    console.log(addresses)
     addresses.forEach(function (place, index) {
         geocoder.geocode(place, function (results) {
             if (results.length > 0) {
