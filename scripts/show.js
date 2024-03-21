@@ -265,8 +265,6 @@ export function downloadAndDisplayCSV() {
         serviceData.push(new opportunity(rows[i]));
     }
 
-    console.log(serviceData)
-
     isSearchReady = true;
 
 }
