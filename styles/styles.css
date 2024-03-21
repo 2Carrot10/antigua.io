@@ -64,6 +64,13 @@ html {
   border-radius: 4px;
   height: fit-content;
 }
+
+.highlight-dark{
+  background-color: rgba(21, 92, 162,1);
+  color: white;
+  border-radius: 4px;
+  height: fit-content;
+}
 /*
 .groupDiv {
   border: 5px outset grey;
@@ -175,6 +182,17 @@ h2 {
   margin-right: 4px;
   background: rgb(237, 245, 253);
   color: rgb(21, 92, 162);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.category-dark {
+  border-radius: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-right: 4px;
+  color: rgb(237, 245, 253);
+  background: rgb(21, 92, 162);
   font-size: 12px;
   cursor: pointer;
 }
