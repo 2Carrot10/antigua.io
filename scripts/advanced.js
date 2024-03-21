@@ -1,5 +1,3 @@
-import * as main from "/main.js";
-
 var serviceData = new Array();
 
 class oppertunity {

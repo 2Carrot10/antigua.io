@@ -94,12 +94,12 @@
                     <!--img and svg need to have the same width %! otherwise overlay will be offset-->
                     <img src="assets/seattle.jpg" class="seattleMapImage" style="position: relative; border-radius: 20%;
             border-width: thick;top: 0; width:80%; height:auto; left: 0;" onclick="clickSeattle(this.id)"
-                      alt="seattle map" />
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">highlight
-                      all</button>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">highlight
-                      none</button>
-                    <object id="svgobject" style="  position: absolute; top: 0px;
+                  alt="seattle map" />
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">select
+                  all</button>
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">select
+                  none</button>
+                <object id="svgobject" style="  position: absolute; top: 0px;
             left: 0px; width:80%; height:auto;" class="seattleMapImage" data="assets/seattle.svg"
                       onLoad="setupMap()"></object>
                   </div>

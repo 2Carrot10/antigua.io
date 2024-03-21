@@ -53,7 +53,6 @@ function downloadAndDisplayCSV() {
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
             var rows = parseCSV(csvData);
-            console.log(rows)
             localStorage.setItem('csvData', JSON.stringify(rows));
 
         })
