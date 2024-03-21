@@ -23,20 +23,20 @@
 
 </head>
 
-<body class="w-screen overflow-x-clip bg-gray-100 min-h-screen">
+<body class="w-screen overflow-x-clip bg-gray-100 dark:bg-[#17191e] min-h-screen">
   <div class="h-fit">
     <div id="search" class="transition-all w-screen z-50">
-      <div class="backdrop-blur-sm w-full shadow-sm bg-gray-50">
+      <div class="backdrop-blur-sm w-full shadow-sm dark:bg-[#1a1c23] bg-gray-50">
         
         <form action="search.html" method="get" id="searchform" class="max-w-2xl w-full">
           <div class="grid gap-2 w-full">
             <div class="sm:flex w-full" id="expand-container">
-              <img src="/image/dts_search_clear.png" class="h-10 w-auto mx-auto my-2 sm:h-8 sm:my-auto sm:mx-4" />
+              <img id="search_image" src="/image/dts_search_clear.png" class="h-10 w-auto mx-auto my-2 sm:h-8 sm:my-auto sm:mx-4" />
               <!--simple search-->
 
               <div id="simple-search" class="expand-contract expanded" style="display:block;width:100%;">
                 <input id="search-box" autocomplete="off"
-                  class="w-full :italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-full p-3 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  class="w-full :italic placeholder:text-slate-400 block bg-white dark:bg-white/10 dark:text-white w-full border border-slate-300 rounded-full p-3 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
                   placeholder="Search anything..." type="text" name="search">
               </div>
             </div>
@@ -52,7 +52,7 @@
       </div>
       <div id="results_number" class="text-md opacity-75 -mb-2 mt-2 sm:pl-[160px]"></div>
       <div class="flex w-full pr-0 sm:pr-8 mt-4 sm:pl-[160px]">
-        <div id="groupDiv" class="p-0 grid w-full h-fit break-word sm:break-word [overflow-wrap:anywhere] bg-white m-4 sm:ml-0 sm:mr-6 mt-0 rounded-2xl divide-y">
+        <div id="groupDiv" class="p-0 grid w-full h-fit break-word sm:break-word [overflow-wrap:anywhere] bg-white m-4 sm:ml-0 sm:mr-6 mt-0 rounded-2xl divide-y dark:text-white dark:bg-[#1e2028] dark:divide-gray-800">
 
         </div>
         
@@ -78,17 +78,17 @@
     </script>
 
 
-    <div id="oppositeScrollElement" class="transition-all w-screen z-50 shadow-sm z-50 fixed -top-16 bg-gray-50 shadow-sm">
+    <div id="oppositeScrollElement" class="transition-all w-screen z-50 shadow-sm z-50 fixed -top-16 dark:bg-[#1a1c23] bg-gray-50 shadow-sm">
       <div class="backdrop-blur-sm max-w-2xl">
         <form action="search.html" method="get" id="searchform">
           <div class="grid gap-2 w-full">
             <div class="flex w-full" id="expand-container">
 
-              <img src="/image/dts_search_clear.png" class="h-8 my-auto mx-4" />
+              <img id="search_image_2" src="/image/dts_search_clear.png" class="h-8 my-auto mx-4" />
               <!--simple search-->
               <div id="simple-search-2" class="expand-contract expanded" style="display:block;width:100%;">
                 <input id="search-box-2" autocomplete="off"
-                  class="w-full :italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-full p-1 sm:p-2 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  class="w-full :italic placeholder:text-slate-400 block bg-white dark:bg-white/10 dark:text-white w-full border border-slate-300 rounded-full p-1 sm:p-2 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
                   placeholder="Search anything..." type="text" name="search">
               </div>
         </form>

@@ -1,6 +1,12 @@
 
 const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
 
+let dark = false
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  dark = true
+  console.log('runs')
+  document.getElementById('home_image').setAttribute('src',"image/dts_search_clear_light.png")
+}
 
 function parseCSV(str) {
     var arr = [];

@@ -25,6 +25,13 @@ var text = params.get('search');
 document.getElementById('search-box').value = text;
 document.getElementById('search-box-2').value = text;
 
+let dark = false
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    dark = true
+    document.getElementById('search_image').setAttribute('src',"image/dts_search_clear_light.png")
+    document.getElementById('search_image_2').setAttribute('src',"image/dts_search_clear_light.png")
+}
+
 fetchTemplates();
 downloadAndDisplayCSV();
 
@@ -127,7 +134,7 @@ export function highlightKeywords(text, keywords) {
     let highlightedText = text;
     keywords.forEach(function (keyword) {
         const regex = new RegExp(`(${keyword})`, 'gi'); // 'gi' for case-insensitive and global search
-        highlightedText = highlightedText.replace(regex, `<span class="highlight">$1</span>`);
+        highlightedText = highlightedText.replace(regex, `<span class="highlight${dark ? "-dark" : ""}">$1</span>`);
     });
     return highlightedText;
 }
@@ -197,15 +204,14 @@ async function renderOneTileFromVal(title, description, minAge, address, website
         ));
         clone.getElementById("address").classList+=" hyperlink";
 
-        //clone.getElementById("address").innerHTML = "<a class=\"hyperlink\" href=" + "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}` + ">" + address + "<\a>"
-    } else {
+        } else {
         //clone.getElementById("address").innerHTML = address;
     }
 
     for (let i = 0; i < tags.length; i++) {
         if (tags[i] == "" || tags[i] == "\r") continue;
         let tagA = document.createElement("span");
-        tagA.classList.add("category");
+        tagA.classList.add(`category${dark ? '-dark' : ''}`);
         tagA.innerHTML = tags[i];
         clone.getElementById("tags").appendChild(tagA);
     }

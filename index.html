@@ -26,71 +26,73 @@
 
 <body class="h-screen flex justify-center items-center place-content-center">
   <div class="h-fit my-auto">
-  <div class="centered-title h-fit my-auto">
-    <h1 style="font-size: 3em; font-family: 'Gill Sans', sans-serif"><b>DTS
-        Search</b></h1>
-    <img src="assets/icon.png" style="width:100px; height:auto; margin-left: 3%;">
-  </div>
+    <div class="centered-title h-fit my-auto">
+      <img id="home_image" src="image/dts_search_clear.png" class="w-full max-w-sm h-auto rounded-md">
+    </div>
 
-  <div id="search" class="transition-all mx-auto z-50 !w-full max-w-2xl">
-    <div class="rounded-2xl rounded-t-none bg-white/75 mx-auto backdrop-blur-sm">
-      <form action="search.html" method="get" id="searchform">
-      <div class="grid gap-2 w-full">
-        <div class="flex w-full" id="expand-container">
-            <!--simple search-->
-          <div id="simple-search" class="expand-contract expanded w-full relative">
-            <input id="search-box" autocomplete="off"
-              class="w-full :italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-full p-2 sm:p-3 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-              placeholder="Search anything..." type="text" name="search" />
-              <button type="submit" id="search-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 absolute right-1 my-auto top-1 sm:top-1.5 sm:right-1.5 cursor-pointer">
-                <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
-                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z" clip-rule="evenodd" />
-              </svg></button>
-          </div>
-        </div>
-        <div class="flex w-full" id="expand-container">
+    <div id="search" class="transition-all mx-auto z-50 !w-full max-w-2xl">
+      <div class="rounded-2xl mx-auto backdrop-blur-sm">
+        <form action="search.html" method="get" id="searchform">
+          <div class="grid gap-2 w-full">
+            <div class="flex w-full" id="expand-container">
+              <!--simple search-->
+              <div id="simple-search" class="expand-contract expanded w-full relative">
+                <input id="search-box" autocomplete="off"
+                  class="w-full :italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-full p-2 sm:p-3 !px-4 !pl-10 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  placeholder="Search anything..." type="text" name="search" />
+                <!--<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 opacity-75 absolute left-1 my-auto top-1 sm:top-1.5 sm:left-1.5 cursor-pointer">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>-->
+                <svg class="w-6 h-6 opacity-50 absolute left-2 my-auto top-2 sm:top-2.5 sm:left-2.5 cursor-pointer"
+                  width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10 6.5C10 8.433 8.433 10 6.5 10C4.567 10 3 8.433 3 6.5C3 4.567 4.567 3 6.5 3C8.433 3 10 4.567 10 6.5ZM9.30884 10.0159C8.53901 10.6318 7.56251 11 6.5 11C4.01472 11 2 8.98528 2 6.5C2 4.01472 4.01472 2 6.5 2C8.98528 2 11 4.01472 11 6.5C11 7.56251 10.6318 8.53901 10.0159 9.30884L12.8536 12.1464C13.0488 12.3417 13.0488 12.6583 12.8536 12.8536C12.6583 13.0488 12.3417 13.0488 12.1464 12.8536L9.30884 10.0159Z"
+                    fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                </svg>
+              </div>
 
-          <!--advanced search-->
-          <div id="advanced-search" class="expand-contract contracted" style="display:block;width:100%;">
-
-            <div style="width:50%; float:left;" class="grid gap-2">
-              <div class="flex">
-                Description Includes: <input id="descriptionBox" autocomplete="off"
-                  class="input-box placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                  placeholder="e.g. 'research, computer'" type="text" name="description" />
-              </div>
-              <div class="flex">
-                Title Includes: <input id="titleBox" autocomplete="off"
-                  class="input-box placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                  placeholder="e.g. 'city'" type="text" name="search" />
-              </div>
-              <div class="flex">
-                <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number" autocomplete="off"
-                  class="input-box my-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                  placeholder="e.g. '13'" type="text" name="search" />
-              </div>
-              <div class="flex">
-                <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox" autocomplete="off"
-                  class="input-box my-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                  placeholder="e.g. 'Civic, Health'" type="text" name="search" />
-              </div>
-              <div class="flex">
-              Sorting by:
-              <select name="sort mode" id="search mode"
-                class="input-box drop border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
-                <option value="az">alphabetical (a-z)</option>
-                <option value="za">alphabetical (z-a)</option>
-                <option value="az">description length (long-short)</option>
-                <option value="za">description length (short-long)</option>
-                <option value="r">randomized</option>
-              </select>
             </div>
-            </div>
+            <div class="flex w-full" id="expand-container">
 
-            <div style="float:right; position:relative; width:50%">
-              <div style="position: relative; top: 0; left: 0;">
-                <!--img and svg need to have the same width %! otherwise overlay will be offset-->
-                <img src="assets/seattle.jpg" class="seattleMapImage" style="position: relative; border-radius: 20%;
+              <!--advanced search-->
+              <div id="advanced-search" class="expand-contract contracted" style="display:block;width:100%;">
+
+                <div style="width:50%; float:left;">
+                  <div class="flex">
+                    Description Includes: <input id="descriptionBox" autocomplete="off"
+                      class="input-box placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                      placeholder="e.g. 'research, computer'" type="text" name="description" />
+                  </div>
+                  <div class="flex">
+                    Title Includes: <input id="titleBox" autocomplete="off"
+                      class="input-box placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                      placeholder="e.g. 'city'" type="text" name="search" />
+                  </div>
+                  <div class="flex">
+                    <div class="mr-4 my-auto">Age:</div> <input id="minAgeBox" type="number" autocomplete="off"
+                      class="input-box my-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                      placeholder="e.g. '13'" type="text" name="search" />
+                  </div>
+                  <div class="flex">
+                    <div class="mr-4 my-auto">Categories:</div> <input id="tagsBox" autocomplete="off"
+                      class="input-box my-auto placeholder:italic placeholder:text-slate-400 block bg-white border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                      placeholder="e.g. 'Civic, Health'" type="text" name="search" />
+                  </div>
+                  Sorting by:
+                  <select name="sort mode" id="search mode"
+                    class="input-box drop border border-slate-300 rounded-2xl py-2 px-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm">
+                    <option value="az">alphabetical (a-z)</option>
+                    <option value="za">alphabetical (z-a)</option>
+                    <option value="az">description length (long-short)</option>
+                    <option value="za">description length (short-long)</option>
+                    <option value="r">randomized</option>
+                  </select>
+                </div>
+
+                <div style="float:right; position:relative; width:50%">
+                  <div style="position: relative; top: 0; left: 0;">
+                    <!--img and svg need to have the same width %! otherwise overlay will be offset-->
+                    <img src="assets/seattle.jpg" class="seattleMapImage" style="position: relative; border-radius: 20%;
             border-width: thick;top: 0; width:80%; height:auto; left: 0;" onclick="clickSeattle(this.id)"
                   alt="seattle map" />
                 <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">select
@@ -99,46 +101,44 @@
                   none</button>
                 <object id="svgobject" style="  position: absolute; top: 0px;
             left: 0px; width:80%; height:auto;" class="seattleMapImage" data="assets/seattle.svg"
-                  onLoad="setupMap()"></object>
+                      onLoad="setupMap()"></object>
+                  </div>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">search!</button>
               </div>
+
             </div>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">search!</button>
+
           </div>
 
+      </div>
+      </form>
+      <div class="w-fit flex justify-between h-fit mb-2 px-2 fixed bottom-0 right-0">
+        <div id="expand-contract-button" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer mx-4">
+          Advanced</div>
+        <div class="text-md opacity-75 text-center min-w-lg mx-4">Made by <a href="https://github.com/2carrot10"
+            target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast" class="font-bold"
+            target="_blank">Micah</a></div>
+        <div>
         </div>
 
       </div>
-      
-    </div>
-  </form>
-  <div class="w-fit flex justify-between h-fit mb-2 px-2 fixed bottom-0 right-0">
-  <!--
-    <div id="expand-contract-button" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer mx-4">
-      Advanced</div>
-      -->
-    <div class="text-md opacity-75 text-center min-w-lg mx-4">Made by <a href="https://github.com/2carrot10"
-        target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast" class="font-bold"
-        target="_blank">Micah</a></div>
-    <div>
     </div>
 
   </div>
-  </div>
- 
-</div>
-<script>
-  document.getElementById('searchform').addEventListener('submit', function(event) {
-      var userInput = document.getElementById('search-box').value;
+  <script>
+    document.getElementById('searchform').addEventListener('submit', function (event) {
+      var userInput = document.getElementById('simple-search').value;
       if (!userInput.trim()) { // Checks if the input is empty or whitespace
+        event.preventDefault(); // Prevents the form from submitting
         alert('empty')
-          event.preventDefault(); // Prevents the form from submitting
       }
-  });
-  document.getElementById('search-button').addEventListener('click', (e)=>{
-    if (!document.getElementById('search-box').value.trim()){
-      e.preventDefault()
-    }
-  })
+    });
+    document.getElementById('search-button').addEventListener('click', (e) => {
+      if (!document.getElementById('simple-search'.value).trim()) {
+        e.preventDefault()
+      }
+    })
   </script>
 </body>
 
