@@ -194,6 +194,7 @@ async function renderOneTileFromVal(title, description, minAge, address, website
     clone.getElementById("title").innerHTML = highlightKeywords(title, highlightWords);
     clone.getElementById("website").innerHTML = highlightKeywords(website, highlightWords);
     clone.getElementById("websiteURL").setAttribute('href', ensureHttps(website));
+    clone.getElementById("websiteURL").classList+=" hyperlink";
 
     //clone.getElementById("report-opportunity-link").setAttribute('href', prefillServiceLearningOpportunitiesFeedbackUrl + `${encodeURIComponent(title)}`);
     clone.getElementById("address").innerHTML = address//highlightKeywords(address,highlightKeywords);
@@ -202,11 +203,13 @@ async function renderOneTileFromVal(title, description, minAge, address, website
             
             "https://www.google.com/maps/search/?api=1&query=" + `${encodeURIComponent(address)}`
         ));
+        
         clone.getElementById("address").classList+=" hyperlink";
 
         } else {
         //clone.getElementById("address").innerHTML = address;
     }
+
 
     for (let i = 0; i < tags.length; i++) {
         if (tags[i] == "" || tags[i] == "\r") continue;
