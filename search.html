@@ -4,7 +4,7 @@
 <head>
   <title>Service Learning Search</title>
   <link href="styles/styles.css" rel="stylesheet" type="text/css" />
-  <link rel="icon" href="assets/icon.png">
+  <link rel="icon" href="image/magnifying_earth.png">
 
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -27,35 +27,66 @@
   <div class="h-fit">
     <div id="search" class="transition-all w-screen z-50">
       <div class="backdrop-blur-sm w-full shadow-sm dark:bg-[#1a1c23] bg-gray-50">
-        
+
         <form action="search.html" method="get" id="searchform" class="max-w-2xl w-full">
           <div class="grid gap-2 w-full">
             <div class="sm:flex w-full" id="expand-container">
-              <img id="search_image" src="/image/dts_search_clear.png" class="h-10 w-auto mx-auto my-2 sm:h-8 sm:my-auto sm:mx-4" />
+              <img id="search_image" src="/image/dts_search_clear.png"
+                class="h-10 w-auto mx-auto my-2 sm:h-8 sm:my-auto sm:mx-4" />
               <!--simple search-->
 
-              <div id="simple-search" class="expand-contract expanded" style="display:block;width:100%;">
+              <div id="simple-search" class="expand-contract expanded w-full relative">
                 <input id="search-box" autocomplete="off"
-                  class="w-full :italic placeholder:text-slate-400 block bg-white dark:bg-white/10 dark:text-white w-full border border-slate-300 rounded-full p-3 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                  placeholder="Search anything..." type="text" name="search">
+                  class="w-full :italic placeholder:text-slate-400 block bg-white dark:bg-white/10 dark:text-white dark:!border-none w-full border border-slate-300 rounded-full p-1 sm:p-2 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm p-2 sm:p-3 !px-4 !pl-10"
+                  placeholder="Search anything..." type="text" name="search" />
+                <!--<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 opacity-75 absolute left-1 my-auto top-1 sm:top-1.5 sm:left-1.5 cursor-pointer">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>-->
+                <svg class="w-6 h-6 opacity-50 absolute left-2 my-auto top-2 sm:top-2.5 sm:left-2.5 cursor-pointer"
+                  width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10 6.5C10 8.433 8.433 10 6.5 10C4.567 10 3 8.433 3 6.5C3 4.567 4.567 3 6.5 3C8.433 3 10 4.567 10 6.5ZM9.30884 10.0159C8.53901 10.6318 7.56251 11 6.5 11C4.01472 11 2 8.98528 2 6.5C2 4.01472 4.01472 2 6.5 2C8.98528 2 11 4.01472 11 6.5C11 7.56251 10.6318 8.53901 10.0159 9.30884L12.8536 12.1464C13.0488 12.3417 13.0488 12.6583 12.8536 12.8536C12.6583 13.0488 12.3417 13.0488 12.1464 12.8536L9.30884 10.0159Z"
+                    fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                </svg>
               </div>
+
             </div>
           </div>
 
-          <div class="flex w-fit px-2 pb-0 sm:pl-[152px]">
-            <div class="mx-2 mr-4 cursor-pointer text-[#0ea5e9a0] border-b-4 border-[#0ea5e9a0] px-2 pb-1">All</div>
-            <div class="mx-4 cursor-pointer px-2 pb-1">Service Learning</div>
-            <div class="mx-4 cursor-pointer px-2 pb-1">Internships</div>
-            <div class="mx-4 cursor-pointer px-2 pb-1">Clubs</div>
+          <div class="flex z-50">
+          <div id="gridContainer" class="flex px-2 pb-0 sm:pl-[152px] overflow-hidden whitespace-nowrap">
+            <div class="grid-item mx-1 mr-4 cursor-pointer text-[#0ea5e9a0] border-b-4 border-[#0ea5e9a0] px-2 pb-1">All</div>
+            <div class="grid-item mx-2 cursor-pointer px-2 pb-1">Service Learning</div>
+            <div class="grid-item mx-2 cursor-pointer px-2 pb-1">Internships</div>
+            <div class="grid-item mx-2 cursor-pointer px-2 pb-1">Clubs</div>
           </div>
+
+
+          <div class="dropdown dropdown-end">
+            <button tabindex="0" role="button" id="dropdownToggle" class="hidden pl-2 my-auto">
+
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+              </svg>
+              
+            </button>
+            <div tabindex="0"  id="dropdownMenu" class="z-50 dropdown-content hidden absolute bg-white shadow-md mt-1 menu p-2 shadow bg-base-100 rounded-box w-52">
+              <!-- Overflow items will be moved here -->
+            </div>
+          </div>
+
+          
+          </div>
+
         </form>
       </div>
-      <div id="results_number" class="text-md opacity-75 -mb-2 mt-2 sm:pl-[160px]"></div>
+      <div id="results_number" class="text-md -mb-2 mt-2 pl-4 sm:pl-[160px] z-0"></div>
       <div class="flex w-full pr-0 sm:pr-8 mt-4 sm:pl-[160px]">
-        <div id="groupDiv" class="p-0 grid w-full h-fit break-word sm:break-word [overflow-wrap:anywhere] bg-white m-4 sm:ml-0 sm:mr-6 mt-0 rounded-2xl divide-y dark:text-white dark:bg-[#1e2028] dark:divide-gray-800">
+        <div id="groupDiv"
+          class="p-0 grid w-full h-fit break-word sm:break-word [overflow-wrap:anywhere] bg-white m-4 sm:ml-0 sm:mr-6 mt-0 rounded-2xl divide-y dark:text-white dark:bg-[#1e2028] dark:divide-gray-800">
 
         </div>
-        
+
         <div class="w-96" id="not-mobile">
           <div id="map" class="bg-black/5 w-96 h-96 rounded-lg text-center align-center z-0"></div>
 
@@ -78,7 +109,8 @@
     </script>
 
 
-    <div id="oppositeScrollElement" class="transition-all w-screen z-50 shadow-sm z-50 fixed -top-16 dark:bg-[#1a1c23] bg-gray-50 shadow-sm">
+    <div id="oppositeScrollElement"
+      class="transition-all w-screen z-50 shadow-sm z-50 fixed -top-16 dark:bg-[#1a1c23] bg-gray-50 shadow-sm">
       <div class="backdrop-blur-sm max-w-2xl">
         <form action="search.html" method="get" id="searchform">
           <div class="grid gap-2 w-full">
@@ -86,11 +118,21 @@
 
               <img id="search_image_2" src="/image/dts_search_clear.png" class="h-8 my-auto mx-4" />
               <!--simple search-->
-              <div id="simple-search-2" class="expand-contract expanded" style="display:block;width:100%;">
+              <div id="simple-search-2" class="expand-contract expanded w-full relative">
                 <input id="search-box-2" autocomplete="off"
-                  class="w-full :italic placeholder:text-slate-400 block bg-white dark:bg-white/10 dark:text-white w-full border border-slate-300 rounded-full p-1 sm:p-2 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                  placeholder="Search anything..." type="text" name="search">
+                  class="w-full :italic placeholder:text-slate-400 block bg-white dark:bg-white/10 dark:text-white dark:!border-none w-full border border-slate-300 rounded-full p-1 px-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm !px-4 !pl-10"
+                  placeholder="Search anything..." type="text" name="search" />
+                <!--<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 opacity-75 absolute left-1 my-auto top-1 sm:top-1.5 sm:left-1.5 cursor-pointer">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>-->
+                <svg class="w-6 h-6 opacity-50 absolute left-2 my-auto top-1 sm:top-1 sm:left-1.5 cursor-pointer"
+                  width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M10 6.5C10 8.433 8.433 10 6.5 10C4.567 10 3 8.433 3 6.5C3 4.567 4.567 3 6.5 3C8.433 3 10 4.567 10 6.5ZM9.30884 10.0159C8.53901 10.6318 7.56251 11 6.5 11C4.01472 11 2 8.98528 2 6.5C2 4.01472 4.01472 2 6.5 2C8.98528 2 11 4.01472 11 6.5C11 7.56251 10.6318 8.53901 10.0159 9.30884L12.8536 12.1464C13.0488 12.3417 13.0488 12.6583 12.8536 12.8536C12.6583 13.0488 12.3417 13.0488 12.1464 12.8536L9.30884 10.0159Z"
+                    fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                </svg>
               </div>
+
         </form>
 
       </div>
