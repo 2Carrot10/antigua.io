@@ -33,6 +33,7 @@
     <div id="search" class="transition-all mx-auto z-50 !w-full max-w-2xl">
       <div class="rounded-2xl mx-auto backdrop-blur-sm">
         <form action="search.html" method="get" id="searchform">
+          <input type="hidden" name="use-advanced-mode" value="true" />
           <div class="grid gap-2 w-full">
             <div class="flex w-full" id="expand-container">
               <!--simple search-->
@@ -113,9 +114,11 @@
 
       </div>
       </form>
+
       <div class="w-fit flex justify-between h-fit mb-2 px-2 fixed bottom-0 right-0">
-        <div id="expand-contract-button" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer mx-4">
-          Advanced</div>
+        <!--temporarily disabled while it is still a work in progress-->
+              <!--<div id="expand-contract-button" class="text-md opacity-75 text-center min-w-lg font-bold cursor-pointer mx-4">
+          Advanced</div>-->
         <div class="text-md opacity-75 text-center min-w-lg mx-4">Made by <a href="https://github.com/2carrot10"
             target="_blank" class="font-bold">Eleanor</a> & <a href="https://github.com/codeitfast" class="font-bold"
             target="_blank">Micah</a></div>

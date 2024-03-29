@@ -131,6 +131,7 @@ export function searchFunction() {
 }
 
 export function highlightKeywords(text, keywords) {
+  //use the expresion: (?<=^|\>)hello[^<]+
     let highlightedText = text;
     keywords.forEach(function (keyword) {
         const regex = new RegExp(`(${keyword})`, 'gi'); // 'gi' for case-insensitive and global search
@@ -147,7 +148,6 @@ function ensureHttps(url) {
         return 'https://' + url; // Add 'https://' to the URL
     }
 }
-
 
 export function deleteAllTiles() {
     var myNode = document.getElementById("groupDiv");
