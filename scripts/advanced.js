@@ -281,6 +281,7 @@ function parseCSV(str) {
     return arr;
 }
 async function downloadAndDisplayCSV(url) {
+    console.log(oppertunityType)
     //let a= /(?!\B"[^"]*),(?![^"]*"\B)/g //finds , outside ""
     //let b = /"/g
     //let c = /("[^"\n]*)\r?\n(?!(([^"]*"){2})*[^"]*$)/; //finds new lines inside ""
@@ -304,9 +305,11 @@ async function downloadAndDisplayCSV(url) {
 }
 
 // Replace 'url_to_csv_file' with the actual URL of the CSV file you want to download and display
-const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
+const serviceUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
+const activitiesUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGYt5wUvovs1jTpEdA0CaWF67XIgQxgv8Z0jddkS-9Ju68pJMZfKxxABL_Cx4PQcxh7RVZaXIt8DNT/pub?gid=0&single=true&output=csv';
 
-downloadAndDisplayCSV(csvUrl);
+//downloadAndDisplayCSV(serviceUrl)
+downloadAndDisplayCSV(activitiesUrl)
 
 function topFunction() {
     document.body.scrollTop = 0;

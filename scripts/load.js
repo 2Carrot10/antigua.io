@@ -1,6 +1,3 @@
-
-const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
-
 let dark = false
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
   dark = true
@@ -48,8 +45,8 @@ class opportunity {
     }
 }
 
-function downloadAndDisplayCSV() {
-    fetch(csvUrl)
+function downloadAndDisplayCSV(url) {
+    fetch(url)
         .then(response => response.text()) // Get the text from the response
         .then(csvData => {
             var rows = parseCSV(csvData);
@@ -61,4 +58,8 @@ function downloadAndDisplayCSV() {
         });
 }
 
-downloadAndDisplayCSV()
+const serviceUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR0asHvHVHwgNFDWpKgD0wV9k79Fiqs9Zvrjse3_KHMvhUtmvXFGOv0JQh3d7C01uPHlYTVvYkAo1lO/pub?gid=0&single=true&output=csv';
+const activitiesUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSGYt5wUvovs1jTpEdA0CaWF67XIgQxgv8Z0jddkS-9Ju68pJMZfKxxABL_Cx4PQcxh7RVZaXIt8DNT/pub?gid=0&single=true&output=csv';
+
+//downloadAndDisplayCSV(serviceUrl)
+downloadAndDisplayCSV(activitiesUrl)
