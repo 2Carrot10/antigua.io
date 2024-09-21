@@ -92,15 +92,6 @@
         </div>
       </div>
     </div>
-    <script>
-      document.getElementById('searchform').addEventListener('submit', function (event) {
-        var userInput = document.getElementById('simple-search').value;
-        if (!userInput.trim()) { // Checks if the input is empty or whitespace
-          event.preventDefault(); // Prevents the form from submitting
-        }
-      });
-    </script>
-
 
     <div id="oppositeScrollElement"
       class="transition-all w-screen z-50 shadow-sm z-50 fixed -top-16 dark:bg-[#1a1c23] bg-gray-50 shadow-sm">
@@ -135,6 +126,12 @@
     <script>
       // This is a hack but the project is beyond repair anyways
       document.getElementById('searchform2').addEventListener('submit', function (event) {
+        var userInput = document.getElementById('simple-search').value;
+        if (!userInput.trim()) { // Checks if the input is empty or whitespace
+          event.preventDefault(); // Prevents the form from submitting
+        }
+      });
+      document.getElementById('searchform').addEventListener('submit', function (event) {
         var userInput = document.getElementById('simple-search').value;
         if (!userInput.trim()) { // Checks if the input is empty or whitespace
           event.preventDefault(); // Prevents the form from submitting
