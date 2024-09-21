@@ -14,7 +14,7 @@ if (isMobile) {
     console.log(element)
     if (element && element.parentNode) {
         element.parentNode.removeChild(element); // This removes the element from the DOM
-        document.getElementById('search_image_2').parentNode.removeChild(document.getElementById('search_image_2'))
+        //document.getElementById('search_image_2').parentNode.removeChild(document.getElementById('search_image_2'))
     }
 }
 
