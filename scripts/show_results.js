@@ -18,10 +18,6 @@ if (isMobile) {
     }
 }
 
-document.getElementById("dropdownToggle").addEventListener('click',(e)=>{
-e.preventDefault()
-})
-
 var advancedMode = false;
 export function expandContract() {
 
