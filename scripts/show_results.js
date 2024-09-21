@@ -22,48 +22,6 @@ document.getElementById("dropdownToggle").addEventListener('click',(e)=>{
 e.preventDefault()
 })
 
-document.addEventListener('DOMContentLoaded', function() {
-    const gridContainer = document.getElementById('gridContainer');
-    const dropdownToggle = document.getElementById('dropdownToggle');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-  
-    function adjustItems() {
-      while (dropdownMenu.firstChild) {
-        gridContainer.appendChild(dropdownMenu.firstChild); // Reset by moving all items back
-      }
-  
-      let containerWidth = gridContainer.offsetWidth;
-      let usedWidth = 0; // Track the width used by items and their margins
-  
-      Array.from(gridContainer.children).forEach(item => {
-        // Calculate total item width including margins
-        const style = item.currentStyle || window.getComputedStyle(item);
-        const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
-        const itemFullWidth = item.offsetWidth + margin;
-  
-        if ((usedWidth + itemFullWidth) > containerWidth) {
-          dropdownMenu.appendChild(item); // Move item to dropdown
-        } else {
-          usedWidth += itemFullWidth; // Update used width
-        }
-      });
-  
-      // Show or hide the dropdown toggle based on overflow
-      dropdownToggle.classList.toggle('hidden', dropdownMenu.children.length === 0);
-    }
-  
-    // Toggle dropdown display
-    dropdownToggle.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('hidden');
-    });
-  
-    // Adjust on load and resize
-    adjustItems();
-    window.addEventListener('resize', adjustItems);
-  });
-    
-
-
 var advancedMode = false;
 export function expandContract() {
 
