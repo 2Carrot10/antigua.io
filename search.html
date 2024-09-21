@@ -124,20 +124,6 @@
       </div>
     </div>
     <script>
-      // This is a hack but the project is beyond repair anyways
-      document.getElementById('searchform2').addEventListener('submit', function (event) {
-        var userInput = document.getElementById('simple-search').value;
-        if (!userInput.trim()) { // Checks if the input is empty or whitespace
-          event.preventDefault(); // Prevents the form from submitting
-        }
-      });
-      document.getElementById('searchform').addEventListener('submit', function (event) {
-        var userInput = document.getElementById('simple-search').value;
-        if (!userInput.trim()) { // Checks if the input is empty or whitespace
-          event.preventDefault(); // Prevents the form from submitting
-        }
-      });
-
       window.onscroll = function () {
         var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
         var element = document.getElementById('oppositeScrollElement');
