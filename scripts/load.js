@@ -5,7 +5,8 @@ let dark = false
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
   dark = true
   console.log('runs')
-  document.getElementById('home_image').setAttribute('src',"image/dts_search_clear_light.png")
+  // COMMENTED OUT TEMPORARILY
+  // document.getElementById('home_image').setAttribute('src',"image/dts_search_clear_light.png")
 }
 
 function parseCSV(str) {
